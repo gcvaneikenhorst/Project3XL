@@ -1,17 +1,25 @@
 @extends('layouts.app')
 
-<link href="{{ asset('css/auth.css') }}" rel="stylesheet">
 
 @section('content')
-<div class="container">
+    <link href="{{ asset('css/auth.css') }}" rel="stylesheet">
+    <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
-                    <div class="paginator" style="">
-                        <div class="circle circle-active" page-index="1">Sollicitant</div>
-                        <div class="circle" page-index="2">Bedrijf</div>
+                <div class="panel-heading">&nbsp;
+                    <div class="pull-left box-header">
+                        Registreren
                     </div>
+                    <div class="pull-right">
+                        <div class="paginator">
+                            <div class="page-toggle toggle-active" page-index="1">Sollicitant</div>
+                            /
+                            <div class="page-toggle" page-index="2">Bedrijf</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-body">
                     <div class="pages">
                         <div class="page page-active">
                             <h2>
@@ -176,6 +184,7 @@
                             </h2>
                             <h3>Gegevens</h3>
                             <form method="post">
+                                {{ csrf_field() }}
                                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                     <label for="name" class="col-md-4 control-label">Name</label>
 
