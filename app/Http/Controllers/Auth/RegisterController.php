@@ -61,8 +61,30 @@ class RegisterController extends Controller
         switch (true) {
             case $isApplicant:
 
+                $validators = array_merge($validators, [
+                    'salutation' => 'required|max:255',
+                    'firstname' => 'required|max:255',
+                    'lastname'  => 'required|max:255',
+                    'insertion' => 'max:255',
+                    'address'   => 'required|max:255',
+                    'zipcode'   => 'required|max:6',
+                    'location'  => 'required|max:255',
+                    'phone'     => 'required|max:10',
+                ]);
+
                 break;
             case $isCompany:
+
+                $validators = array_merge($validators, [
+                    'name'      => 'required|max:255',
+                    'address'   => 'required|max:255',
+                    'zipcode'   => 'required|max:6',
+                    'city'      => 'required|max:255',
+                    'phone'     => 'required|max:10',
+                    'contactperson' => 'required|max:255',
+                    'email'     => 'required|email|max:255',
+                    'website'   => 'required|max:255',
+                ]);
 
                 break;
         }

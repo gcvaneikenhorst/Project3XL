@@ -72,7 +72,7 @@
                                     <label for="insertion" class="col-md-4 control-label">Tussenvoegsel</label>
 
                                     <div class="col-md-6">
-                                        <input id="insertion" type="text" class="form-control" name="insertion" required>
+                                        <input id="insertion" type="text" class="form-control" name="insertion">
 
                                         @if ($errors->has('insertion'))
                                             <span class="help-block">
