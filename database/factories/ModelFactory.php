@@ -44,7 +44,7 @@ $factory->define(App\Company::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
-        'name' => $faker->name,
+        'name' => $faker->company,
         'address' => $faker->address,
         'zipcode' => $faker->randomLetter,
         'city' => $faker->city,
@@ -69,5 +69,45 @@ $factory->define(App\Admin::class, function (Faker\Generator $faker) {
         'email' => $faker->email,
     ];
 });
+$factory->define(App\Category::class, function (Faker\Generator $faker) {
+    static $password;
 
-//['salutation','firstname','insertion','lastname','address','zipcode','location','phone','email']
+    return [
+        'name' => $faker->name,
+        'description' => $faker->paragraph,
+    ];
+});
+
+$factory->define(App\Competence::class, function (Faker\Generator $faker) {
+    static $password;
+
+    return [
+        'name' => $faker->name,
+        'description' => $faker->paragraph,
+    ];
+});
+
+$factory->define(App\CV::class, function (Faker\Generator $faker) {
+    static $password;
+
+    return [
+        'date' => \Carbon\Carbon::now(),
+        'title' => $faker->name,
+        'text' => $faker->paragraph,
+        'applicant_id'=> factory(App\Applicant::class)->create()->id,
+        'video' => $faker->mimeType,
+        'motivation'=> $faker->sentence(),
+        'category_id' => factory(\App\Category::class)->create()->id
+    ];
+});
+
+$factory->define(App\Vacancy::class, function (Faker\Generator $faker) {
+    static $password;
+
+    return [
+        'date' => \Carbon\Carbon::now(),
+        'title' => $faker->name,
+        'text' => $faker->paragraph,
+        'company_id'=> factory(App\Company::class)->create()->id
+    ];
+});
