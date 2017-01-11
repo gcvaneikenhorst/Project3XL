@@ -135,7 +135,7 @@ class RegisterController extends Controller
                     'city'      => $data['city'],
                     'phone'     => $data['phone'],
                     'contactperson' => $data['contactperson'],
-                    'email'     => $data['email'],
+                    'email'     => $data['contactemail'],
                     'website'   => $data['website'],
                 ]);
 

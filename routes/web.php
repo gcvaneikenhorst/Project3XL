@@ -18,3 +18,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+Route::get('/settings', 'SettingsController@index');
+Route::post('/settings/save', 'SettingsController@save');
