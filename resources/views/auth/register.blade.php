@@ -26,7 +26,7 @@
                                 Sollicitant
                             </h2>
                             <span class="form-title">Gegevens</span>
-                            <form method="post">
+                            <form class="form-horizontal" role="form" method="POST">
                                 <input type="hidden" name="user_type" value="1" />
                                 {{ csrf_field() }}
                                 <div class="form-group{{ $errors->has('salutation') ? ' has-error' : '' }}">
@@ -185,7 +185,7 @@
                                 Bedrijf
                             </h2>
                             <span class="form-title">Gegevens</span>
-                            <form method="post">
+                            <form class="form-horizontal" role="form" method="POST">
                                 <input type="hidden" name="user_type" value="2" />
                                 {{ csrf_field() }}
                                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
@@ -262,19 +262,6 @@
                                         @if ($errors->has('contactperson'))
                                             <span class="help-block">
                                                 <strong>{{ $errors->first('contactperson') }}</strong>
-                                            </span>
-                                        @endif
-                                    </div>
-                                </div>
-                                <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                    <label for="email" class="col-md-4 control-label">Email</label>
-
-                                    <div class="col-md-6">
-                                        <input id="email" type="text" class="form-control" name="email" required>
-
-                                        @if ($errors->has('email'))
-                                            <span class="help-block">
-                                                <strong>{{ $errors->first('email') }}</strong>
                                             </span>
                                         @endif
                                     </div>
