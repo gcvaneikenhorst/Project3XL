@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+<link href="{{ asset('css/auth.css') }}" rel="stylesheet">
 @section('content')
 <div class="container">
     <div class="row">
@@ -183,5 +184,5 @@
     </div>
 </div>
 
-    <script src="js/auth.js"></script>
+<script src="js/auth.js"></script>
 @endsection
