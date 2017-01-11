@@ -22,10 +22,9 @@
                 <div class="panel panel-body">
                     <div class="pages">
                         <div class="page page-active">
-                            <h2>
-                                Sollicitant
-                            </h2>
-                            <span class="form-title">Gegevens</span>
+                            <span class="form-title">Sollicitant</span>
+                            <br>
+                            <span class="form-subtitle">Gegevens</span>
                             <form class="form-horizontal" role="form" method="POST">
                                 <input type="hidden" name="user_type" value="1" />
                                 {{ csrf_field() }}
@@ -134,7 +133,8 @@
                                     </div>
                                 </div>
 
-                                <span class="form-title">Login gegevens</span>
+                                <span class="form-subtitle">Login gegevens</span>
+                                
                                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                                     <label for="email" class="col-md-4 control-label">E-Mail Adres</label>
 
@@ -181,10 +181,9 @@
                             </form>
                         </div>
                         <div class="page">
-                            <h2>
-                                Bedrijf
-                            </h2>
-                            <span class="form-title">Gegevens</span>
+                            <span class="form-title">Sollicitant</span>
+                            <br>
+                            <span class="form-subtitle">Gegevens</span>
                             <form class="form-horizontal" role="form" method="POST">
                                 <input type="hidden" name="user_type" value="2" />
                                 {{ csrf_field() }}
@@ -293,7 +292,8 @@
                                     </div>
                                 </div>
 
-                                <span class="form-title">Login gegevens</span>
+                                <span class="form-subtitle">Login gegevens</span>
+                                
                                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                                     <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
