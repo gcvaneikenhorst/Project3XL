@@ -12,19 +12,22 @@ function onPageClick(event) {
     let pageIndex = event.target.getAttribute("page-index") * 1;
     // TODO: Only allow to change to the next page if all required fields are filled in properly.
 
-    for (let [i, node] of find('.page')) {
+    for (let [i, node] of find('.page')) 
+    {
         node.classList.remove("page-active")
     }
+    
     let page = document.querySelector(`.pages .page:nth-child(${pageIndex})`)
     page.classList.add("page-active");
-    for (let [index, node] of find('.circle')) {
+    for (let [index, node] of find('.page-toggle')) 
+    {
         if ((index + 1) == pageIndex)
-            node.classList.add("circle-active")
+            node.classList.add("toggle-active")
         else
-            node.classList.remove("circle-active")
+            node.classList.remove("toggle-active")
     }
 }
 
-for (let [index, node] of find('.circle')) {
+for (let [index, node] of find('.page-toggle')) {
     node.addEventListener("click", onPageClick);
 }

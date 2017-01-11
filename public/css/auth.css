@@ -1,38 +1,48 @@
+.box-header
+{
+	font-size: 1.2em;
+	font-weight: bold;
+}
 
+.form-title
+{
+	color: black;
+	font-size: 1.5em;
+	font-weight: 100;
+    display: inline-block;
+}
 
-.circle {
-    #border-radius: 50%;
-    border: black solid 2px;
-    width: 75px;
-    height: 75px;
-    background-color: orange;
+.page-toggle 
+{
+    color: black;
     display:flex;
     align-items:center;
     justify-content:center;
     cursor: pointer;
 }
 
-.circle-active {
-    background-color: green;
+.toggle-active 
+{
+    color: #3097D1;
 }
 
-.paginator {
+.paginator 
+{
     display:flex;
     justify-content: space-around;
-    padding: 5px 20px;
-    border-bottom: solid black 1px;
 }
 
-.pages {
+.pages 
+{
     width: 100%;
-    min-height:500px;
 }
 
-.page {
+.page 
+{
     display: none;
-    margin-left:5px;
 }
 
-.page-active {
+.page-active 
+{
     display: initial;
 }
