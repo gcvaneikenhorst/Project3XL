@@ -96,8 +96,8 @@ $factory->define(App\CV::class, function (Faker\Generator $faker) {
         'text' => $faker->paragraph,
         'applicant_id'=> factory(App\Applicant::class)->create()->id,
         'video' => $faker->mimeType,
-        'motivation'=> $faker->paragraph,
-        'category_id' => factory(\App\CV::class)->create()->id
+        'motivation'=> $faker->sentence(),
+        'category_id' => factory(\App\Category::class)->create()->id
     ];
 });
 
