@@ -72,5 +72,116 @@
             </div>
         </div>
     </div>
+
+    <div class="paginator" style="">
+        <div class="circle circle-active" page-index="1">Sollicitant</div>
+        <div class="circle" page-index="2">Bedrijf</div>
+    </div>
+    <div class="pages">
+        <div class="page page-active">
+            <h2>
+                Sollicitant
+            </h2>
+            <h3>Gegevens</h3>
+            <table>
+                <tr>
+                    <td>Voornaam</td>
+                    <td><input type="text" name="firstname" required></td>
+                </tr>
+                <tr>
+                    <td>Achternaam</td>
+                    <td><input type="text" name="lastname" required></td>
+                </tr>
+                <tr>
+                    <td>Tussenvoegsel</td>
+                    <td><input type="text" name="insertion"></td>
+                </tr>
+                <tr>
+                    <td>Adres</td>
+                    <td><input type="text" name="address" required></td>
+                </tr>
+                <tr>
+                    <td>Postcode</td>
+                    <td><input type="text" name="zipcode" required></td>
+                </tr>
+                <tr>
+                    <td>Woonplaats</td>
+                    <td><input type="text" name="location" required></td>
+                </tr>
+                <tr>
+                    <td>Telefoon</td>
+                    <td><input type="text" name="phone" required></td>
+                </tr>
+            </table>
+            <h3>Login gegevens</h3>
+            <table>
+                <tr>
+                    <td>Email</td>
+                    <td><input type="text" name="email" required></td>
+                </tr>
+                <tr>
+                    <td>Wachtwoord</td>
+                    <td><input type="text" name="password" required></td>
+                </tr>
+            </table>
+        </div>
+        <div class="page">
+            <h2>
+                Bedrijf
+            </h2>
+            <h3>Gegevens</h3>
+            <table>
+                <tr>
+                    <td>Bedrijfsnaam</td>
+                    <td><input type="text" name="firstname" required></td>
+                </tr>
+                <tr>
+                    <td>Adres</td>
+                    <td><input type="text" name="address" required></td>
+                </tr>
+                <tr>
+                    <td>Postcode</td>
+                    <td><input type="text" name="zipcode" required></td>
+                </tr>
+                <tr>
+                    <td>Woonplaats</td>
+                    <td><input type="text" name="location" required></td>
+                </tr>
+                <tr>
+                    <td>Telefoon</td>
+                    <td><input type="text" name="phone" required></td>
+                </tr>
+                <tr>
+                    <td>Contactpersoon</td>
+                    <td><input type="text" name="contactperson" required></td>
+                </tr>
+                <tr>
+                    <td>Website</td>
+                    <td><input type="text" name="website"></td>
+                </tr>
+            </table>
+            <h3>Login gegevens</h3>
+            <table>
+                <tr>
+                    <td>Email</td>
+                    <td><input type="text" name="email" required></td>
+                </tr>
+                <tr>
+                    <td>Wachtwoord</td>
+                    <td><input type="text" name="password" required></td>
+                </tr>
+            </table>
+        </div>
+        <div class="page">
+            <table>
+                <tr>
+                    <td>Video</td>
+                    <td><input type="file" name="file"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
 </div>
+
+    <script src="js/auth.js"></script>
 @endsection
