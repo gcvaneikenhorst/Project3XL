@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Applicant;
+use App\Company;
 use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
@@ -47,11 +49,25 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'name' => 'required|max:255',
+        $isApplicant =  $data['user_type'] == 1;
+        $isCompany =    $data['user_type'] == 2;
+
+        $validators = [
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
-        ]);
+            'password_confirmation' => 'required|min:6',
+        ];
+
+        switch (true) {
+            case $isApplicant:
+
+                break;
+            case $isCompany:
+
+                break;
+        }
+
+        return Validator::make($data, $validators);
     }
 
     /**
@@ -62,10 +78,51 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
+        $isApplicant =  $data['user_type'] == 1;
+        $isCompany =    $data['user_type'] == 2;
+
+        $user = User::create([
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+
+        switch (true) {
+            case $isApplicant:
+
+                $applicant = Applicant::create([
+                    'salutation' => $data['salutation'],
+                    'firstname' => $data['firstname'],
+                    'lastname'  => $data['lastname'],
+                    'insertion' => $data['insertion'],
+                    'address'   => $data['address'],
+                    'zipcode'   => $data['zipcode'],
+                    'location'  => $data['location'],
+                    'phone'     => $data['phone'],
+                ]);
+
+                $applicant->save();
+                $applicant->user()->save($user);
+
+                break;
+            case $isCompany:
+
+                $company = Company::create([
+                    'name'      => $data['name'],
+                    'address'   => $data['address'],
+                    'zipcode'   => $data['zipcode'],
+                    'city'      => $data['city'],
+                    'phone'     => $data['phone'],
+                    'contactperson' => $data['contactperson'],
+                    'email'     => $data['email'],
+                    'website'   => $data['website'],
+                ]);
+
+                $company->save();
+                $company->user()->save($user);
+
+                break;
+        }
+
+        return $user;
     }
 }
