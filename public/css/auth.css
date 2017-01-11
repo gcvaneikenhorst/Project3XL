@@ -1,26 +1,23 @@
 
 
-.circle {
-    #border-radius: 50%;
-    border: black solid 2px;
-    width: 75px;
-    height: 75px;
-    background-color: orange;
+.page-toggle 
+{
+    color: black;
     display:flex;
     align-items:center;
     justify-content:center;
     cursor: pointer;
 }
 
-.circle-active {
-    background-color: green;
+.toggle-active 
+{
+    color: blue;
 }
 
 .paginator {
     display:flex;
     justify-content: space-around;
     padding: 5px 20px;
-    border-bottom: solid black 1px;
 }
 
 .pages {
