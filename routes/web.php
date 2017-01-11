@@ -20,3 +20,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 Route::get('/account/removeaccount', 'AccountController@removeaccount');
 Route::post('/account/removeaccount', 'AccountController@removeaccount');
+
+Route::get('/settings', 'SettingsController@index');
+Route::post('/settings/save', 'SettingsController@save');

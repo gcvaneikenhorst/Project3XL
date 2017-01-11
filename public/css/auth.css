@@ -12,9 +12,17 @@
     display: inline-block;
 }
 
+.form-subtitle
+{
+	color: black;
+	font-size: 1.1em;
+	font-weight: 100;
+    display: inline-block;
+}
+
 .page-toggle 
 {
-    color: black;
+    color: #3097D1;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -23,7 +31,7 @@
 
 .toggle-active 
 {
-    color: #3097D1;
+    color: black;
 }
 
 .paginator 
