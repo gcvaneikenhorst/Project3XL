@@ -1,4 +1,15 @@
+.box-header
+{
+	font-size: 1.2em;
+	font-weight: bold;
+}
 
+.form-title
+{
+	color: black;
+	font-size: 1.5em;
+	font-weight: 100;
+}
 
 .page-toggle 
 {
@@ -11,25 +22,27 @@
 
 .toggle-active 
 {
-    color: blue;
+    color: #3097D1;
 }
 
-.paginator {
+.paginator 
+{
     display:flex;
     justify-content: space-around;
-    padding: 5px 20px;
 }
 
-.pages {
+.pages 
+{
     width: 100%;
     min-height:500px;
 }
 
-.page {
+.page 
+{
     display: none;
-    margin-left:5px;
 }
 
-.page-active {
+.page-active 
+{
     display: initial;
 }

@@ -7,7 +7,10 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Inloggen
+                <div class="panel-heading">&nbsp;
+	                <div class="pull-left box-header">
+		                Inloggen
+	                </div>
 	                <div class="pull-right">
 		                <div class="paginator">
 		                	<div class="page-toggle toggle-active" page-index="1">Sollicitant</div>
@@ -19,7 +22,7 @@
                 <div class="panel-body">
 				    <div class="pages">
 				        <div class="page page-active">
-				            <h2>Sollicitant</h2>
+				            <span class="form-title">Sollicitant</span>
 				            
 				            <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
 		                        {{ csrf_field() }}
@@ -76,7 +79,8 @@
 		                    </form> 
 				        </div>
 				        <div class="page">
-				            <h2>Bedrijf</h2>
+				            <span class="form-title">Bedrijf</span>
+				            
 				            <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
 		                        {{ csrf_field() }}
 		
