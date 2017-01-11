@@ -19,6 +19,13 @@
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
+    <style>
+        body {
+            background-image: url('http://www.sz0931.com/data/out/62/52642085-office-wallpaper.jpg');
+            background-position: center;
+            background-size: cover;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
