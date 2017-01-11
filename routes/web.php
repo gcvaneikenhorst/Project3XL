@@ -18,3 +18,5 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+Route::get('/account/removeaccount', 'AccountController@removeaccount');
+Route::post('/account/removeaccount', 'AccountController@removeaccount');
