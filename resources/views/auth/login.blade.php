@@ -71,9 +71,9 @@
 		                                    Inloggen
 		                                </button>
 		
-		                                <a class="btn btn-link" href="{{ url('/password/reset') }}">
+		                                <!--<a class="btn btn-link" href="{{ url('/password/reset') }}">
 		                                    Wachtwoord vergeten?
-		                                </a>
+		                                </a>-->
 		                            </div>
 		                        </div>
 		                    </form> 
