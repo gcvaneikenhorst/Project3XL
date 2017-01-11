@@ -27,6 +27,7 @@
                             </h2>
                             <h3>Gegevens</h3>
                             <form method="post">
+                                <input type="hidden" name="user_type" value="1" />
                                 {{ csrf_field() }}
                                 <div class="form-group{{ $errors->has('salutation') ? ' has-error' : '' }}">
                                     <label for="salutation" class="col-md-4 control-label">Salutation</label>
@@ -184,6 +185,7 @@
                             </h2>
                             <h3>Gegevens</h3>
                             <form method="post">
+                                <input type="hidden" name="user_type" value="2" />
                                 {{ csrf_field() }}
                                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                     <label for="name" class="col-md-4 control-label">Name</label>
@@ -289,7 +291,6 @@
                                         @endif
                                     </div>
                                 </div>
-
 
                                 <h3>Login gegevens</h3>
                                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
