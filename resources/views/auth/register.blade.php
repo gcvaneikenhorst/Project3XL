@@ -25,7 +25,7 @@
                             <h2>
                                 Sollicitant
                             </h2>
-                            <h3>Gegevens</h3>
+                            <span class="form-title">Gegevens</span>
                             <form method="post">
                                 <input type="hidden" name="user_type" value="1" />
                                 {{ csrf_field() }}
@@ -41,7 +41,8 @@
                                             </span>
                                         @endif
                                     </div>
-                                </div><div class="form-group{{ $errors->has('firstname') ? ' has-error' : '' }}">
+                                </div>
+                                <div class="form-group{{ $errors->has('firstname') ? ' has-error' : '' }}">
                                     <label for="firstname" class="col-md-4 control-label">Firstname</label>
 
                                     <div class="col-md-6">
@@ -133,7 +134,7 @@
                                     </div>
                                 </div>
 
-                                <h3>Login gegevens</h3>
+                                <span class="form-title">Login gegevens</span>
                                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                                     <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
@@ -183,7 +184,7 @@
                             <h2>
                                 Bedrijf
                             </h2>
-                            <h3>Gegevens</h3>
+                            <span class="form-title">Gegevens</span>
                             <form method="post">
                                 <input type="hidden" name="user_type" value="2" />
                                 {{ csrf_field() }}
@@ -292,7 +293,7 @@
                                     </div>
                                 </div>
 
-                                <h3>Login gegevens</h3>
+                                <span class="form-title">Login gegevens</span>
                                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                                     <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
@@ -301,8 +302,8 @@
 
                                         @if ($errors->has('email'))
                                             <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
+                                                <strong>{{ $errors->first('email') }}</strong>
+                                            </span>
                                         @endif
                                     </div>
                                 </div>
@@ -315,8 +316,8 @@
 
                                         @if ($errors->has('password'))
                                             <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
+                                                <strong>{{ $errors->first('password') }}</strong>
+                                            </span>
                                         @endif
                                     </div>
                                 </div>
