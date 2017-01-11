@@ -30,7 +30,7 @@
                                 <input type="hidden" name="user_type" value="1" />
                                 {{ csrf_field() }}
                                 <div class="form-group{{ $errors->has('salutation') ? ' has-error' : '' }}">
-                                    <label for="salutation" class="col-md-4 control-label">Salutation</label>
+                                    <label for="salutation" class="col-md-4 control-label">Aanhef</label>
 
                                     <div class="col-md-6">
                                         <input id="salutation" type="text" class="form-control" name="salutation" required>
@@ -43,7 +43,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group{{ $errors->has('firstname') ? ' has-error' : '' }}">
-                                    <label for="firstname" class="col-md-4 control-label">Firstname</label>
+                                    <label for="firstname" class="col-md-4 control-label">Voornaam</label>
 
                                     <div class="col-md-6">
                                         <input id="firstname" type="text" class="form-control" name="firstname" required>
@@ -56,7 +56,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group{{ $errors->has('lastname') ? ' has-error' : '' }}">
-                                    <label for="lastname" class="col-md-4 control-label">Lastname</label>
+                                    <label for="lastname" class="col-md-4 control-label">Achternaam</label>
 
                                     <div class="col-md-6">
                                         <input id="lastname" type="text" class="form-control" name="lastname" required>
@@ -69,10 +69,10 @@
                                     </div>
                                 </div>
                                 <div class="form-group{{ $errors->has('insertion') ? ' has-error' : '' }}">
-                                    <label for="insertion" class="col-md-4 control-label">Insertion</label>
+                                    <label for="insertion" class="col-md-4 control-label">Tussenvoegsel</label>
 
                                     <div class="col-md-6">
-                                        <input id="insertion" type="text" class="form-control" name="insertion" required>
+                                        <input id="insertion" type="text" class="form-control" name="insertion">
 
                                         @if ($errors->has('insertion'))
                                             <span class="help-block">
@@ -82,7 +82,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
-                                    <label for="address" class="col-md-4 control-label">Address</label>
+                                    <label for="address" class="col-md-4 control-label">Adres</label>
 
                                     <div class="col-md-6">
                                         <input id="address" type="text" class="form-control" name="address" required>
@@ -95,7 +95,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group{{ $errors->has('zipcode') ? ' has-error' : '' }}">
-                                    <label for="zipcode" class="col-md-4 control-label">Zipcode</label>
+                                    <label for="zipcode" class="col-md-4 control-label">Postcode</label>
 
                                     <div class="col-md-6">
                                         <input id="zipcode" type="text" class="form-control" name="zipcode" required>
@@ -108,7 +108,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group{{ $errors->has('location') ? ' has-error' : '' }}">
-                                    <label for="location" class="col-md-4 control-label">Location</label>
+                                    <label for="location" class="col-md-4 control-label">Woonplaats</label>
 
                                     <div class="col-md-6">
                                         <input id="location" type="text" class="form-control" name="location" required>
@@ -121,7 +121,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
-                                    <label for="phone" class="col-md-4 control-label">Phone</label>
+                                    <label for="phone" class="col-md-4 control-label">Telefoon</label>
 
                                     <div class="col-md-6">
                                         <input id="phone" type="text" class="form-control" name="phone" required>
@@ -136,7 +136,7 @@
 
                                 <span class="form-title">Login gegevens</span>
                                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                    <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                                    <label for="email" class="col-md-4 control-label">E-Mail Adres</label>
 
                                     <div class="col-md-6">
                                         <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
@@ -150,7 +150,7 @@
                                 </div>
 
                                 <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                    <label for="password" class="col-md-4 control-label">Password</label>
+                                    <label for="password" class="col-md-4 control-label">Wachtwoord</label>
 
                                     <div class="col-md-6">
                                         <input id="password" type="password" class="form-control" name="password" required>
@@ -164,7 +164,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
+                                    <label for="password-confirm" class="col-md-4 control-label">Bevestig wachtwoord</label>
 
                                     <div class="col-md-6">
                                         <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
@@ -174,7 +174,7 @@
                                 <div class="form-group">
                                     <div class="col-md-6 col-md-offset-4">
                                         <button type="submit" class="btn btn-primary">
-                                            Register
+                                            Registreer
                                         </button>
                                     </div>
                                 </div>
@@ -189,7 +189,7 @@
                                 <input type="hidden" name="user_type" value="2" />
                                 {{ csrf_field() }}
                                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                    <label for="name" class="col-md-4 control-label">Name</label>
+                                    <label for="name" class="col-md-4 control-label">Bedrijfsnaam</label>
 
                                     <div class="col-md-6">
                                         <input id="name" type="text" class="form-control" name="name" required>
@@ -202,7 +202,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
-                                    <label for="address" class="col-md-4 control-label">Address</label>
+                                    <label for="address" class="col-md-4 control-label">Adres</label>
 
                                     <div class="col-md-6">
                                         <input id="address" type="text" class="form-control" name="address" required>
@@ -215,7 +215,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group{{ $errors->has('zipcode') ? ' has-error' : '' }}">
-                                    <label for="zipcode" class="col-md-4 control-label">Zipcode</label>
+                                    <label for="zipcode" class="col-md-4 control-label">Postcode</label>
 
                                     <div class="col-md-6">
                                         <input id="zipcode" type="text" class="form-control" name="zipcode" required>
@@ -228,7 +228,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group{{ $errors->has('city') ? ' has-error' : '' }}">
-                                    <label for="city" class="col-md-4 control-label">City</label>
+                                    <label for="city" class="col-md-4 control-label">Woonplaats</label>
 
                                     <div class="col-md-6">
                                         <input id="city" type="text" class="form-control" name="city" required>
@@ -241,7 +241,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
-                                    <label for="phone" class="col-md-4 control-label">Phone</label>
+                                    <label for="phone" class="col-md-4 control-label">Telefoon</label>
 
                                     <div class="col-md-6">
                                         <input id="phone" type="text" class="form-control" name="phone" required>
@@ -254,7 +254,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group{{ $errors->has('contactperson') ? ' has-error' : '' }}">
-                                    <label for="contactperson" class="col-md-4 control-label">Contactperson</label>
+                                    <label for="contactperson" class="col-md-4 control-label">Contactpersoon</label>
 
                                     <div class="col-md-6">
                                         <input id="contactperson" type="text" class="form-control" name="contactperson" required>
@@ -262,6 +262,19 @@
                                         @if ($errors->has('contactperson'))
                                             <span class="help-block">
                                                 <strong>{{ $errors->first('contactperson') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="form-group{{ $errors->has('contactemail') ? ' has-error' : '' }}">
+                                    <label for="email" class="col-md-4 control-label">Contact E-Mail</label>
+
+                                    <div class="col-md-6">
+                                        <input id="contactemail" type="email" class="form-control" name="contactemail" value="{{ old('contactemail') }}" required>
+
+                                        @if ($errors->has('contactemail'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('contactemail') }}</strong>
                                             </span>
                                         @endif
                                     </div>
@@ -296,7 +309,7 @@
                                 </div>
 
                                 <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                    <label for="password" class="col-md-4 control-label">Password</label>
+                                    <label for="password" class="col-md-4 control-label">Wachtwoord</label>
 
                                     <div class="col-md-6">
                                         <input id="password" type="password" class="form-control" name="password" required>
@@ -310,7 +323,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
+                                    <label for="password-confirm" class="col-md-4 control-label">Bevestig wachtwoord</label>
 
                                     <div class="col-md-6">
                                         <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
@@ -320,7 +333,7 @@
                                 <div class="form-group">
                                     <div class="col-md-6 col-md-offset-4">
                                         <button type="submit" class="btn btn-primary">
-                                            Register
+                                            Registreer
                                         </button>
                                     </div>
                                 </div>
