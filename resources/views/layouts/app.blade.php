@@ -14,7 +14,10 @@
     <link href="/css/app.css" rel="stylesheet">
     <link href="/css/general.css" rel="stylesheet">
 
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,dt-1.10.8/datatables.min.css"/>
+
     <!-- Scripts -->
+    <script src="/js/app.js"></script>
     <script>
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
@@ -48,7 +51,7 @@
 
                             @if (Auth::user()->userable_type == 'App\Applicant')
                                 <li>
-                                    <a href="<?php url('/cvs') ?>">
+                                    <a href="{{ url('/cv') }}">
                                         Mijn CV's
                                     </a>
                                 </li>
@@ -56,14 +59,14 @@
 
                             @if (Auth::user()->userable_type == 'App\Company')
                                 <li>
-                                    <a href="<?php url('/vacancies') ?>">
+                                    <a href="{{ url('/vacancy') }}">
                                         Mijn vacatures
                                     </a>
                                 </li>
                             @endif
 
                             <li>
-                                <a href="<?php url('/matches') ?>">
+                                <a href="{{ url('/matches') }}">
                                     Matches
                                 </a>
                             </li>
@@ -115,7 +118,7 @@
     </div>
 
     <!-- Scripts -->
-    <script src="/js/app.js"></script>
     <script src="/js/general.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
 </body>
 </html>

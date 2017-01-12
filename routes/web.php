@@ -18,6 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
 Route::get('/account/dangerzone', 'AccountController@dangerzone');
 Route::post('/account/dangerzone', 'AccountController@dangerzone');
 
@@ -29,3 +30,14 @@ Route::post('/account/email/save', 'SettingsController@emailSave');
 
 Route::get('/account/password', 'SettingsController@password');
 Route::post('/account/password/save', 'SettingsController@passwordSave');
+
+Route::get('/cv', 'CVController@index');
+
+Route::get('/cv/create', 'CVController@create');
+Route::post('/cv/create', 'CVController@doCreate');
+
+Route::get('/cv/edit/{id}', 'CVController@edit');
+Route::post('/cv/edit/{id}', 'CVController@doEdit');
+
+Route::get('/cv/delete/{id}', 'CVController@delete');
+Route::post('/cv/delete/{id}', 'CVController@doDelete');
