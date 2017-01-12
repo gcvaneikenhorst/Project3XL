@@ -13,11 +13,14 @@
         <!-- Styles -->
         <link rel="stylesheet" type="text/css" href="{{ asset('/css/bootstrap.min.css') }}"/>
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,dt-1.10.8/datatables.min.css"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('/css/bootstrap-datetimepicker.min.css') }}"/>
 
         <link rel="stylesheet" type="text/css" href="/css/general.css">
 
 
         <!-- Scripts -->
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+
         <script>
             window.Laravel = <?php echo json_encode([
                     'csrfToken' => csrf_token(),
@@ -123,9 +126,17 @@
 
         <!-- Scripts -->
         <script type="text/javascript" src="{{ asset('/js/bootstrap.min.js') }}"></script>
-        <script type="text/javascript" src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/v/bs/jq-2.2.4/dt-1.10.13/datatables.min.js"></script>
+        <script type="text/javascript" src="{{ asset('/js/moment.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('/js/bootstrap-datetimepicker.js') }}"></script>
 
         <script src="/js/general.js"></script>
+
+        <script>
+            $(document).ready(function() {
+                $('input[type="datetime"]').datetimepicker();
+            });
+        </script>
     </body>
 </html>
 
