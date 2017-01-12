@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<<<<<<< HEAD
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,6 +14,7 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('/css/bootstrap.min.css') }}"/>
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,dt-1.10.8/datatables.min.css"/>
         <link rel="stylesheet" type="text/css" href="{{ asset('/css/bootstrap-datetimepicker.min.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{asset('/font-awesome-4.7.0/css/font-awesome.min.css')}}" rel="stylesheet">
 
         <link rel="stylesheet" type="text/css" href="/css/general.css">
 
@@ -60,50 +60,6 @@
                                         </a>
                                     </li>
                                 @endif
-=======
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', '3XL') }}</title>
-
-    <!-- Styles -->
-    <link href="{{asset('/font-awesome-4.7.0/css/font-awesome.min.css')}}" rel="stylesheet">
-    <link href="/css/app.css" rel="stylesheet">
-    <link href="/css/general.css" rel="stylesheet">
-
-    <!-- Scripts -->
-    <script src="/js/app.js"></script>
-    <script>
-        window.Laravel = <?php echo json_encode([
-            'csrfToken' => csrf_token(),
-        ]); ?>
-    </script>
-</head>
-<body>
-    <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
-
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', '3XL') }}
-                    </a>
-                </div>
->>>>>>> gerco
 
                                 @if (Auth::user()->userable_type == 'App\Company')
                                     <li>
@@ -173,22 +129,18 @@
         <script type="text/javascript" src="{{ asset('/js/bootstrap.min.js') }}"></script>
         <script type="text/javascript" src="https://cdn.datatables.net/v/bs/jq-2.2.4/dt-1.10.13/datatables.min.js"></script>
         <script type="text/javascript" src="{{ asset('/js/moment.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('/js/bootstrap-datetimepicker.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('/js/bootstrap-datetimepicker.min.js') }}"></script>
+
+        <script type="text/javascript" src="{{ asset('/plugins/Summernote/summernote.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('/js/bootstrap-multiselect.js') }}"></script>
 
         <script src="/js/general.js"></script>
 
-<<<<<<< HEAD
         <script>
             $(document).ready(function() {
                 $('input[type="datetime"]').datetimepicker();
             });
         </script>
     </body>
-=======
-    <!-- Scripts -->
-
-    <script src="/js/general.js"></script>
-</body>
->>>>>>> gerco
 </html>
 
