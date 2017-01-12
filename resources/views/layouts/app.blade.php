@@ -14,7 +14,7 @@
     <link href="/css/app.css" rel="stylesheet">
     <link href="/css/general.css" rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,dt-1.10.8/datatables.min.css"/>
+    {{--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,dt-1.10.8/datatables.min.css"/>--}}
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>
@@ -123,6 +123,6 @@
 
     <!-- Scripts -->
     <script src="/js/general.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
+    {{--<script type="text/javascript" src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>--}}
 </body>
 </html>
