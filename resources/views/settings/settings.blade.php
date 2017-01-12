@@ -63,8 +63,6 @@
                             <input type="hidden" name="user_type" value="1" />
                             {{ csrf_field() }}
                             
-                            <span class="form-subtitle">Persoonlijke gegevens</span>
-                            
                             <div class="form-group{{ $errors->has('salutation') ? ' has-error' : '' }}">
                                 <label for="salutation" class="col-md-4 control-label">Aanhef</label>
 
@@ -177,58 +175,8 @@
                                     @endif
                                 </div>
                             </div>
-
-<<<<<<< HEAD:resources/views/settings.blade.php
-                            <span class="form-subtitle">Login gegevens</span>
-                            
-                            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                <label for="email" class="col-md-4 control-label">E-mailadres</label>
-
-                                <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control" name="email"
-                                           value="{{ Auth::user()->email }}" required>
-
-                                    @if ($errors->has('email'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('email') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                <label for="password" class="col-md-4 control-label">Wachtwoord</label>
-
-                                <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control" name="password">
-
-                                    @if ($errors->has('password'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('password') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="password-confirm" class="col-md-4 control-label">Bevestig wachtwoord</label>
-
-                                <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
-
-                                    @if ($errors->has('password_confirmation'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('password_confirmation') }}</strong>
-                                        </span>
-                                    @else
-                                        <span class="help-block">Leeg laten indien u dit niet wilt veranderen.</span>
-                                    @endif
-                                </div>
-                            </div>
 							
 							<!-- Save and dangerzone button -->
-=======
->>>>>>> c5cb425916758de9faab1968b2108eb915ced4b5:resources/views/settings/settings.blade.php
                             <div class="form-group">
                                 <div class="col-md-8 col-md-offset-4">
                                     <button type="submit" class="btn btn-primary">
@@ -362,11 +310,17 @@
                                 </div>
                             </div>
 
+                            <!-- Save and dangerzone button -->
                             <div class="form-group">
-                                <div class="col-md-6 col-md-offset-4">
+                                <div class="col-md-8 col-md-offset-4">
                                     <button type="submit" class="btn btn-primary">
                                         Opslaan
                                     </button>
+	                                <a href="/account/dangerzone">
+	                                    <span class="btn btn-danger">
+	                                        Danger zone
+	                                    </span>
+	                                </a>
                                 </div>
                             </div>
                         </form>
