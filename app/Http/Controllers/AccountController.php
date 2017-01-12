@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Niels
- * Date: 11-Jan-17
- * Time: 13:19
- */
 
 namespace App\Http\Controllers;
 
@@ -18,19 +12,40 @@ class AccountController extends Controller
         $this->middleware('auth');
     }
 
-    public function removeAccount(Request $request) {
-        //var_dump("Test", Auth::check());
-        //if (!Auth::check())
+    public function dangerzone(Request $request) {
         if ($request->isMethod("post")) {
-            if ($request->get("sure") == "no")
-                return Redirect("/");
-
             $user = User::find(Auth::user()->id);
-            $user->userable()->delete();
-            $user->delete();
+            switch ($request->get('action')) {
+                case "remove": {
+                    if ($request->get("sure") == "no")
+                        return Redirect("/");
+
+                    $user->userable()->delete();
+                    $user->delete();
+                    Auth::logout();
+                }
+                case "deactivate": {
+                    $user->enabled = false;
+                    $user->save();
+                    Auth::logout();
+                }
+            }
+
             return Redirect("/");
         }
-        //DB::connection('user')
-        return View("account/removeaccount");
+        return View("account/dangerzone");
+    }
+    
+    public function deactivateAccount(Request $request)
+    {
+	    if ($request->isMethod("post")) {
+            if ($request->get("sure") == "no")
+                return Redirect("/");
+				$user = User::find(Auth::user()->id);
+				$user->enabled = false;
+				$user->save();
+            return Redirect("/");
+        }
+        return View("account/dangerzone");
     }
 }
