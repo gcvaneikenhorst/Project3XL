@@ -17,6 +17,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/vacancy/create', 'VacancyController@create');
+
+
 Route::get('/home', 'HomeController@index');
 
 Route::get('/account/dangerzone', 'AccountController@dangerzone');

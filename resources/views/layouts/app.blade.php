@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<<<<<<< HEAD
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -59,6 +60,50 @@
                                         </a>
                                     </li>
                                 @endif
+=======
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ config('app.name', '3XL') }}</title>
+
+    <!-- Styles -->
+    <link href="{{asset('/font-awesome-4.7.0/css/font-awesome.min.css')}}" rel="stylesheet">
+    <link href="/css/app.css" rel="stylesheet">
+    <link href="/css/general.css" rel="stylesheet">
+
+    <!-- Scripts -->
+    <script src="/js/app.js"></script>
+    <script>
+        window.Laravel = <?php echo json_encode([
+            'csrfToken' => csrf_token(),
+        ]); ?>
+    </script>
+</head>
+<body>
+    <div id="app">
+        <nav class="navbar navbar-default navbar-static-top">
+            <div class="container">
+                <div class="navbar-header">
+
+                    <!-- Collapsed Hamburger -->
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+                        <span class="sr-only">Toggle Navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <!-- Branding Image -->
+                    <a class="navbar-brand" href="{{ url('/') }}">
+                        {{ config('app.name', '3XL') }}
+                    </a>
+                </div>
+>>>>>>> gerco
 
                                 @if (Auth::user()->userable_type == 'App\Company')
                                     <li>
@@ -132,11 +177,18 @@
 
         <script src="/js/general.js"></script>
 
+<<<<<<< HEAD
         <script>
             $(document).ready(function() {
                 $('input[type="datetime"]').datetimepicker();
             });
         </script>
     </body>
+=======
+    <!-- Scripts -->
+
+    <script src="/js/general.js"></script>
+</body>
+>>>>>>> gerco
 </html>
 

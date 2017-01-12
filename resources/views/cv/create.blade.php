@@ -12,6 +12,7 @@
                     <div class="panel-body">
                         <form class="form-horizontal" role="form" method="POST" action="{{ url('/cv/create') }}">
                             {{ csrf_field() }}
+<<<<<<< HEAD
 
                             <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
                                 <label for="email" class="col-md-4 control-label">Date</label>
@@ -32,6 +33,8 @@
                                     @endif
                                 </div>
                             </div>
+=======
+>>>>>>> gerco
                         </form>
                     </div>
                 </div>
