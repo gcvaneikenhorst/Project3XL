@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <link href="{{asset('/plugins/Summernote/summernote.css')}}" rel="stylesheet">
+    <link href="{{asset('/Summernote/summernote.css')}}" rel="stylesheet">
     <link href="{{asset('/css/bootstrap-multiselect.css')}}" rel="stylesheet">
 
     <style>
