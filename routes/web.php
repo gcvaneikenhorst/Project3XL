@@ -19,5 +19,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
-Route::get('/settings', 'SettingsController@index');
-Route::post('/settings/save', 'SettingsController@save');
+Route::get('/account', 'SettingsController@index');
+Route::post('/account/save', 'SettingsController@save');

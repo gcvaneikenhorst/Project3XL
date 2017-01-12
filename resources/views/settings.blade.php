@@ -19,7 +19,7 @@
                 <div class="panel-body">
                     @if (Auth::user()->userable_type == 'App\Applicant')
 
-                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/settings/save') }}">
+                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/account/save') }}">
                             <input type="hidden" name="user_type" value="1" />
                             {{ csrf_field() }}
                             <div class="form-group{{ $errors->has('salutation') ? ' has-error' : '' }}">
@@ -192,7 +192,7 @@
 
                     @elseif (Auth::user()->userable_type == 'App\Company')
 
-                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/settings/save') }}">
+                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/account/save') }}">
                             <input type="hidden" name="user_type" value="2" />
                             {{ csrf_field() }}
                             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">

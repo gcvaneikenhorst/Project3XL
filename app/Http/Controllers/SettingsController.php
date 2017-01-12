@@ -132,6 +132,6 @@ class SettingsController extends Controller
 
         $user->save();
 
-        return Redirect::to('/settings');
+        return Redirect::to('/account');
     }
 }
