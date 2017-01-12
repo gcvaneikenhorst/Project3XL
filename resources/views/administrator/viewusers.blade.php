@@ -17,14 +17,17 @@
                                 <th>Type</th>
                             </tr>
                             </thead>
+                            <tbody>
                             @foreach($users as $user)
-                                <tbody>
-                                    <tr onclick="openUser(event)" data="{{json_encode($user->userable()->get())}}">
-                                        <td>{{$user->email}}</td>
-                                        <td>{{substr($user->userable_type,4)}}</td>
-                                    </tr>
-                                </tbody>
+                                <tr onclick="openUser(event)"
+                                    model="{{$user->userable_type}}"
+                                    data="{{json_encode($user->userable()->first())}}"
+                                    user-id="{{$user->id}}">
+                                    <td>{{$user->email}}</td>
+                                    <td>{{substr($user->userable_type,4)}}</td>
+                                </tr>
                             @endforeach
+                            </tbody>
                         </table>
                         {{$users->links()}}
                     </div>
@@ -32,8 +35,84 @@
             </div>
         </div>
     </div>
-    <div id="companymodel">
-        Naam: <input name="name">
+    <div class="modal" id="companymodel">
+        <table class="table">
+            <tr>
+                <td>Naam</td>
+                <td><input class="form-control" name="name"></td>
+            </tr>
+            <tr>
+                <td>Adres</td>
+                <td><input class="form-control" name="address"/></td>
+            </tr>
+            <tr>
+                <td>Postcode</td>
+                <td><input class="form-control" name="zipcode"></td>
+            </tr>
+            <tr>
+                <td>Plaats</td>
+                <td><input class="form-control" name="city"></td>
+            </tr>
+            <tr>
+                <td>Website</td>
+                <td><input class="form-control" name="website"></td>
+            </tr>
+            <tr>
+                <td>Telefoon</td>
+                <td><input class="form-control" name="phone"></td>
+            </tr>
+            <tr>
+                <td>Contactpersoon</td>
+                <td><input class="form-control" name="contactperson"></td>
+            </tr>
+            <tr>
+                <td>Contactpersoon E-Mail</td>
+                <td><input class="form-control" name="email"></td>
+            </tr>
+        </table>
+        <button class="btn btn-link" name="userid" onclick="openPage('vacancy', this)">View Vacancies</button>
+    </div>
+
+    <div class="modal" id="applicantmodel">
+        <table class="table">
+            <tr>
+                <td>Aanhef</td>
+                <td><input class="form-control" name="salutation"></td>
+            </tr>
+            <tr>
+                <td>Voornaam</td>
+                <td><input class="form-control" name="firstname"></td>
+            </tr>
+            <tr>
+                <td>Achternaam</td>
+                <td><input class="form-control" name="lastname"></td>
+            </tr>
+            <tr>
+                <td>Tussenvoegsel</td>
+                <td><input class="form-control" name="insertion"></td>
+            </tr>
+            <tr>
+                <td>Adres</td>
+                <td><input class="form-control" name="address"/></td>
+            </tr>
+            <tr>
+                <td>Postcode</td>
+                <td><input class="form-control" name="zipcode"></td>
+            </tr>
+            <tr>
+                <td>Plaats</td>
+                <td><input class="form-control" name="location"></td>
+            </tr>
+            <tr>
+                <td>Telefoon</td>
+                <td><input class="form-control" name="phone"></td>
+            </tr>
+            <tr>
+                <td>E-Mail</td>
+                <td><input class="form-control" name="email"></td>
+            </tr>
+        </table>
+        <button class="btn btn-link" name="userid" onclick="openPage('cv',this)">View CV's</button>
     </div>
 @endsection
 
@@ -43,15 +122,40 @@
         integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
         crossorigin="anonymous"></script>
 <script>
+    function openPage(page, btn) {
+        let userId = btn.value
+        window.open(`/administrator/view${page}/${userId}`)
+    }
     function openUser(event) {
         let target = event.target.parentNode;
-        let data = JSON.parse(target.getAttribute('data'))[0];
-        console.log(data);
-        $("#companymodel").dialog({
+        let data = JSON.parse(target.getAttribute('data'));
+        data["userid"] = target.getAttribute("user-id")
+        let model = null;
+        let userType = target.getAttribute('model');
+
+        if (userType == "App\\Company")
+            model = "#companymodel";
+        else if (userType == "App\\Applicant")
+            model = "#applicantmodel";
+
+        $(model).dialog({
+            width: 500,
+            title: target.getAttribute("model").substr(4),
             open: function () {
                 for (let key in data) {
                     let value = data[key]
                     $(this).find(`[name=${key}]`).val(value)
+                }
+            },
+            buttons: {
+                "Save": function() {
+                    console.log(this)
+                    let output = {}
+                    $(this).find('input').each((i, node) => {
+                        output[node.getAttribute("name")] = node.value
+                        console.log(node)
+                    })
+                    console.log(output);
                 }
             }
         })

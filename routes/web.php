@@ -29,8 +29,11 @@ Route::post('/account/email/save', 'SettingsController@emailSave');
 
 Route::get('/account/password', 'SettingsController@password');
 Route::post('/account/password/save', 'SettingsController@passwordSave');
-Route::get("/administrator/viewusers", 'AdministratorController@viewusers')
-    ->where(["userable_type" => "App/Admin"]);
+//Route::get("/administrator/viewusers", 'AdministratorController@viewusers')
+//    ->where(["userable_type" => "App/Admin"]);
 
 Route::group(["userable_type" => "App/Admin"], function() {
+    Route::get("/administrator/viewusers", 'AdministratorController@viewusers');
+    Route::get("/administrator/viewcv/{userid}", 'AdministratorController@viewcvs');
+    Route::get("/administrator/viewvacancy/{userid}", 'AdministratorController@viewvacancy');
 });
