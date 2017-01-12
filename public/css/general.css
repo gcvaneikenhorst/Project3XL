@@ -1,5 +1,12 @@
-body {
+body 
+{
     background-image: url('http://cdn.wallpapersafari.com/72/98/vXWTrY.jpg');
     background-size: cover;
     background-attachment: fixed;
+}
+
+.box-header
+{
+	font-size: 1.2em;
+	font-weight: bold;
 }
