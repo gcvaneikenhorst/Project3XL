@@ -24,11 +24,7 @@ class SettingsController extends Controller
         $isApplicant    = Auth::user()->userable_type == 'App\Applicant';
         $isCompany      = Auth::user()->userable_type == 'App\Company';
 
-        $validators = [
-            'email' => 'email|max:255',
-            'password' => 'min:6|confirmed',
-            'password_confirmation' => 'min:6',
-        ];
+        $validators = [];
 
         switch (true) {
             case $isApplicant:
@@ -89,9 +85,6 @@ class SettingsController extends Controller
 
         $user = User::find(Auth::user()->id);
 
-        if($data['password'] != '') {
-            $user->password = bcrypt($data['password']);
-        }
 
         switch (true) {
             case $isApplicant:

@@ -1,19 +1,25 @@
 @extends('layouts.app')
 
+<link href="{{ asset('css/auth.css') }}" rel="stylesheet">
+
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">
-                    Settings
-                    <span class="text-muted" style="float: right; font-style: italic">
-                        @if (Auth::user()->userable_type == 'App\Applicant')
-                            Sollicitant
-                        @elseif (Auth::user()->userable_type == 'App\Company')
-                            Bedrijf
-                        @endif
-                    </span>
+                <div class="panel-heading">&nbsp;
+                    <div class="pull-left box-header">
+                        Instellingen
+                    </div>
+                    <div class="pull-right">
+	                    <span class="text-muted">
+	                        @if (Auth::user()->userable_type == 'App\Applicant')
+	                            Sollicitant
+	                        @elseif (Auth::user()->userable_type == 'App\Company')
+	                            Bedrijf
+	                        @endif
+	                    </span>
+                    </div>  
                 </div>
 
                 <div class="panel-body">
@@ -56,6 +62,7 @@
                             <legend class="form-title" style="margin-top: 25px">Gebruikersgegevens</legend>
                             <input type="hidden" name="user_type" value="1" />
                             {{ csrf_field() }}
+                            
                             <div class="form-group{{ $errors->has('salutation') ? ' has-error' : '' }}">
                                 <label for="salutation" class="col-md-4 control-label">Aanhef</label>
 
@@ -168,12 +175,18 @@
                                     @endif
                                 </div>
                             </div>
-
+							
+							<!-- Save and dangerzone button -->
                             <div class="form-group">
-                                <div class="col-md-6 col-md-offset-4">
+                                <div class="col-md-8 col-md-offset-4">
                                     <button type="submit" class="btn btn-primary">
                                         Opslaan
                                     </button>
+	                                <a href="/account/dangerzone">
+	                                    <span class="btn btn-danger">
+	                                        Danger zone
+	                                    </span>
+	                                </a>
                                 </div>
                             </div>
                         </form>
@@ -297,11 +310,17 @@
                                 </div>
                             </div>
 
+                            <!-- Save and dangerzone button -->
                             <div class="form-group">
-                                <div class="col-md-6 col-md-offset-4">
+                                <div class="col-md-8 col-md-offset-4">
                                     <button type="submit" class="btn btn-primary">
                                         Opslaan
                                     </button>
+	                                <a href="/account/dangerzone">
+	                                    <span class="btn btn-danger">
+	                                        Danger zone
+	                                    </span>
+	                                </a>
                                 </div>
                             </div>
                         </form>
