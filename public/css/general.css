@@ -1,5 +1,19 @@
-body {
+body 
+{
     background-image: url('http://cdn.wallpapersafari.com/72/98/vXWTrY.jpg');
     background-size: cover;
     background-attachment: fixed;
+}
+
+.box-header
+{
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+/* Navbar */
+.navbar-default
+{
+	background-color: rgba(255, 255, 255, 0.7);
+	border-color: rgba(88, 88, 88, 0.4);
 }
