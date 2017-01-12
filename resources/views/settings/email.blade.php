@@ -23,8 +23,22 @@
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/account/email/save') }}">
                         {{ csrf_field() }}
 
+                        <div class="form-group">
+                            <label for="email" class="col-md-4 control-label">Huidig e-mailadres</label>
+
+                            <div class="col-md-6 control-label">
+                                <span id="email" class="pull-left">{{ Auth::user()->email }}</span>
+
+                                @if ($errors->has('email'))
+                                    <span class="help-block">
+                                            <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-mailadres</label>
+                            <label for="email" class="col-md-4 control-label">Nieuw e-mailadres</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control" name="email" required>
@@ -38,7 +52,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('email_confirmation') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-mailadres herhalen</label>
+                            <label for="email" class="col-md-4 control-label">Nieuw e-mailadres herhalen</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control" name="email_confirmation" required>
