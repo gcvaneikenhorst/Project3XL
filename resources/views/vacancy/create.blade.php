@@ -397,8 +397,7 @@
 
     </script>
 
-    <script src="{{asset('/Summernote/summernote.js')}}"></script>
-    <script src="{{asset('/js/bootstrap-multiselect.js')}}"></script>
+
 
 
 
