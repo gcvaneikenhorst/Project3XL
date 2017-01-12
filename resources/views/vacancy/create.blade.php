@@ -200,7 +200,8 @@
                 </div>
                 <div class="row" style="background: #fff;border-radius: 5px;">
                     <div class="col-md-8 col-md-offset-2">
-                <form role="form" class="form-horizontal" novalidate>
+                <form method="post" action="{{url('/vacancy/create')}}" role="form" class="form-horizontal" novalidate>
+                    {{csrf_field()}}
                     <div class="tab-content">
 
                         <div class="tab-pane active" role="tabpanel" id="step1">
@@ -225,7 +226,7 @@
                                 <label for="date" class="col-md-4 control-label">Datum</label>
 
                                 <div class="col-md-6">
-                                    <input id="date" type="date" class="form-control" name="date"
+                                    <input id="date" type="datetime" class="form-control" name="date"
                                            value="{{\Carbon\Carbon::now()->toDateString()}}" required>
 
                                     @if ($errors->has('date'))
@@ -239,7 +240,7 @@
 
 
                             <div class="form-group{{ $errors->has('category_id') ? ' has-error' : '' }}">
-                                <label for="category_id" class="col-md-4 control-label">Datum</label>
+                                <label for="category_id" class="col-md-4 control-label">Categorie</label>
 
                                 <div class="col-md-6">
                                     <select id="category_id" name="category_id" class="form-control">
@@ -337,7 +338,7 @@
                                     <button type="button" class="btn btn-default prev-step">Vorige</button>
                                 </li>
                                 <li>
-                                  <input type="submit"  value="Opslaan">
+                                  <input type="submit" class="btn btn-default"  value="Opslaan">
                                 </li>
                             </ul>
                         </div>
@@ -397,8 +398,7 @@
 
     </script>
 
-    <script src="{{asset('/Summernote/summernote.js')}}"></script>
-    <script src="{{asset('/js/bootstrap-multiselect.js')}}"></script>
+
 
 
 

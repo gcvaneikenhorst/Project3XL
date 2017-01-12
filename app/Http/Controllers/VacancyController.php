@@ -10,4 +10,9 @@ class VacancyController extends Controller
 
         return view('vacancy/create');
     }
+
+
+    public function save(Request $request){
+        dd($request->all());
+    }
 }
