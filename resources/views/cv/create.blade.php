@@ -37,13 +37,7 @@
                                 <label for="email" class="col-md-4 control-label">Date</label>
 
                                 <div class="col-md-6">
-                                    <div class="input-group">
-                                        <textarea name="text"></textarea>
-
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-calendar"></span>
-                                        </span>
-                                    </div>
+                                    <textarea name="text"></textarea>
 
                                     @if ($errors->has('title'))
                                         <span class="help-block">

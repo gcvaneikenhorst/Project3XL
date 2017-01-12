@@ -16,7 +16,9 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/bootstrap.min.css') }}"/>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,dt-1.10.8/datatables.min.css"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/bootstrap-datetimepicker.min.css') }}"/>
-    <link href="{{asset('/font-awesome-4.7.0/css/font-awesome.min.css')}}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/font-awesome-4.7.0/css/font-awesome.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/Summernote/summernote.css') }}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{asset('/css/bootstrap-multiselect.css')}}" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="/css/general.css">
 
@@ -149,6 +151,8 @@
         <script>
             $(document).ready(function() {
                 $('input[type="datetime"]').datetimepicker();
+                $('textarea').summernote();
+                $('select[multiple]').multiselect();
             });
         </script>
     </body>

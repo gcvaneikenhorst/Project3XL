@@ -2,9 +2,6 @@
 
 @section('content')
 
-    <link href="{{asset('/Summernote/summernote.css')}}" rel="stylesheet">
-    <link href="{{asset('/css/bootstrap-multiselect.css')}}" rel="stylesheet">
-
     <style>
         .wizard {
             margin: 20px auto;
@@ -273,7 +270,7 @@
                             <h3>Stap 2</h3>
 
                             <p>Schrijf uw vacature text.</p>
-                            <textarea class="summernote">summernote 1</textarea>
+                            <textarea>summernote 1</textarea>
 
 
 
@@ -299,7 +296,7 @@
                                 <label for="category_id" class="col-md-4 control-label">Selecteer uw competenties</label>
 
                                 <div class="col-md-6">
-                                    <select id="competences" name="competences" class="form-control" multiple="multiple">
+                                    <select name="competences" class="form-control" multiple="multiple">
                                         @foreach(\App\Competence::all() as $competence)
                                             <option value="{{$competence->id}}">{{$competence->name}}</option>
                                         @endforeach
@@ -389,12 +386,6 @@
         function prevTab(elem) {
             $(elem).prev().find('a[data-toggle="tab"]').click();
         }
-        $(document).ready(function() {
-            $('.summernote').summernote();
-            $('#competences').multiselect();
-        });
-
-
 
     </script>
 
