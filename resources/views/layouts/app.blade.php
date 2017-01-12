@@ -11,10 +11,12 @@
     <title>{{ config('app.name', '3XL') }}</title>
 
     <!-- Styles -->
+    <link href="{{asset('/font-awesome-4.7.0/css/font-awesome.min.css')}}" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
     <link href="/css/general.css" rel="stylesheet">
 
     <!-- Scripts -->
+    <script src="/js/app.js"></script>
     <script>
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
@@ -115,7 +117,7 @@
     </div>
 
     <!-- Scripts -->
-    <script src="/js/app.js"></script>
+
     <script src="/js/general.js"></script>
 </body>
 </html>
