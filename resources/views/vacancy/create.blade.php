@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
+
+    <link href="{{asset('/Summernote/summernote.css')}}" rel="stylesheet">
+    <link href="{{asset('/css/bootstrap-multiselect.css')}}" rel="stylesheet">
+
     <style>
         .wizard {
             margin: 20px auto;
@@ -196,7 +200,7 @@
                 </div>
                 <div class="row" style="background: #fff;border-radius: 5px;">
                     <div class="col-md-8 col-md-offset-2">
-                <form role="form" class="form-horizontal">
+                <form role="form" class="form-horizontal" novalidate>
                     <div class="tab-content">
 
                         <div class="tab-pane active" role="tabpanel" id="step1">
@@ -222,7 +226,7 @@
 
                                 <div class="col-md-6">
                                     <input id="date" type="date" class="form-control" name="date"
-                                           value="{{ Auth::user()->userable()->first()->firstname }}" required>
+                                           value="{{\Carbon\Carbon::now()->toDateString()}}" required>
 
                                     @if ($errors->has('date'))
                                         <span class="help-block">
@@ -254,53 +258,89 @@
                             </div>
 
 
-
-
-
-
-
-
-
-
-
-                            <br>
-
                             <ul class="list-inline pull-right">
                                 <li>
-                                    <button type="button" class="btn btn-primary next-step">Save and continue</button>
+                                    <button type="button" class="btn btn-primary next-step">Volgende</button>
                                 </li>
                             </ul>
                         </div>
+
+
+
 
                         <div class="tab-pane" role="tabpanel" id="step2">
                             <h3>Stap 2</h3>
-                            <p>This is step 2</p>
+
+                            <p>Schrijf uw vacature text.</p>
+                            <textarea class="summernote">summernote 1</textarea>
+
+
+
                             <ul class="list-inline pull-right">
                                 <li>
-                                    <button type="button" class="btn btn-default prev-step">Previous</button>
+                                    <button type="button" class="btn btn-default prev-step">Vorige</button>
                                 </li>
                                 <li>
-                                    <button type="button" class="btn btn-primary next-step">Save and continue</button>
+                                    <button type="button" class="btn btn-primary next-step">Volgende</button>
                                 </li>
                             </ul>
                         </div>
+
+
+
+
                         <div class="tab-pane" role="tabpanel" id="step3">
-                            <h3>Step 3</h3>
-                            <p>This is step 3</p>
+                            <h3>Stap 3</h3>
+
+
+
+                            <div class="form-group{{ $errors->has('competences') ? ' has-error' : '' }}">
+                                <label for="category_id" class="col-md-4 control-label">Selecteer uw competenties</label>
+
+                                <div class="col-md-6">
+                                    <select id="competences" name="competences" class="form-control" multiple="multiple">
+                                        @foreach(\App\Competence::all() as $competence)
+                                            <option value="{{$competence->id}}">{{$competence->name}}</option>
+                                        @endforeach
+
+                                    </select>
+
+                                    @if ($errors->has('competences'))
+                                        <span class="help-block">
+                                                <strong>{{ $errors->first('competences') }}</strong>
+                                            </span>
+                                    @endif
+                                </div>
+                            </div>
+
+
+
+
                             <ul class="list-inline pull-right">
                                 <li>
-                                    <button type="button" class="btn btn-default prev-step">Previous</button>
+                                    <button type="button" class="btn btn-default prev-step">Vorige</button>
                                 </li>
                                 <li>
-                                    <button type="button" class="btn btn-primary btn-info-full next-step">Save and
-                                        continue
+                                    <button type="button" class="btn btn-primary btn-info-full next-step">Volgende
                                     </button>
                                 </li>
                             </ul>
                         </div>
                         <div class="tab-pane" role="tabpanel" id="complete">
-                            <h3>Complete</h3>
-                            <p>You have successfully completed all steps.</p>
+                            <h3>Klaar</h3>
+                            <p>U kunt nog op vorige drukken om wijzigingen aan te brengen. Als u zeker weet dat alle informatie klopt kunt u op opslaan drukken om de vacature aan te maken.</p>
+
+
+
+                            <ul class="list-inline pull-right">
+                                <li>
+                                    <button type="button" class="btn btn-default prev-step">Vorige</button>
+                                </li>
+                                <li>
+                                  <input type="submit"  value="Opslaan">
+                                </li>
+                            </ul>
+                        </div>
                         </div>
                         <div class="clearfix"></div>
                     </div>
@@ -348,11 +388,17 @@
         function prevTab(elem) {
             $(elem).prev().find('a[data-toggle="tab"]').click();
         }
+        $(document).ready(function() {
+            $('.summernote').summernote();
+            $('#competences').multiselect();
+        });
+
 
 
     </script>
 
-
+    <script src="{{asset('/Summernote/summernote.js')}}"></script>
+    <script src="{{asset('/js/bootstrap-multiselect.js')}}"></script>
 
 
 
