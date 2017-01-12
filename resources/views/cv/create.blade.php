@@ -32,6 +32,26 @@
                                     @endif
                                 </div>
                             </div>
+
+                            <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
+                                <label for="email" class="col-md-4 control-label">Date</label>
+
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <textarea name="text"></textarea>
+
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+
+                                    @if ($errors->has('title'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('title') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>
