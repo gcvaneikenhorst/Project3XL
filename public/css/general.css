@@ -1,8 +1,13 @@
+/* Fonts */
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+
 body 
 {
     background-image: url('http://cdn.wallpapersafari.com/72/98/vXWTrY.jpg');
     background-size: cover;
     background-attachment: fixed;
+    
+    font-family: 'Raleway', sans-serif;
 }
 
 .box-header
