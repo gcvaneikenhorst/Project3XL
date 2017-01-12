@@ -18,8 +18,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
-Route::get('/account/removeaccount', 'AccountController@removeaccount');
-Route::post('/account/removeaccount', 'AccountController@removeaccount');
+Route::get('/account/dangerzone', 'AccountController@dangerzone');
+Route::post('/account/dangerzone', 'AccountController@dangerzone');
 
 Route::get('/settings', 'SettingsController@index');
 Route::post('/settings/save', 'SettingsController@save');
