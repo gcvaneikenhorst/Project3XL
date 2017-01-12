@@ -21,5 +21,11 @@ Route::get('/home', 'HomeController@index');
 Route::get('/account/removeaccount', 'AccountController@removeaccount');
 Route::post('/account/removeaccount', 'AccountController@removeaccount');
 
-Route::get('/account', 'SettingsController@index');
-Route::post('/account/save', 'SettingsController@save');
+Route::get('/account', 'SettingsController@settings');
+Route::post('/account/save', 'SettingsController@settingsSave');
+
+Route::get('/account/email', 'SettingsController@email');
+Route::post('/account/email/save', 'SettingsController@emailSave');
+
+Route::get('/account/password', 'SettingsController@password');
+Route::post('/account/password/save', 'SettingsController@passwordSave');

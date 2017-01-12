@@ -19,13 +19,13 @@ class SettingsController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
+    protected function settingsValidator(array $data)
     {
         $isApplicant    = Auth::user()->userable_type == 'App\Applicant';
         $isCompany      = Auth::user()->userable_type == 'App\Company';
 
         $validators = [
-            'email' => 'required|email|max:255',
+            'email' => 'email|max:255',
             'password' => 'min:6|confirmed',
             'password_confirmation' => 'min:6',
         ];
@@ -69,8 +69,8 @@ class SettingsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
-        return view('settings');
+    public function settings() {
+        return view('settings/settings');
     }
 
     /**
@@ -78,18 +78,16 @@ class SettingsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function save(Request $request)
+    public function settingsSave(Request $request)
     {
         $data = $request->all();
 
         $isApplicant    = Auth::user()->userable_type == 'App\Applicant';
         $isCompany      = Auth::user()->userable_type == 'App\Company';
 
-        $this->validator($data)->validate();
+        $this->settingsValidator($data)->validate();
 
         $user = User::find(Auth::user()->id);
-
-        $user->email = $data['email'];
 
         if($data['password'] != '') {
             $user->password = bcrypt($data['password']);
@@ -130,6 +128,86 @@ class SettingsController extends Controller
                 break;
         }
 
+        $user->save();
+
+        return Redirect::to('/account');
+    }
+
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    public function emailValidator(array $data) {
+        return Validator::make($data, [
+            'email' => 'required|email|max:255|confirmed',
+            'email_confirmation' => 'required|email|max:255',
+        ]);
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function email(Request $request) {
+        return view('settings/email');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function emailSave(Request $request) {
+        $data = $request->all();
+
+        $this->emailValidator($data)->validate();
+
+        $user = User::find(Auth::user()->id);
+
+        $user->email = $data['email'];
+        $user->save();
+
+        return Redirect::to('/account');
+    }
+
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    public function passwordValidator(array $data) {
+        return Validator::make($data, [
+            'password'              => 'required|min:6|confirmed',
+            'password_confirmation' => 'required|min:6',
+        ]);
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function password() {
+        return view('settings/password');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function passwordSave(Request $request) {
+        $data = $request->all();
+
+        $this->passwordValidator($data)->validate();
+
+        $user = User::find(Auth::user()->id);
+
+        $user->password = bcrypt($data['password']);
         $user->save();
 
         return Redirect::to('/account');

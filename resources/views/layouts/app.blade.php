@@ -44,31 +44,31 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        @if (Auth::user()->userable_type == 'App\Applicant')
+                        @if (!Auth::guest())
+
+                            @if (Auth::user()->userable_type == 'App\Applicant')
+                                <li>
+                                    <a href="<?php url('/cvs') ?>">
+                                        Mijn CV's
+                                    </a>
+                                </li>
+                            @endif
+
+                            @if (Auth::user()->userable_type == 'App\Company')
+                                <li>
+                                    <a href="<?php url('/vacancies') ?>">
+                                        Mijn vacatures
+                                    </a>
+                                </li>
+                            @endif
 
                             <li>
-                                <a href="<?php url('/cvs') ?>">
-                                    Mijn CV's
+                                <a href="<?php url('/matches') ?>">
+                                    Matches
                                 </a>
                             </li>
 
                         @endif
-
-                        @if (Auth::user()->userable_type == 'App\Company')
-
-                            <li>
-                                <a href="<?php url('/vacancies') ?>">
-                                    Mijn vacatures
-                                </a>
-                            </li>
-
-                        @endif
-
-                        <li>
-                            <a href="<?php url('/matches') ?>">
-                                Matches
-                            </a>
-                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
