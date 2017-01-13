@@ -23,11 +23,13 @@ class AccountController extends Controller
                     $user->userable()->delete();
                     $user->delete();
                     Auth::logout();
+                    break;
                 }
                 case "deactivate": {
                     $user->enabled = false;
                     $user->save();
                     Auth::logout();
+                    break;
                 }
             }
 

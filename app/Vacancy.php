@@ -15,4 +15,5 @@ class Vacancy extends Model
         return $this->belongsToMany('App\Competence','vacancy_competence','vacancy_id');
     }
 
+    
 }

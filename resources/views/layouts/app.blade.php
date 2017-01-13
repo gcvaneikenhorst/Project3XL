@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
+	<head>
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -103,10 +99,10 @@
 	                @endif
 				</section>
 			</section>
-	        
 
-            @yield('content')
-        </div>
+		    @yield('content')
+		</div>
+
 
         <!-- Scripts -->
         <script type="text/javascript" src="{{ asset('/js/bootstrap.min.js') }}"></script>
@@ -122,8 +118,11 @@
         <script>
             $(document).ready(function() {
                 $('input[type="datetime"]').datetimepicker();
+                $('textarea').summernote();
+                $('select[multiple]').multiselect();
             });
         </script>
     </body>
+
 </html>
 

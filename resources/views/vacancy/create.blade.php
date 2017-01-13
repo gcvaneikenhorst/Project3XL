@@ -2,9 +2,6 @@
 
 @section('content')
 
-    <link href="{{asset('/plugins/Summernote/summernote.css')}}" rel="stylesheet">
-    <link href="{{asset('/css/bootstrap-multiselect.css')}}" rel="stylesheet">
-
     <style>
         .wizard {
             margin: 20px auto;
@@ -200,7 +197,8 @@
                 </div>
                 <div class="row" style="background: #fff;border-radius: 5px;">
                     <div class="col-md-8 col-md-offset-2">
-                <form role="form" class="form-horizontal" novalidate>
+                <form method="post" action="{{url('/vacancy/create')}}" role="form" class="form-horizontal" novalidate>
+                    {{csrf_field()}}
                     <div class="tab-content">
 
                         <div class="tab-pane active" role="tabpanel" id="step1">
@@ -225,7 +223,7 @@
                                 <label for="date" class="col-md-4 control-label">Datum</label>
 
                                 <div class="col-md-6">
-                                    <input id="date" type="date" class="form-control" name="date"
+                                    <input id="date" type="datetime" class="form-control" name="date"
                                            value="{{\Carbon\Carbon::now()->toDateString()}}" required>
 
                                     @if ($errors->has('date'))
@@ -239,7 +237,7 @@
 
 
                             <div class="form-group{{ $errors->has('category_id') ? ' has-error' : '' }}">
-                                <label for="category_id" class="col-md-4 control-label">Datum</label>
+                                <label for="category_id" class="col-md-4 control-label">Categorie</label>
 
                                 <div class="col-md-6">
                                     <select id="category_id" name="category_id" class="form-control">
@@ -272,7 +270,7 @@
                             <h3>Stap 2</h3>
 
                             <p>Schrijf uw vacature text.</p>
-                            <textarea class="summernote">summernote 1</textarea>
+                            <textarea>summernote 1</textarea>
 
 
 
@@ -298,7 +296,7 @@
                                 <label for="category_id" class="col-md-4 control-label">Selecteer uw competenties</label>
 
                                 <div class="col-md-6">
-                                    <select id="competences" name="competences" class="form-control" multiple="multiple">
+                                    <select name="competences" class="form-control" multiple="multiple">
                                         @foreach(\App\Competence::all() as $competence)
                                             <option value="{{$competence->id}}">{{$competence->name}}</option>
                                         @endforeach
@@ -337,7 +335,7 @@
                                     <button type="button" class="btn btn-default prev-step">Vorige</button>
                                 </li>
                                 <li>
-                                  <input type="submit"  value="Opslaan">
+                                  <input type="submit" class="btn btn-default"  value="Opslaan">
                                 </li>
                             </ul>
                         </div>
@@ -388,17 +386,10 @@
         function prevTab(elem) {
             $(elem).prev().find('a[data-toggle="tab"]').click();
         }
-        $(document).ready(function() {
-            $('.summernote').summernote();
-            $('#competences').multiselect();
-        });
-
-
 
     </script>
 
-    <script src="{{asset('/Summernote/summernote.js')}}"></script>
-    <script src="{{asset('/js/bootstrap-multiselect.js')}}"></script>
+
 
 
 
