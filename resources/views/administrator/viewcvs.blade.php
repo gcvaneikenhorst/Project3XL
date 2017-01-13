@@ -95,8 +95,8 @@
                         console.log(this)
                         let output = {}
                         $(this).find('input').each((i, node) => {
-                            output[node.getAttribute("name")] = node.value
-                            console.log(node)
+                            if (node.value != data[node.getAttribute('name')])
+                                output[node.getAttribute("name")] = node.value
                         })
                         console.log(output);
                     }
