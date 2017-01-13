@@ -31,12 +31,6 @@
                             <div class="col-md-6 control-label">
                                 <span id="email" class="pull-left">{{ Auth::user()->email }}</span>
                                 <a href="{{ url('/account/email') }}" class="pull-right">Verander</a>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                            <strong>{{ $errors->first('email') }}</strong>
-                                        </span>
-                                @endif
                             </div>
                         </div>
 
@@ -46,12 +40,6 @@
                             <div class="col-md-6 control-label">
                                 <span id="email" class="pull-left">********</span>
                                 <a id="password" href="{{ url('/account/password') }}" class="pull-right">Verander</a>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                            <strong>{{ $errors->first('password') }}</strong>
-                                        </span>
-                                @endif
                             </div>
                         </div>
                     </form>
