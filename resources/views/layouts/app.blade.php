@@ -30,97 +30,80 @@
     </head>
     <body>
         <div id="app">
-            <nav class="navbar navbar-default navbar-static-top">
-                <div class="container">
-                    <div class="navbar-header">
-
-                        <!-- Collapsed Hamburger -->
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                            <span class="sr-only">Toggle Navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-
-                        <!-- Branding Image -->
-                        <a class="navbar-brand" href="{{ url('/') }}">
-                            {{ config('app.name', '3XL') }}
-                        </a>
-                    </div>
-
-                    <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                        <!-- Left Side Of Navbar -->
-                        <ul class="nav navbar-nav">
-                            @if (!Auth::guest())
-
-                                @if (Auth::user()->userable_type == 'App\Applicant')
-                                    <li>
-                                        <a href="{{ url('/cv') }}">
-                                            Mijn CV's
-                                        </a>
-                                    </li>
-                                @endif
-
-                                @if (Auth::user()->userable_type == 'App\Company')
-                                    <li>
-                                        <a href="{{ url('/vacancy') }}">
-                                            Mijn vacatures
-                                        </a>
-                                    </li>
-                                @endif
-
-                                <li>
-                                    <a href="{{ url('/matches') }}">
-                                        Matches
-                                    </a>
-                                </li>
-
-                            @endif
-                        </ul>
-
-                        <!-- Right Side Of Navbar -->
-                        <ul class="nav navbar-nav navbar-right">
-                            <!-- Authentication Links -->
-                            @if (Auth::guest())
-                                <li><a href="{{ url('/login') }}">Login</a></li>
-                                <li><a href="{{ url('/register') }}">Register</a></li>
-                            @else
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                        @if (Auth::user()->userable_type == 'App\Applicant')
-                                            {{ Auth::user()->userable()->first()->firstname }}
-                                        @elseif (Auth::user()->userable_type == 'App\Company')
-                                            {{ Auth::user()->userable()->first()->name }}
-                                        @endif
-
-                                        <span class="caret"></span>
-                                    </a>
-
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li>
-                                            <a href="{{ url('/home') }}">
-                                                Dashboard
-                                            </a>
-
-                                            <a href="{{ url('/account') }}">
-                                                Settings
-                                            </a>
-
-                                            <a href="{{ url('/logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                                                Logout
-                                            </a>
-
-                                            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                                {{ csrf_field() }}
-                                            </form>
-                                        </li>
-                                    </ul>
-                                </li>
-                            @endif
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+	        
+	        <section class="wrapper">
+			  	<section id="menubutton" class="material-design-hamburger--off">
+			    	<button id="hamburger_button" class="material-design-hamburger__icon">
+						<span class="material-design-hamburger__layer"></span>
+					</button>
+				</section>
+			
+				<section class="menu menu--off">
+					@if (!Auth::guest())
+	                    @if (Auth::user()->userable_type == 'App\Applicant')
+	                        <div onclick="location.href='{{ url("/cv") }}';">
+	                            <a>Mijn CV's</a>
+	                        </div>
+	                    @endif
+	
+	                    @if (Auth::user()->userable_type == 'App\Company')
+	                        <div onclick="location.href='{{ url("/vacancy") }}';">
+	                            <a>Mijn vacatures</a>
+	                        </div>
+	                    @endif
+	
+	                    <div onclick="location.href='{{ url("/matches") }}';">
+	                        <a>Matches</a>
+	                    </div>
+	
+	                @endif
+	                
+	                @if (Auth::guest())
+	                	<div onclick="location.href='{{ url("/") }}';">
+		                    <a>Home</a>
+		                </div>
+	                    <div onclick="location.href='{{ url("/login") }}';">
+		                    <a>Inloggen</a>
+		                </div>
+	                    <div onclick="location.href='{{ url("/register") }}';">
+		                    <a>Registreren</a>
+		                </div>
+	                @else
+	                    <div class="dropdown">
+	                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+	                            @if (Auth::user()->userable_type == 'App\Applicant')
+	                                {{ Auth::user()->userable()->first()->firstname }}
+	                            @elseif (Auth::user()->userable_type == 'App\Company')
+	                                {{ Auth::user()->userable()->first()->name }}
+	                            @endif
+	
+	                            <span class="caret"></span>
+	                        </a>
+	
+	                        <ul class="dropdown-menu" role="menu">
+	                            <li>
+	                                <a href="{{ url('/home') }}">
+	                                    Dashboard
+	                                </a>
+	
+	                                <a href="{{ url('/account') }}">
+	                                    Instellingen
+	                                </a>
+	
+	                                <a href="{{ url('/logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+	                                    Uitloggen
+	                                </a>
+	
+	                                <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+	                                    {{ csrf_field() }}
+	                                </form>
+	                            </li>
+	                        </ul>
+	                    </div>
+	                @endif
+				</section>
+			</section>
+	        
 
             @yield('content')
         </div>
