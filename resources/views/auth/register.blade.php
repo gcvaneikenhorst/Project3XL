@@ -3,6 +3,7 @@
 
 @section('content')
     <link href="{{ asset('css/auth.css') }}" rel="stylesheet">
+
     <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -32,7 +33,10 @@
                                     <label for="salutation" class="col-md-4 control-label">Aanhef</label>
 
                                     <div class="col-md-6">
-                                        <input id="salutation" type="text" class="form-control" name="salutation" required>
+                                        <select name="salutation" class="form-control" id="salutatoin">
+                                            <option>Dhr.</option>
+                                            <option>Mv.</option>
+                                        </select>
 
                                         @if ($errors->has('salutation'))
                                             <span class="help-block">
@@ -45,7 +49,7 @@
                                     <label for="firstname" class="col-md-4 control-label">Voornaam</label>
 
                                     <div class="col-md-6">
-                                        <input id="firstname" type="text" class="form-control" name="firstname" required>
+                                        <input id="firstname" data-validation="^[a-zA-Z ]+$" type="text" class="form-control" name="firstname" required>
 
                                         @if ($errors->has('firstname'))
                                             <span class="help-block">
@@ -58,7 +62,7 @@
                                     <label for="lastname" class="col-md-4 control-label">Achternaam</label>
 
                                     <div class="col-md-6">
-                                        <input id="lastname" type="text" class="form-control" name="lastname" required>
+                                        <input id="lastname" data-validation="^[a-zA-Z ]+$" type="text" class="form-control" name="lastname" required>
 
                                         @if ($errors->has('lastname'))
                                             <span class="help-block">
@@ -84,7 +88,7 @@
                                     <label for="address" class="col-md-4 control-label">Adres</label>
 
                                     <div class="col-md-6">
-                                        <input id="address" type="text" class="form-control" name="address" required>
+                                        <input id="address" data-validation="^[a-zA-Z]+ \d+$" type="text" class="form-control" name="address" required>
 
                                         @if ($errors->has('address'))
                                             <span class="help-block">
@@ -97,7 +101,7 @@
                                     <label for="zipcode" class="col-md-4 control-label">Postcode</label>
 
                                     <div class="col-md-6">
-                                        <input id="zipcode" type="text" class="form-control" name="zipcode" required>
+                                        <input maxlength="6" id="zipcode" data-validation="^[\d]{4}[a-zA-Z]{2}$" type="text" class="form-control" name="zipcode" required>
 
                                         @if ($errors->has('zipcode'))
                                             <span class="help-block">
@@ -110,7 +114,7 @@
                                     <label for="location" class="col-md-4 control-label">Woonplaats</label>
 
                                     <div class="col-md-6">
-                                        <input id="location" type="text" class="form-control" name="location" required>
+                                        <input id="location" data-validation="^[a-zA-Z ]+$" type="text" class="form-control" name="location" required>
 
                                         @if ($errors->has('location'))
                                             <span class="help-block">
@@ -123,7 +127,7 @@
                                     <label for="phone" class="col-md-4 control-label">Telefoon</label>
 
                                     <div class="col-md-6">
-                                        <input id="phone" type="text" class="form-control" name="phone" required>
+                                        <input id="phone" data-validation="^(\+)?\d+$" type="text" class="form-control" name="phone" required>
 
                                         @if ($errors->has('phone'))
                                             <span class="help-block">
@@ -181,7 +185,7 @@
                             </form>
                         </div>
                         <div class="page">
-                            <span class="form-title">Sollicitant</span>
+                            <span class="form-title">Bedrijf</span>
                             <br>
                             <span class="form-subtitle">Gegevens</span>
                             <form class="form-horizontal" role="form" method="POST">
@@ -191,7 +195,7 @@
                                     <label for="name" class="col-md-4 control-label">Bedrijfsnaam</label>
 
                                     <div class="col-md-6">
-                                        <input id="name" type="text" class="form-control" name="name" required>
+                                        <input id="name" data-validation="^[a-zA-Z]+$" type="text" class="form-control" name="name" required>
 
                                         @if ($errors->has('name'))
                                             <span class="help-block">
@@ -204,7 +208,7 @@
                                     <label for="address" class="col-md-4 control-label">Adres</label>
 
                                     <div class="col-md-6">
-                                        <input id="address" type="text" class="form-control" name="address" required>
+                                        <input id="address" data-validation="^[a-zA-Z]+ \d+$" type="text" class="form-control" name="address" required>
 
                                         @if ($errors->has('address'))
                                             <span class="help-block">
@@ -217,7 +221,7 @@
                                     <label for="zipcode" class="col-md-4 control-label">Postcode</label>
 
                                     <div class="col-md-6">
-                                        <input id="zipcode" type="text" class="form-control" name="zipcode" required>
+                                        <input maxlength="6" id="zipcode" data-validation="^[\d]{4}[a-zA-Z]{2}$" type="text" class="form-control" name="zipcode" required>
 
                                         @if ($errors->has('zipcode'))
                                             <span class="help-block">
@@ -230,7 +234,7 @@
                                     <label for="city" class="col-md-4 control-label">Woonplaats</label>
 
                                     <div class="col-md-6">
-                                        <input id="city" type="text" class="form-control" name="city" required>
+                                        <input id="city" data-validation="^[a-zA-Z]+$" type="text" class="form-control" name="city" required>
 
                                         @if ($errors->has('city'))
                                             <span class="help-block">
@@ -243,7 +247,7 @@
                                     <label for="phone" class="col-md-4 control-label">Telefoon</label>
 
                                     <div class="col-md-6">
-                                        <input id="phone" type="text" class="form-control" name="phone" required>
+                                        <input id="phone" data-validation="^(\+)?\d+$"  type="text" class="form-control" name="phone" required>
 
                                         @if ($errors->has('phone'))
                                             <span class="help-block">
@@ -256,7 +260,7 @@
                                     <label for="contactperson" class="col-md-4 control-label">Contactpersoon</label>
 
                                     <div class="col-md-6">
-                                        <input id="contactperson" type="text" class="form-control" name="contactperson" required>
+                                        <input id="contactperson" data-validation="^[a-zA-Z ]+$" type="text" class="form-control" name="contactperson" required>
 
                                         @if ($errors->has('contactperson'))
                                             <span class="help-block">
@@ -282,7 +286,7 @@
                                     <label for="website" class="col-md-4 control-label">Website</label>
 
                                     <div class="col-md-6">
-                                        <input id="website" type="text" class="form-control" name="website" required>
+                                        <input id="website" data-validation="^(https?:\/\/)?(\w+\.)+\w+(\/\w+)*\/?$" type="text" class="form-control" name="website" required>
 
                                         @if ($errors->has('website'))
                                             <span class="help-block">
@@ -345,7 +349,37 @@
         </div>
     </div>
 </div>
+    <script src="js/auth.js"></script>
+    <script>
+        function testControl(control) {
+            console.log($(control).val())
+            if (new RegExp($(control).attr('data-validation')).test($(control).val())) {
+                $(control).parents('.form-group').removeClass('has-error');
+                return false;
+            }
 
-<script src="js/auth.js"></script>
+            $(control).parents('.form-group').addClass('has-error');
+            return true;
+        }
 
+        $("form").each(function(ind, form) {
+            console.log(form)
+
+            $(form).on('submit', function(event) {
+                $(this).find('[data-validation]').each(function () {
+                    if (!testControl(this))
+                        event.preventDefault()
+                })
+            })
+            $(form).find('[data-validation]').each(function () {
+                $(this).on('blur', function() {
+                    console.log(this)
+                    testControl(this)
+                })
+            })
+        })
+    </script>
+@endsection
+
+@section('script')
 @endsection
