@@ -8,9 +8,10 @@
 
         <!-- Styles -->
         <link rel="stylesheet" type="text/css" href="{{ asset('/css/bootstrap.min.css') }}"/>
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,dt-1.10.8/datatables.min.css"/>
+        {{--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,dt-1.10.8/datatables.min.css"/>--}}
         <link rel="stylesheet" type="text/css" href="{{ asset('/css/bootstrap-datetimepicker.min.css') }}"/>
         <link rel="stylesheet" type="text/css" href="{{asset('/font-awesome-4.7.0/css/font-awesome.min.css')}}" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{{asset('/plugins/Summernote/summernote.css')}}" rel="stylesheet">
 
         <link rel="stylesheet" type="text/css" href="/css/general.css">
 
@@ -106,7 +107,7 @@
 
         <!-- Scripts -->
         <script type="text/javascript" src="{{ asset('/js/bootstrap.min.js') }}"></script>
-        <script type="text/javascript" src="https://cdn.datatables.net/v/bs/jq-2.2.4/dt-1.10.13/datatables.min.js"></script>
+        {{--<script type="text/javascript" src="https://cdn.datatables.net/v/bs/jq-2.2.4/dt-1.10.13/datatables.min.js"></script>--}}
         <script type="text/javascript" src="{{ asset('/js/moment.js') }}"></script>
         <script type="text/javascript" src="{{ asset('/js/bootstrap-datetimepicker.min.js') }}"></script>
 
