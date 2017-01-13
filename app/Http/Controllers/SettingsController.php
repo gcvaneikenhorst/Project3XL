@@ -50,7 +50,7 @@ class SettingsController extends Controller
                     'city'      => 'required|max:255',
                     'phone'     => 'required|max:10',
                     'contactperson' => 'required|max:255',
-                    'email'     => 'required|email|max:255',
+                    'contactemail' => 'required|email|max:255',
                     'website'   => 'required|max:255',
                 ]);
 
