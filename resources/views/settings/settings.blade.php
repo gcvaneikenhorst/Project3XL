@@ -12,13 +12,11 @@
                         Instellingen
                     </div>
                     <div class="pull-right">
-	                    <span class="text-muted">
-	                        @if (Auth::user()->userable_type == 'App\Applicant')
-	                            Sollicitant
-	                        @elseif (Auth::user()->userable_type == 'App\Company')
-	                            Bedrijf
-	                        @endif
-	                    </span>
+                        @if (Auth::user()->userable_type == 'App\Applicant')
+                            Sollicitant
+                        @elseif (Auth::user()->userable_type == 'App\Company')
+                            Bedrijf
+                        @endif
                     </div>  
                 </div>
 
