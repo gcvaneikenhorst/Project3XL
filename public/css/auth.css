@@ -16,7 +16,7 @@
 
 .page-toggle 
 {
-    color: #3097D1;
+    color: #BA68C8;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -25,7 +25,8 @@
 
 .toggle-active 
 {
-    color: black;
+    color: white;
+    cursor: default;
 }
 
 .paginator 
