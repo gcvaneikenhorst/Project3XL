@@ -1,16 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    {{--<div class="container">--}}
-        {{--<div class="row">--}}
-            {{--<div class="col-md-12">--}}
-
-            {{--</div>--}}
-
-        {{--</div>--}}
-    {{--</div>--}}
-
-
     <style>
         .wizard {
             margin: 20px auto;
@@ -69,7 +59,6 @@
         .wizard li.active span.round-tab {
             background: #fff;
             border: 2px solid #5bc0de;
-
         }
 
         .wizard li.active span.round-tab i {
@@ -157,21 +146,7 @@
         }
     </style>
 
-
-
-
-
     <div class="container">
-<<<<<<< HEAD
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Create CV
-                    </div>
-=======
->>>>>>> redmar
-
         <div class="wizard">
             <div class="wizard-inner">
 
