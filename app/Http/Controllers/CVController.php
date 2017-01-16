@@ -89,7 +89,6 @@ class CVController extends Controller
         $this->cvValidator($data)->validate();
 
         $cv->fill([
-            'date'  => new \DateTime(),
             'title' => $data['title'],
             'text'  => $data['text'],
             'video' => $data['video'],
