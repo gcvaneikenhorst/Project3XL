@@ -48,14 +48,20 @@
 	                		</a>
 	                	</div>
 					
+						<div onclick="location.href='{{ url("/home") }}';">
+							<a href="{{ url('/home') }}">
+	                            Dashboard
+	                        </a>
+						</div>
+					
 	                    @if (Auth::user()->userable_type == 'App\Applicant')
-	                        <div id="first" onclick="location.href='{{ url("/cv") }}';">
+	                        <div onclick="location.href='{{ url("/cv") }}';">
 	                            <a>Mijn CV's</a>
 	                        </div>
 	                    @endif
 	
 	                    @if (Auth::user()->userable_type == 'App\Company')
-	                        <div id="first" onclick="location.href='{{ url("/vacancy") }}';">
+	                        <div onclick="location.href='{{ url("/vacancy") }}';">
 	                            <a>Mijn vacatures</a>
 	                        </div>
 	                    @endif
@@ -77,11 +83,6 @@
 		                    <a>Registreren</a>
 		                </div>
 	                @else
-	                    <div onclick="location.href='{{ url("/home") }}';">
-							<a href="{{ url('/home') }}">
-	                            Dashboard
-	                        </a>
-						</div>
 						<div onclick="location.href='{{ url("/account") }}';">
 							<a>
 	                            Instellingen

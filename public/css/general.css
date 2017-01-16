@@ -11,19 +11,38 @@ body
     font-family: 'Raleway', sans-serif;
 }
 
+
+
+/* Panels */
+.panel
+{
+	border: none;
+	border-radius: 0;
+	box-shadow: 8px 8px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+.panel-heading
+{
+	color: white !important;
+	background-color: #4A148C !important;
+	border-radius: 0;
+}
+
 .box-header
 {
 	font-size: 1.2em;
 	font-weight: bold;
 }
 
+
+
 /* Navbar */
 .wrapper 
 {
   height: 100%;
   transition: all 300ms ease-in-out;  
-  margin: 1em 0;
   padding: 0;
+  z-index: 1000;
 }
 
 .menu 
@@ -40,7 +59,7 @@ body
   	font-size: 1.2em;
   	cursor: pointer;
   	box-shadow: inset 0 0 0 0 rgba(74,20,140,0.5);
-  	transition: all 500ms;
+  	transition: all 600ms;
 }
 
 
@@ -69,7 +88,7 @@ body
 .menu div:hover
 {
 	color: white !important;
-	box-shadow: inset 400px 0 0 0 rgba(74,20,140,0.5);
+	box-shadow: inset 400px 0 0 0 rgba(74,20,140,0.7);
 }
 
 .menu div:hover > a
@@ -86,11 +105,6 @@ body
 .menu a:hover 
 {
   text-decoration: none;
-}
-
-.menu #first
-{
-	margin-top: 15%;
 }
 
 .menu div:last-child 
@@ -116,6 +130,7 @@ body
   	min-height: 600px;
   	height: 100%;
   	transition: all 300ms;
+  	z-index: 1000;
 }
 
 .menu--on 
@@ -123,7 +138,6 @@ body
   	left: 0;
   	box-shadow: 8px 8px 20px 0 rgba(0, 0, 0, 0.2);
   	transition: all 300ms;
-  	z-index: 1000;
   	height: 100%;
 }
 
@@ -137,6 +151,7 @@ body
 
 .material-design-hamburger--off button 
 {
+	height: 10.4%;
   	display: block;
   	border: none;
   	background: none;
@@ -144,22 +159,26 @@ body
   	position: absolute;
   	z-index: 1000;
   	box-shadow: inset 0 0 0 0 #4A148C;
-  	transition: all 600ms;
+  	transition: all 300ms;
 }
 
 .material-design-hamburger--on button 
 {
+	margin: 0;
+	top 0;
 	box-shadow: inset 100px 0 0 0 #4A148C;
   	transition: all 300ms;
   	z-index: 1001;
 }
 
-.material-design-hamburger__icon {
+.material-design-hamburger__icon 
+{
   padding: 2rem 1rem;
   cursor: pointer;
 }
 
-.material-design-hamburger__layer {
+.material-design-hamburger__layer 
+{
   display: block;
   width: 30px;
   height: 3px;
