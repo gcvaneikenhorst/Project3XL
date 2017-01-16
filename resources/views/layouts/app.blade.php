@@ -73,6 +73,11 @@
 	                @endif
 	                
 	                @if (Auth::guest())
+	                	<div class="login-user">
+	                		<a>
+		                		Menu
+	                		</a>
+	                	</div>
 	                	<div onclick="location.href='{{ url("/") }}';">
 		                    <a>Home</a>
 		                </div>
