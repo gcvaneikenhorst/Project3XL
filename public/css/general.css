@@ -28,6 +28,11 @@ body
 	border-radius: 0;
 }
 
+.panel-heading
+{
+	color: white;
+}
+
 .box-header
 {
 	font-size: 1.2em;
