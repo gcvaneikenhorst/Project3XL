@@ -196,154 +196,173 @@
                 </ul>
             </div>
             <div class="row" style="background: #fff;border-radius: 5px;">
-                <div class="col-md-8 col-md-offset-2">
-                    <form method="post" action="{{url('/vacancy/create')}}" role="form" class="form-horizontal"
-                          novalidate>
-                        {{csrf_field()}}
-                        <div class="tab-content">
 
-                            <div class="tab-pane active" role="tabpanel" id="step1">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Vacature CV
+                        <a href="{{ url('/vacancy/delete/'.$vacancy->id) }}" class="pull-right">Delete</a>
+                    </div>
 
-                                <h3>Stap1</h3>
-                                <div class="form-group{{ $errors->has('titel') ? ' has-error' : '' }}">
-                                    <label for="firstname" class="col-md-4 control-label">Titel:</label>
 
-                                    <div class="col-md-6">
-                                        <input id="title" type="text" class="form-control" name="title"
-                                               value="{{$vacancy->title}}" required>
+                    <div class="panel-body">
+                        <div class="col-md-8 col-md-offset-2">
 
-                                        @if ($errors->has('titel'))
-                                            <span class="help-block">
-                                                <strong>{{ $errors->first('titel') }}</strong>
+
+                            <form method="post" action="{{url('/vacancy/edit/'.$vacancy->id)}}" role="form"
+                                  class="form-horizontal"
+                                  novalidate>
+                                {{csrf_field()}}
+                                <div class="tab-content">
+
+                                    <div class="tab-pane active" role="tabpanel" id="step1">
+
+                                        <h3>Stap1</h3>
+                                        <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
+                                            <label for="firstname" class="col-md-4 control-label">Titel:</label>
+
+                                            <div class="col-md-6">
+                                                <input id="title" type="text" class="form-control" name="title"
+                                                       value="{{$vacancy->title}}" required>
+
+                                                @if ($errors->has('title'))
+                                                    <span class="help-block">
+                                                <strong>{{ $errors->first('title') }}</strong>
                                             </span>
-                                        @endif
-                                    </div>
-                                </div>
+                                                @endif
+                                            </div>
+                                        </div>
 
-                                {{--<div class="form-group{{ $errors->has('date') ? ' has-error' : '' }}">--}}
-                                    {{--<label for="date" class="col-md-4 control-label">Datum</label>--}}
+                                        {{--<div class="form-group{{ $errors->has('date') ? ' has-error' : '' }}">--}}
+                                        {{--<label for="date" class="col-md-4 control-label">Datum</label>--}}
 
-                                    {{--<div class="col-md-6">--}}
+                                        {{--<div class="col-md-6">--}}
                                         {{--<input  id="date" type="datetime" class="form-control" name="date"--}}
-                                               {{--value="{{ $vacancy->date}}" required>--}}
+                                        {{--value="{{ $vacancy->date}}" required>--}}
 
                                         {{--@if ($errors->has('date'))--}}
-                                            {{--<span class="help-block">--}}
-                                                {{--<strong>{{ $errors->first('date') }}</strong>--}}
-                                            {{--</span>--}}
+                                        {{--<span class="help-block">--}}
+                                        {{--<strong>{{ $errors->first('date') }}</strong>--}}
+                                        {{--</span>--}}
                                         {{--@endif--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
+                                        {{--</div>--}}
+                                        {{--</div>--}}
 
 
-                                <div class="form-group{{ $errors->has('category_id') ? ' has-error' : '' }}">
-                                    <label for="category_id" class="col-md-4 control-label">Categorie</label>
+                                        <div class="form-group{{ $errors->has('category_id') ? ' has-error' : '' }}">
+                                            <label for="category_id" class="col-md-4 control-label">Categorie</label>
 
-                                    <div class="col-md-6">
-                                        <select id="category_id" name="category_id" class="form-control"  style="width: 100%">
-                                            @foreach(\App\Category::all() as $category)
-                                                <option value="{{$category->id}}" {{ $vacancy->category_id == $category->id ? "selected":""}}>{{$category->name}}</option>
-                                            @endforeach
+                                            <div class="col-md-6">
+                                                <select id="category_id" name="category_id" class="form-control"
+                                                        style="width: 100%">
+                                                    @foreach(\App\Category::all() as $category)
+                                                        <option value="{{$category->id}}" {{ $vacancy->category_id == $category->id ? "selected":""}}>{{$category->name}}</option>
+                                                    @endforeach
 
-                                        </select>
+                                                </select>
 
-                                        @if ($errors->has('category_id'))
-                                            <span class="help-block">
+                                                @if ($errors->has('category_id'))
+                                                    <span class="help-block">
                                                 <strong>{{ $errors->first('category_id') }}</strong>
                                             </span>
-                                        @endif
+                                                @endif
+                                            </div>
+                                        </div>
+
+
+                                        <ul class="list-inline pull-right">
+                                            <li>
+                                                <button type="button" class="btn btn-primary next-step">Volgende
+                                                </button>
+                                            </li>
+                                        </ul>
                                     </div>
-                                </div>
 
 
-                                <ul class="list-inline pull-right">
-                                    <li>
-                                        <button type="button" class="btn btn-primary next-step">Volgende</button>
-                                    </li>
-                                </ul>
-                            </div>
+                                    <div class="tab-pane" role="tabpanel" id="step2">
+                                        <h3>Stap 2</h3>
+
+                                        <p>Schrijf uw vacature text.</p>
+                                        <textarea name="text">{{$vacancy->text}}</textarea>
 
 
-                            <div class="tab-pane" role="tabpanel" id="step2">
-                                <h3>Stap 2</h3>
-
-                                <p>Schrijf uw vacature text.</p>
-                                <textarea name="text">{{$vacancy->text}}</textarea>
-
-
-                                <ul class="list-inline pull-right">
-                                    <li>
-                                        <button type="button" class="btn btn-default prev-step">Vorige</button>
-                                    </li>
-                                    <li>
-                                        <button type="button" class="btn btn-primary next-step">Volgende</button>
-                                    </li>
-                                </ul>
-                            </div>
+                                        <ul class="list-inline pull-right">
+                                            <li>
+                                                <button type="button" class="btn btn-default prev-step">Vorige</button>
+                                            </li>
+                                            <li>
+                                                <button type="button" class="btn btn-primary next-step">Volgende
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
 
 
-                            <div class="tab-pane" role="tabpanel" id="step3">
-                                <h3>Stap 3</h3>
+                                    <div class="tab-pane" role="tabpanel" id="step3">
+                                        <h3>Stap 3</h3>
 
 
-                                <div class="form-group{{ $errors->has('competences') ? ' has-error' : '' }}">
-                                    <label for="category_id" class="col-md-4 control-label">Selecteer uw
-                                        competenties</label>
+                                        <div class="form-group{{ $errors->has('competences') ? ' has-error' : '' }}">
+                                            <label for="category_id" class="col-md-4 control-label">Selecteer uw
+                                                competenties</label>
 
-                                    <div class="col-md-6">
+                                            <div class="col-md-6">
 
-                                        <select name="competence[]" multiple="multiple">
-                                            @foreach(\App\Competence::all() as $competence)
+                                                <select name="competence[]" multiple="multiple">
+                                                    @foreach(\App\Competence::all() as $competence)
 
-                                                <option id="{{$competence->id}}" value="{{$competence->id}}"
-                                                        {{ $vacancy->category_id == $category->id ? "selected":""}}>
-                                                    {{$competence->name}}
-                                                </option>
+                                                        <option id="{{$competence->id}}" value="{{$competence->id}}"
+                                                                {{ in_array($competence->id, $competences) ? 'selected="true"' : '' }}>
+                                                            {{$competence->name}}
+                                                        </option>
 
-                                            @endforeach
-                                        </select>
+                                                    @endforeach
+                                                </select>
 
 
-                                        @if ($errors->has('competences'))
-                                            <span class="help-block">
+                                                @if ($errors->has('competences'))
+                                                    <span class="help-block">
                                                 <strong>{{ $errors->first('competences') }}</strong>
                                             </span>
-                                        @endif
+                                                @endif
+                                            </div>
+                                        </div>
+
+
+                                        <ul class="list-inline pull-right">
+                                            <li>
+                                                <button type="button" class="btn btn-default prev-step">Vorige</button>
+                                            </li>
+                                            <li>
+                                                <button type="button" class="btn btn-primary btn-info-full next-step">
+                                                    Volgende
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="tab-pane" role="tabpanel" id="complete">
+                                        <h3>Klaar</h3>
+                                        <p>U kunt nog op vorige drukken om wijzigingen aan te brengen. Als u zeker weet
+                                            dat
+                                            alle
+                                            informatie klopt kunt u op opslaan drukken om de vacature aan te maken.</p>
+
+
+                                        <ul class="list-inline pull-right">
+                                            <li>
+                                                <button type="button" class="btn btn-default prev-step">Vorige</button>
+                                            </li>
+                                            <li>
+                                                <input type="submit" class="btn btn-default" value="Wijzigen">
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
+                                <div class="clearfix"></div>
 
-
-                                <ul class="list-inline pull-right">
-                                    <li>
-                                        <button type="button" class="btn btn-default prev-step">Vorige</button>
-                                    </li>
-                                    <li>
-                                        <button type="button" class="btn btn-primary btn-info-full next-step">Volgende
-                                        </button>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="tab-pane" role="tabpanel" id="complete">
-                                <h3>Klaar</h3>
-                                <p>U kunt nog op vorige drukken om wijzigingen aan te brengen. Als u zeker weet dat alle
-                                    informatie klopt kunt u op opslaan drukken om de vacature aan te maken.</p>
-
-
-                                <ul class="list-inline pull-right">
-                                    <li>
-                                        <button type="button" class="btn btn-default prev-step">Vorige</button>
-                                    </li>
-                                    <li>
-                                        <input type="submit" class="btn btn-default" value="Opslaan">
-                                    </li>
-                                </ul>
-                            </div>
+                            </form>
                         </div>
-                        <div class="clearfix"></div>
-
-                    </form>
+                    </div>
                 </div>
-
             </div>
         </div>
     </div>

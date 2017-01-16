@@ -20,4 +20,8 @@ class CV extends Model
         return $this->belongsToMany('App\Vacancy','vacancy_cvs','cv_id');
     }
 
+    public function applicant(){
+        return $this->belongsTo('App\Applicant','vacancy_cvs_payed');
+    }
+
 }
