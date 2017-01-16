@@ -124,7 +124,7 @@
                 $('select[multiple]').multiselect();
             });
         </script>
+        @yield('script')
     </body>
-
 </html>
 
