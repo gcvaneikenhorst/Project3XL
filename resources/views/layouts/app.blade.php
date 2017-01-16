@@ -38,6 +38,16 @@
 			
 				<section class="menu menu--off">
 					@if (!Auth::guest())
+						<div>
+	                		<a>
+		                		@if (Auth::user()->userable_type == 'App\Applicant')
+	                                {{ Auth::user()->userable()->first()->firstname }}
+	                            @elseif (Auth::user()->userable_type == 'App\Company')
+	                                {{ Auth::user()->userable()->first()->name }}
+	                            @endif
+	                		</a>
+	                	</div>
+					
 	                    @if (Auth::user()->userable_type == 'App\Applicant')
 	                        <div onclick="location.href='{{ url("/cv") }}';">
 	                            <a>Mijn CV's</a>
@@ -67,37 +77,24 @@
 		                    <a>Registreren</a>
 		                </div>
 	                @else
-	                    <div class="dropdown">
-	                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-	                            @if (Auth::user()->userable_type == 'App\Applicant')
-	                                {{ Auth::user()->userable()->first()->firstname }}
-	                            @elseif (Auth::user()->userable_type == 'App\Company')
-	                                {{ Auth::user()->userable()->first()->name }}
-	                            @endif
-	
-	                            <span class="caret"></span>
+	                    <div onclick="location.href='{{ url("/home") }}';">
+							<a href="{{ url('/home') }}">
+	                            Dashboard
 	                        </a>
-	
-	                        <ul class="dropdown-menu" role="menu">
-	                            <li>
-	                                <a href="{{ url('/home') }}">
-	                                    Dashboard
-	                                </a>
-	
-	                                <a href="{{ url('/account') }}">
-	                                    Instellingen
-	                                </a>
-	
-	                                <a href="{{ url('/logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-	                                    Uitloggen
-	                                </a>
-	
-	                                <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-	                                    {{ csrf_field() }}
-	                                </form>
-	                            </li>
-	                        </ul>
-	                    </div>
+						</div>
+						<div onclick="location.href='{{ url("/account") }}';">
+							<a>
+	                            Instellingen
+	                        </a>
+						</div>
+						<div onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                            <a>
+                                Uitloggen
+                            </a>
+                            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        </div>
 	                @endif
 				</section>
 			</section>
