@@ -93,7 +93,7 @@
                                     <label for="email" class="col-md-2 control-label">Category</label>
 
                                     <div class="col-md-10">
-                                        <select id="title" type="text" class="form-control" name="category">
+                                        <select id="title" class="form-control" name="category">
                                             @foreach(\App\Category::all() as $category)
                                                 <option value="{{ $category->id }}" {{ $category->id == $cv->category_id ? 'selected="true"' : '' }}>{{ $category->name }}</option>
                                             @endforeach

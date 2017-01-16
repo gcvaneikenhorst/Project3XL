@@ -46,8 +46,6 @@
 @endsection
 
 @section('script')
-    <script>
-
-    </script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs/jq-2.2.4/dt-1.10.13/datatables.min.js"></script>
 @endsection
 

@@ -29,7 +29,7 @@ class CVController extends Controller
     public function cvValidator($data) {
         return Validator::make($data, [
             'title' => 'required|min:6',
-            'text' => 'required|min:6',
+            'text' => 'required',
             'video' => 'min:6',
             'motivation' => 'max:255',
             'category' => 'required',

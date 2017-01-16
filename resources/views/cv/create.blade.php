@@ -88,7 +88,7 @@
                                     <label for="email" class="col-md-2 control-label">Category</label>
 
                                     <div class="col-md-10">
-                                        <select id="title" type="text" class="form-control" name="category">
+                                        <select id="title" class="form-control" name="category">
                                             @foreach(\App\Category::all() as $category)
                                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                                             @endforeach
@@ -102,19 +102,19 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
+                                <div class="form-group{{ $errors->has('competence') ? ' has-error' : '' }}">
                                     <label for="email" class="col-md-2 control-label">Competenties</label>
 
                                     <div class="col-md-10">
-                                        <select id="title" type="text" class="form-control" name="competenties[]" width="100%" multiple>
+                                        <select id="competence" class="form-control" name="competences[]" width="100%" multiple>
                                             @foreach(\App\Competence::all() as $competence)
                                                 <option value="{{ $competence->id }}">{{ $competence->name }}</option>
                                             @endforeach
                                         </select>
 
-                                        @if ($errors->has('title'))
+                                        @if ($errors->has('competence'))
                                             <span class="help-block">
-                                            <strong>{{ $errors->first('title') }}</strong>
+                                            <strong>{{ $errors->first('competence') }}</strong>
                                         </span>
                                         @endif
                                     </div>
@@ -219,7 +219,7 @@
 
                             <div class="tab-pane" role="tabpanel" id="complete">
                                 <div class="col-md-offset-2" style="padding-left: 5px">
-                                    <h2>Succesvol</h2>
+                                    <h2>Overzicht</h2>
                                     <p>Nog even alles na kijken...</p>
                                     <hr>
                                 </div>
@@ -230,6 +230,24 @@
                                     <div class="col-md-10 control-label">
                                         <span data-form-name="title" class="pull-left"></span>
                                         <a href="javascript:toTab('step1');focus('title');" class="pull-right">Verander</a>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="category" class="col-md-2 control-label" style="cursor: pointer">Category</label>
+
+                                    <div class="col-md-10 control-label">
+                                        <span data-form-name="category" class="pull-left"></span>
+                                        <a href="javascript:toTab('step1');focus('category');" class="pull-right">Verander</a>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="competences" class="col-md-2 control-label" style="cursor: pointer">Competences</label>
+
+                                    <div class="col-md-10 control-label">
+                                        <span data-form-name="competences" class="pull-left"></span>
+                                        <a href="javascript:toTab('step1');focus('competences');" class="pull-right">Verander</a>
                                     </div>
                                 </div>
 
@@ -260,11 +278,13 @@
                                     </div>
                                 </div>
 
-                                <hr>
+                                <div class="col-md-offset-2" style="padding-left: 5px">
+                                    <hr>
+                                </div>
 
                                 <ul class="list-inline pull-right">
                                     <li>
-                                        <button class="btn btn-primary btn-info-full" onclick="$('#cv-create').submit()">Aanmaken</button>
+                                        <button class="btn btn-primary btn-info-full" onclick="$('#cv-create').submit()">Opslaan</button>
                                     </li>
                                 </ul>
                             </div>
@@ -318,9 +338,25 @@
             jQuery.each(fields, function() {
                 var name = $(this).attr('name');
 
-                holder.find('[data-form-name="'+ name +'"]').html($(this).val());
+                if(name == 'category') {
+                    holder.find('[data-form-name="'+ name +'"]').html($(this).find('option:selected').text());
+                } else if(name == 'competences[]') {
+                    var competences = '';
+
+                    jQuery.each($(this).find('option:selected'), function() {
+                        if(competences == '') {
+                            competences = $(this).text();
+                        } else {
+                            competences += ', ' + $(this).text();
+                        }
+                    });
+
+                    holder.find('[data-form-name="competences"]').html(competences);
+                } else {
+                    holder.find('[data-form-name="'+ name +'"]').html($(this).val());
+                }
             });
-        };
+        }; updateForm();
 
         function toTab(id) {
             var $item = $('.wizard .nav-tabs li a[aria-controls='+id+']').parent();
