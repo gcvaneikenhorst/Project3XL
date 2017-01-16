@@ -45,7 +45,7 @@ INNER JOIN users u ON u.userable_id = a.id
 WHERE u.userable_type = "App\\\\Applicant"');
 
 
-        DB::insert('INSERT INTO vacancy_cvs (cv_id, vacancy_id)
+        $insert = DB::insert('INSERT INTO vacancy_cvs (cv_id, vacancy_id)
 SELECT cv.id AS "cv_id", v.id AS "vacancy_id" FROM users u 
 INNER JOIN applicants a ON u.userable_id = a.id
 AND u.userable_type = "App\\\\Applicant"
@@ -61,5 +61,11 @@ INNER JOIN vacancy_competence vc ON vc.competence_id = com.id
 INNER JOIN vacancies v ON v.id = vc.vacancy_id
 WHERE u.enabled = 1
 GROUP BY cv.id, v.id');
+
+		if($insert == 1) {
+			echo "\n";
+			echo "Matching complete!\n";
+			echo "\n";
+		}
     }
 }

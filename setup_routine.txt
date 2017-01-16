@@ -1,0 +1,2 @@
+sudo crontab -e
+@hourly php artisan commands:start_match >> storage/logs/matches.log
