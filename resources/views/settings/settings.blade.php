@@ -26,7 +26,7 @@
 
                     <form class="form-horizontal">
                         <div class="form-group">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                            <label for="email" class="col-md-4 control-label">E-mailadres</label>
 
                             <div class="col-md-6 control-label">
                                 <span id="email" class="pull-left">{{ Auth::user()->email }}</span>
