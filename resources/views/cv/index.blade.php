@@ -7,7 +7,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         CV's
-                        <a href="{{ url('/cv/create') }}" class="pull-right">+</a>
+                        <a href="{{ url('/cv/create') }}" class="pull-right"><i class="fa fa-plus" style="color: grey"></i></a>
                     </div>
 
                     <div class="panel-body">
