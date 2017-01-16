@@ -16,7 +16,6 @@
                             <span class="round-tab">
                                <i class="fa fa-user-circle-o"></i>
                                <i class=""></i>
-
                             </span>
                         </a>
                     </li>
@@ -49,7 +48,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     Edit CV
-                    <a href="{{ url('/cv/delete/'.$cv->id) }}" class="pull-right">Delete</a>
+                    <a href="{{ url('/cv/delete/'.$cv->id) }}" class="pull-right"><i class="fa fa-trash"></i></a>
                 </div>
 
                 <div class="panel-body">
