@@ -18,6 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/vacancy/create', 'VacancyController@create');
+Route::get('/vacancy', 'VacancyController@index');
 Route::post('/vacancy/create', 'VacancyController@save');
 
 
@@ -34,6 +35,12 @@ Route::post('/account/email/save', 'SettingsController@emailSave');
 
 Route::get('/account/password', 'SettingsController@password');
 Route::post('/account/password/save', 'SettingsController@passwordSave');
+
+Route::group(["userable_type" => "App/Admin"], function() {
+    Route::get("/administrator/viewusers", 'AdministratorController@viewusers');
+    Route::get("/administrator/viewcv/{userid}", 'AdministratorController@viewcvs');
+    Route::get("/administrator/viewvacancy/{userid}", 'AdministratorController@viewvacancy');
+});
 
 Route::get('/cv', 'CVController@index');
 
