@@ -38,7 +38,7 @@
 			
 				<section class="menu menu--off">
 					@if (!Auth::guest())
-						<div>
+						<div class="login-user">
 	                		<a>
 		                		@if (Auth::user()->userable_type == 'App\Applicant')
 	                                {{ Auth::user()->userable()->first()->firstname }}
@@ -47,6 +47,12 @@
 	                            @endif
 	                		</a>
 	                	</div>
+					
+						<div onclick="location.href='{{ url("/home") }}';">
+							<a href="{{ url('/home') }}">
+	                            Dashboard
+	                        </a>
+						</div>
 					
 	                    @if (Auth::user()->userable_type == 'App\Applicant')
 	                        <div onclick="location.href='{{ url("/cv") }}';">
@@ -77,17 +83,12 @@
 		                    <a>Registreren</a>
 		                </div>
 	                @else
-	                    <div onclick="location.href='{{ url("/home") }}';">
-							<a href="{{ url('/home') }}">
-	                            Dashboard
-	                        </a>
-						</div>
 						<div onclick="location.href='{{ url("/account") }}';">
 							<a>
 	                            Instellingen
 	                        </a>
 						</div>
-						<div onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+						<div class="logout" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                             <a>
                                 Uitloggen
                             </a>

@@ -11,26 +11,38 @@ body
     font-family: 'Raleway', sans-serif;
 }
 
+
+
+/* Panels */
+.panel
+{
+	border: none;
+	border-radius: 0;
+	box-shadow: 8px 8px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+.panel-heading
+{
+	color: white !important;
+	background-color: #4A148C !important;
+	border-radius: 0;
+}
+
 .box-header
 {
 	font-size: 1.2em;
 	font-weight: bold;
 }
 
+
+
 /* Navbar */
-.navbar-default
-{
-	background-color: rgba(255, 255, 255, 0.7);
-	border-color: rgba(88, 88, 88, 0.4);
-}
-
-
 .wrapper 
 {
   height: 100%;
   transition: all 300ms ease-in-out;  
-  margin: 1em 0;
   padding: 0;
+  z-index: 1000;
 }
 
 .menu 
@@ -41,16 +53,47 @@ body
 
 .menu div 
 {
-  padding: 1em;
-  padding-bottom: 1em;
-  border-bottom: 1px solid #ccc; 
-  font-size: 1.2em;
-  cursor: pointer;
+  	padding: 1em;
+  	padding-bottom: 1em;
+  	border-bottom: 1px solid #ccc; 
+  	font-size: 1.2em;
+  	cursor: pointer;
+  	box-shadow: inset 0 0 0 0 rgba(74,20,140,0.5);
+  	transition: all 600ms;
 }
+
+
+.login-user
+{
+	height: 10.4%;
+	background-color: #9C81BD;
+	border: none !important;
+	text-align: right;
+	vertical-align: middle;	
+	cursor: inherit !important;
+}
+.login-user:hover
+{
+	box-shadow: none !important;
+}
+
+.login-user a
+{
+	color: white !important;
+	font-size: 1.5em;
+	cursor: default;
+}
+
 
 .menu div:hover
 {
-  background-color: #BEBEBE;
+	color: white !important;
+	box-shadow: inset 400px 0 0 0 rgba(74,20,140,0.7);
+}
+
+.menu div:hover > a
+{
+	color: white !important;	
 }
 
 .menu a 
@@ -66,7 +109,14 @@ body
 
 .menu div:last-child 
 {
-  border: 0;
+  	border: 0;
+}
+
+.logout
+{
+	position: absolute;
+	bottom: 0;
+	width: 100%;
 }
 
 .menu--off 
@@ -80,6 +130,7 @@ body
   	min-height: 600px;
   	height: 100%;
   	transition: all 300ms;
+  	z-index: 1000;
 }
 
 .menu--on 
@@ -87,7 +138,6 @@ body
   	left: 0;
   	box-shadow: 8px 8px 20px 0 rgba(0, 0, 0, 0.2);
   	transition: all 300ms;
-  	z-index: 1000;
   	height: 100%;
 }
 
@@ -101,27 +151,34 @@ body
 
 .material-design-hamburger--off button 
 {
+	height: 10.4%;
   	display: block;
   	border: none;
   	background: none;
   	outline: 0;
   	position: absolute;
   	z-index: 1000;
+  	box-shadow: inset 0 0 0 0 #4A148C;
   	transition: all 300ms;
 }
 
 .material-design-hamburger--on button 
 {
-  	right: 0;
+	margin: 0;
+	top 0;
+	box-shadow: inset 100px 0 0 0 #4A148C;
   	transition: all 300ms;
+  	z-index: 1001;
 }
 
-.material-design-hamburger__icon {
+.material-design-hamburger__icon 
+{
   padding: 2rem 1rem;
   cursor: pointer;
 }
 
-.material-design-hamburger__layer {
+.material-design-hamburger__layer 
+{
   display: block;
   width: 30px;
   height: 3px;

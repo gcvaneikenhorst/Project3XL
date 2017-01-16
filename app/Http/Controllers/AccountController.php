@@ -18,7 +18,7 @@ class AccountController extends Controller
             switch ($request->get('action')) {
                 case "remove": {
                     if ($request->get("sure") == "no")
-                        return Redirect("/");
+                        return Redirect("/home");
 
                     $user->userable()->delete();
                     $user->delete();
@@ -42,7 +42,7 @@ class AccountController extends Controller
     {
 	    if ($request->isMethod("post")) {
             if ($request->get("sure") == "no")
-                return Redirect("/");
+                return Redirect("/home");
 				$user = User::find(Auth::user()->id);
 				$user->enabled = false;
 				$user->save();
