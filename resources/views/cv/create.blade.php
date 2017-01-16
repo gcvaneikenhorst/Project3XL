@@ -228,7 +228,7 @@
                                     <label for="title" class="col-md-2 control-label" style="cursor: pointer">Title</label>
 
                                     <div class="col-md-10 control-label">
-                                        <span data-form-name="title" class="pull-left"></span>
+                                        <span data-form-name="title" class="pull-left" style="text-align: left"></span>
                                         <a href="javascript:toTab('step1');focus('title');" class="pull-right">Verander</a>
                                     </div>
                                 </div>
@@ -237,7 +237,7 @@
                                     <label for="category" class="col-md-2 control-label" style="cursor: pointer">Category</label>
 
                                     <div class="col-md-10 control-label">
-                                        <span data-form-name="category" class="pull-left"></span>
+                                        <span data-form-name="category" class="pull-left" style="text-align: left"></span>
                                         <a href="javascript:toTab('step1');focus('category');" class="pull-right">Verander</a>
                                     </div>
                                 </div>
@@ -246,7 +246,7 @@
                                     <label for="competences" class="col-md-2 control-label" style="cursor: pointer">Competences</label>
 
                                     <div class="col-md-10 control-label">
-                                        <span data-form-name="competences" class="pull-left"></span>
+                                        <span data-form-name="competences" class="pull-left" style="text-align: left"></span>
                                         <a href="javascript:toTab('step1');focus('competences');" class="pull-right">Verander</a>
                                     </div>
                                 </div>
@@ -264,7 +264,7 @@
                                     <label for="video" class="col-md-2 control-label" style="cursor: pointer">Video</label>
 
                                     <div class="col-md-10 control-label">
-                                        <span data-form-name="video" class="pull-left"></span>
+                                        <span data-form-name="video" class="pull-left" style="text-align: left"></span>
                                         <a href="javascript:toTab('step2');focus('video');" onclick="" class="pull-right">Verander</a>
                                     </div>
                                 </div>
