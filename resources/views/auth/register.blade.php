@@ -351,30 +351,27 @@
 </div>
     <script src="js/auth.js"></script>
     <script>
-        function testControl(control) {
-            console.log($(control).val())
+        function validate(control) {
             if (new RegExp($(control).attr('data-validation')).test($(control).val())) {
                 $(control).parents('.form-group').removeClass('has-error');
-                return false;
+                return true;
             }
 
             $(control).parents('.form-group').addClass('has-error');
-            return true;
+            return false;
         }
 
         $("form").each(function(ind, form) {
-            console.log(form)
-
             $(form).on('submit', function(event) {
                 $(this).find('[data-validation]').each(function () {
-                    if (!testControl(this))
+                    if (!validate(this)) {
                         event.preventDefault()
+                    }
                 })
             })
             $(form).find('[data-validation]').each(function () {
                 $(this).on('blur', function() {
-                    console.log(this)
-                    testControl(this)
+                    validate(this)
                 })
             })
         })
