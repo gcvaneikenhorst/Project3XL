@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+    <style>
+        #user-table tbody tr {
+            cursor: pointer;
+        }
+    </style>
     <link href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
     <div class="container">
         <div class="row">
@@ -12,12 +17,12 @@
                         </div>
                     </div>
                     <div class="panel-body">
-                        <table class="table">
+                        <table class="table" id="user-table">
                             <thead>
-                            <tr>
-                                <th>Email</th>
-                                <th>Type</th>
-                            </tr>
+                                <tr>
+                                    <th>Email</th>
+                                    <th>Type</th>
+                                </tr>
                             </thead>
                             <tbody>
                             @foreach($users as $user)
@@ -31,7 +36,9 @@
                             @endforeach
                             </tbody>
                         </table>
-                        {{$users->links()}}
+                        <div style="display:flex; justify-content:center;">
+                            {{$users->links()}}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -79,7 +86,12 @@
         <table class="table">
             <tr>
                 <td>Aanhef</td>
-                <td><input class="form-control" name="salutation"></td>
+                <td>
+                    <select class="form-control" name="salutation">
+                        <option>Dhr.</option>
+                        <option>Mv.</option>
+                    </select>
+                </td>
             </tr>
             <tr>
                 <td>Voornaam</td>
@@ -150,14 +162,37 @@
                 }
             },
             buttons: {
-                "Save": function() {
-                    console.log(this)
-                    let output = {}
-                    $(this).find('input').each((i, node) => {
-                        if (node.value != data[node.getAttribute('name')])
-                            output[node.getAttribute("name")] = node.value
+                "Delete": function() {
+                    if (!confirm("Weet u zeker dat u deze gebruiker wilt verwijderen?"))
+                        return;
+
+                    $.ajax({
+                        type:'DELETE',
+                        url: `/api/administrator/deleteuser/${data['userid']}`
                     })
-                    console.log(output);
+                },
+                "Save": function() {
+                    let output = {}
+                    $(this).find('[name]').each((i, node) => {
+                        let val = node.value.replace('\n', '').replace('\r', '')
+                        console.log(val);
+                        if (val != data[node.getAttribute('name')])
+                            output[node.getAttribute("name")] = val;
+                    })
+                    console.log(data, output);
+                    if (Object.keys(output).length == 0)
+                        return;
+
+                    $.ajax({
+                        type: 'POST',
+                        url: `/api/administrator/updateuser/${data['userid']}`,
+                        contentType: "application/json",
+                        dataType: 'json',
+                        data: JSON.stringify(output),
+                    });
+
+                    Object.assign(data, output);
+                    target.setAttribute("data", JSON.stringify(data));
                 }
             }
         })

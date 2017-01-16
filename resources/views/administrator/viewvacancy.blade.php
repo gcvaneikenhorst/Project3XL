@@ -82,14 +82,35 @@
                 }
             },
             buttons: {
+                "Delete": function() {
+                    if (!confirm("Weet u zeker dat u deze vacature wilt verwijderen?"))
+                        return;
+
+                    $.ajax({
+                        type:'DELETE',
+                        url: `/api/administrator/deletevacancy/${data['id']}`
+                    })
+                },
                 "Save": function() {
                     let output = {}
-                    $(this).find('[name]').each((i, node) => {
+                    $(this).find('input').each((i, node) => {
                         if (node.value != data[node.getAttribute('name')])
                             output[node.getAttribute("name")] = node.value
                     })
-                    console.log(output);
-                }
+
+                    if (Object.keys(output).length == 0)
+                        return;
+
+                    $.ajax({
+                        type: 'POST',
+                        url: `/api/administrator/updatevacancy/${data['id']}`,
+                        contentType: "application/json",
+                        dataType: 'json',
+                        data: JSON.stringify(output),
+                    });
+                    Object.assign(data, output);
+                    target.setAttribute("data", JSON.stringify(data));
+                },
             }
         })
     }

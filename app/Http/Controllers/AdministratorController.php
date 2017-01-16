@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\User;
+use App\CV;
 use App\Http\Controllers\Controller;
+use App\Vacancy;
+use Illuminate\Http\Request;
 
 class AdministratorController extends Controller
 {
@@ -46,5 +49,47 @@ class AdministratorController extends Controller
         $categories = Category::get();
         return View("administrator/viewvacancy", ["vacancies" => $vacancies, 'email' => $email, 'categories' => $categories]);
     }
+
+
+    public function updateUserData(Request $request, $userid) {
+        $data = $request->json()->all();
+        $userInfo = User::find($userid)->userable();
+        $userInfo->update($data);
+
+        return ['success' => 'true'];
+    }
+
+    public function updateCVData(Request $request, $cvid) {
+        $data = $request->json()->all();
+        $cv = CV::find($cvid);
+        $cv->update($data);
+        return ['success' => 'true'];
+    }
+
+    public function updateVacancyData(Request $request, $vacancyid) {
+        $data = $request->json()->all();
+        $vacancy = Vacancy::find($vacancyid);
+        $vacancy->update($data);
+        return ['success' => 'true'];
+    }
+
+
+    public function deleteUser($userid) {
+        $user = User::find($userid);
+        $user->userable()->delete();
+        $user->delete();
+    }
+
+
+    public function deleteCv($cvid) {
+        $cv = CV::find($cvid);
+        $cv->delete();
+    }
+
+    public function deleteVacancy($vacancyid) {
+        $vacancy = Vacancy::find($vacancyid);
+        $vacancy->delete();
+    }
+
 
 }

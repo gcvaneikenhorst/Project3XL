@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+    <style>
+        #cv-table tr {
+            cursor: pointer;
+        }
+    </style>
     <link href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
     <div class="container">
         <div class="row">
@@ -10,7 +15,7 @@
                         CV's voor {{$email}}
                     </div>
                     <div class="pane-body">
-                        <table class="table">
+                        <table class="table" id="cv-table">
                             <thead>
                                 <tr>
                                     <th>Titel</th>
@@ -80,7 +85,6 @@
             let target = event.target.parentNode;
             let data = JSON.parse(target.getAttribute('data'));
             data.date = data.date.replace(" ", "T");
-            console.log(data)
             $("#cvmodal").dialog({
                 width: 500,
                 title: data.title,
@@ -91,14 +95,34 @@
                     }
                 },
                 buttons: {
+                    "Delete": function() {
+                        if (!confirm("Weet u zeker dat u deze CV wilt verwijderen?"))
+                            return;
+
+                        $.ajax({
+                            type:'DELETE',
+                            url: `/api/administrator/deletecv/${data['id']}`
+                        })
+                    },
                     "Save": function() {
-                        console.log(this)
                         let output = {}
                         $(this).find('input').each((i, node) => {
                             if (node.value != data[node.getAttribute('name')])
                                 output[node.getAttribute("name")] = node.value
                         })
-                        console.log(output);
+
+                        if (Object.keys(output).length == 0)
+                            return;
+
+                        $.ajax({
+                            type: 'POST',
+                            url: `/api/administrator/updatecv/${data['id']}`,
+                            contentType: "application/json",
+                            dataType: 'json',
+                            data: JSON.stringify(output),
+                        });
+                        Object.assign(data, output);
+                        target.setAttribute("data", JSON.stringify(data));
                     }
                 }
             })
