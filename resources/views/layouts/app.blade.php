@@ -38,7 +38,7 @@
 			
 				<section class="menu menu--off">
 					@if (!Auth::guest())
-						<div>
+						<div class="login-user">
 	                		<a>
 		                		@if (Auth::user()->userable_type == 'App\Applicant')
 	                                {{ Auth::user()->userable()->first()->firstname }}
@@ -49,13 +49,13 @@
 	                	</div>
 					
 	                    @if (Auth::user()->userable_type == 'App\Applicant')
-	                        <div onclick="location.href='{{ url("/cv") }}';">
+	                        <div id="first" onclick="location.href='{{ url("/cv") }}';">
 	                            <a>Mijn CV's</a>
 	                        </div>
 	                    @endif
 	
 	                    @if (Auth::user()->userable_type == 'App\Company')
-	                        <div onclick="location.href='{{ url("/vacancy") }}';">
+	                        <div id="first" onclick="location.href='{{ url("/vacancy") }}';">
 	                            <a>Mijn vacatures</a>
 	                        </div>
 	                    @endif
@@ -87,7 +87,7 @@
 	                            Instellingen
 	                        </a>
 						</div>
-						<div onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+						<div class="logout" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                             <a>
                                 Uitloggen
                             </a>
