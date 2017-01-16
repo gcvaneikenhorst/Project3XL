@@ -22,3 +22,27 @@ body
 	background-color: rgba(255, 255, 255, 0.7);
 	border-color: rgba(88, 88, 88, 0.4);
 }
+
+.note-editable {
+    height: 200px;
+}
+
+.note-editor {
+    margin-bottom: 0px !important;
+}
+
+.wizard .tab-pane {
+    padding-top: 0px !important;
+}
+
+.wizard .nav-tabs {
+    border: 0px;
+}
+
+.tab-pane {
+    margin-bottom: 20px;
+}
+
+#cv-create .multiselect-native-select .btn-group, #cv-create .multiselect-native-select .btn-group button {
+    width: 100%;
+}
