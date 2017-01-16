@@ -23,5 +23,8 @@ class Company extends Model
         return $this->morphMany('App\User', 'userable');
     }
 
-
+    public function vacancies()
+    {
+        return $this->hasMany('App\Vacancy');
+    }
 }
