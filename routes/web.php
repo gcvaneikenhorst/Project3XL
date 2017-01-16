@@ -28,6 +28,12 @@ Route::post('/vacancy/delete/{id}', 'VacancyController@doDelete');
 
 
 
+Route::get('/matches', 'MatchesController@getMatches');
+Route::get('/matches/payed', 'MatchesController@getPayedMatches');
+
+
+
+
 Route::get('/home', 'HomeController@index');
 
 Route::get('/account/dangerzone', 'AccountController@dangerzone');
