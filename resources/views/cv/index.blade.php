@@ -22,7 +22,7 @@
 
                             @foreach ($cvs as $cv)
 
-                                <tr onclick="window.location.replace('{{ url('/cv/edit/'.$cv->id) }}');" style="cursor: pointer">
+                                <tr onclick="window.location.href = '{{ url('/cv/edit/'.$cv->id) }}';" style="cursor: pointer">
                                     <td>{{ $cv->date }}</td>
                                     <td>{{ $cv->title }}</td>
                                 </tr>
@@ -42,6 +42,12 @@
         $(document).ready(function() {
             $('#cv-table').DataTable();
         });
+    </script>
+@endsection
+
+@section('script')
+    <script>
+
     </script>
 @endsection
 

@@ -56,8 +56,7 @@ class CVController extends Controller
         ]);
 
         $cv->save();
-        $cv->competences()->sync($data['competenties'], false);
-
+        $cv->competences()->sync($data['competences'], false);
 
         return Redirect::to('/cv');
     }
@@ -65,8 +64,16 @@ class CVController extends Controller
     public function edit($id) {
         $cv = CV::find($id);
 
+        $competences = $cv->competences()->get();
+
+        $selectedCompetence = [];
+        foreach ($competences as $competence) {
+            $selectedCompetence[] = $competence->id;
+        }
+
         return view('cv/edit', [
             'cv' => $cv,
+            'selectedCompetence' => $selectedCompetence,
         ]);
     }
 
@@ -74,10 +81,27 @@ class CVController extends Controller
         $data = $request->all();
 
         if($data['id'] != $id) {
-            return Redirect::to('/cv/edit');
+            return Redirect::to('/cv');
         }
 
-        dd('EDIT');
+        $cv = CV::find($id);
+
+        $this->cvValidator($data)->validate();
+
+        $cv->fill([
+            'date'  => new \DateTime(),
+            'title' => $data['title'],
+            'text'  => $data['text'],
+            'video' => $data['video'],
+            'motivation' => $data['motivation'],
+            'applicant_id' => Auth::user()->userable()->first()->id,
+            'category_id' => $data['category'],
+        ]);
+
+        $cv->save();
+        $cv->competences()->sync($data['competences'], false);
+
+        return Redirect::to('/cv');
     }
 
     public function delete($id) {
@@ -92,9 +116,12 @@ class CVController extends Controller
         $data = $request->all();
         
         if($data['id'] != $id) {
-            return Redirect::to('/cv/delete');
+            return Redirect::to('/cv');
         }
 
-        dd('DELETE');
+        $cv = CV::find($id);
+        $cv->delete();
+
+        return Redirect::to('/cv');
     }
 }

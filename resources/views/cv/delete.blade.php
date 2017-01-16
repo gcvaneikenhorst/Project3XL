@@ -16,7 +16,7 @@
                             <input type="hidden" name="id" value="{{ $cv->id }}">
 
                             <div class="form-group{{ $errors->has('city') ? ' has-error' : '' }}">
-                                <label for="city" class="col-md-6 control-label">Weet u zeker dat u {{ $cv->title }} wilt verwijderen?</label>
+                                <label for="city" class="col-md-6 control-label">Weet u zeker dat u "{{ $cv->title }}" wilt verwijderen?</label>
 
                                 <div class="col-md-6">
                                     <button type="submit" class="btn btn-primary">Verwijderen</button>

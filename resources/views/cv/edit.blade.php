@@ -53,8 +53,10 @@
                 </div>
 
                 <div class="panel-body">
-                    <form id="cv-create" class="form-horizontal" role="form" method="POST" action="{{ url('/cv/create') }}" novalidate>
+                    <form id="cv-create" class="form-horizontal" role="form" method="POST" action="{{ url('/cv/edit', ['id' => $cv->id]) }}" novalidate>
                         {{ csrf_field() }}
+
+                        <input type="hidden" name="id" value="{{ $cv->id }}">
 
                         <div class="tab-content">
 
@@ -93,7 +95,7 @@
                                     <div class="col-md-10">
                                         <select id="title" type="text" class="form-control" name="category">
                                             @foreach(\App\Category::all() as $category)
-                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                <option value="{{ $category->id }}" {{ $category->id == $cv->category_id ? 'selected="true"' : '' }}>{{ $category->name }}</option>
                                             @endforeach
                                         </select>
 
@@ -105,19 +107,19 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
+                                <div class="form-group{{ $errors->has('competence') ? ' has-error' : '' }}">
                                     <label for="email" class="col-md-2 control-label">Competenties</label>
 
                                     <div class="col-md-10">
-                                        <select id="title" class="form-control" name="competenties[]" width="100%" multiple>
+                                        <select id="competence" class="form-control" name="competences[]" width="100%" multiple>
                                             @foreach(\App\Competence::all() as $competence)
-                                                <option value="{{ $competence->id }}">{{ $competence->name }}</option>
+                                                <option value="{{ $competence->id }}" {{ in_array($competence->id, $selectedCompetence) ? 'selected="true"' : '' }}>{{ $competence->name }}</option>
                                             @endforeach
                                         </select>
 
-                                        @if ($errors->has('title'))
+                                        @if ($errors->has('competence'))
                                             <span class="help-block">
-                                            <strong>{{ $errors->first('title') }}</strong>
+                                            <strong>{{ $errors->first('competence') }}</strong>
                                         </span>
                                         @endif
                                     </div>
@@ -127,7 +129,7 @@
                                     <label for="email" class="col-md-2 control-label">Inhoud</label>
 
                                     <div class="col-md-10">
-                                        <textarea name="text" value="{{ $cv->text }}"></textarea>
+                                        <textarea name="text">{{ $cv->text }}</textarea>
 
                                         @if ($errors->has('text'))
                                             <span class="help-block">
@@ -162,7 +164,7 @@
                                         <div class="input-group">
                                             <div class="input-group-addon">https://www.youtube.com/watch?v=</div>
 
-                                            <input id="video" type="text" class="form-control" name="video" required>
+                                            <input id="video" type="text" class="form-control" name="video" value="{{ $cv->video }}" required>
 
                                             <span class="input-group-addon">
                                                 <span class="glyphicon glyphicon-share-alt"></span>
@@ -199,7 +201,7 @@
                                     <label for="email" class="col-md-2 control-label">Motivatie</label>
 
                                     <div class="col-md-10">
-                                        <textarea name="motivation"></textarea>
+                                        <textarea name="motivation">{{ $cv->motivation }}</textarea>
 
                                         @if ($errors->has('motivation'))
                                             <span class="help-block">
@@ -237,6 +239,24 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <label for="category" class="col-md-2 control-label" style="cursor: pointer">Category</label>
+
+                                    <div class="col-md-10 control-label">
+                                        <span data-form-name="category" class="pull-left"></span>
+                                        <a href="javascript:toTab('step1');focus('category');" class="pull-right">Verander</a>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="competences" class="col-md-2 control-label" style="cursor: pointer">Competences</label>
+
+                                    <div class="col-md-10 control-label">
+                                        <span data-form-name="competences" class="pull-left"></span>
+                                        <a href="javascript:toTab('step1');focus('competences');" class="pull-right">Verander</a>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
                                     <label for="text" class="col-md-2 control-label" style="cursor: pointer">Inhoud</label>
 
                                     <div class="col-md-10 control-label">
@@ -263,11 +283,13 @@
                                     </div>
                                 </div>
 
-                                <hr>
+                                <div class="col-md-offset-2" style="padding-left: 5px">
+                                    <hr>
+                                </div>
 
                                 <ul class="list-inline pull-right">
                                     <li>
-                                        <button class="btn btn-primary btn-info-full" onclick="$('#cv-create').submit()">Aanmaken</button>
+                                        <button class="btn btn-primary btn-info-full" onclick="$('#cv-create').submit()">Opslaan</button>
                                     </li>
                                 </ul>
                             </div>
@@ -321,7 +343,23 @@
             jQuery.each(fields, function() {
                 var name = $(this).attr('name');
 
-                holder.find('[data-form-name="'+ name +'"]').html($(this).val());
+                if(name == 'category') {
+                    holder.find('[data-form-name="'+ name +'"]').html($(this).find('option:selected').text());
+                } else if(name == 'competences[]') {
+                    var competences = '';
+
+                    jQuery.each($(this).find('option:selected'), function() {
+                        if(competences == '') {
+                            competences = $(this).text();
+                        } else {
+                            competences += ', ' + $(this).text();
+                        }
+                    });
+
+                    holder.find('[data-form-name="competences"]').html(competences);
+                } else {
+                    holder.find('[data-form-name="'+ name +'"]').html($(this).val());
+                }
             });
         }; updateForm();
 
