@@ -154,198 +154,197 @@
 
     <div class="container">
 
-            <div class="wizard">
-                <div class="wizard-inner">
+        <div class="wizard">
+            <div class="wizard-inner">
 
-                    <div class="connecting-line"></div>
-                    <ul class="nav nav-tabs" role="tablist">
+                <div class="connecting-line"></div>
+                <ul class="nav nav-tabs" role="tablist">
 
-                        <li role="presentation" class="active">
-                            <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
+                    <li role="presentation" class="active">
+                        <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
                             <span class="round-tab">
                                <i class="fa fa-user-circle-o"></i>
                                <i class=""></i>
 
                             </span>
-                            </a>
-                        </li>
+                        </a>
+                    </li>
 
-                        <li role="presentation" class="disabled">
-                            <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
+                    <li role="presentation" class="disabled">
+                        <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
                             <span class="round-tab">
                                 <i class="fa fa-newspaper-o"></i>
                                 {{--<h1>2</h1>--}}
                             </span>
-                            </a>
-                        </li>
-                        <li role="presentation" class="disabled">
-                            <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
+                        </a>
+                    </li>
+                    <li role="presentation" class="disabled">
+                        <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
                             <span class="round-tab">
                                 <i class="fa fa-address-card"></i>
                             </span>
-                            </a>
-                        </li>
+                        </a>
+                    </li>
 
-                        <li role="presentation" class="disabled">
-                            <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
+                    <li role="presentation" class="disabled">
+                        <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
                             <span class="round-tab">
                                 <i class="fa fa-thumbs-up"></i>
                             </span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="row" style="background: #fff;border-radius: 5px;">
-                    <div class="col-md-8 col-md-offset-2">
-                <form method="post" action="{{url('/vacancy/create')}}" role="form" class="form-horizontal" novalidate>
-                    {{csrf_field()}}
-                    <div class="tab-content">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="row" style="background: #fff;border-radius: 5px;">
+                <div class="col-md-8 col-md-offset-2">
+                    <form method="post" action="{{url('/vacancy/create')}}" role="form" class="form-horizontal"
+                          novalidate>
+                        {{csrf_field()}}
+                        <div class="tab-content">
 
-                        <div class="tab-pane active" role="tabpanel" id="step1">
+                            <div class="tab-pane active" role="tabpanel" id="step1">
 
-                            <h3>Stap1</h3>
-                            <div class="form-group{{ $errors->has('titel') ? ' has-error' : '' }}">
-                                <label for="firstname" class="col-md-4 control-label">Titel:</label>
+                                <h3>Stap1</h3>
+                                <div class="form-group{{ $errors->has('titel') ? ' has-error' : '' }}">
+                                    <label for="firstname" class="col-md-4 control-label">Titel:</label>
 
-                                <div class="col-md-6">
-                                    <input id="titel" type="text" class="form-control" name="titel"
-                                            required>
+                                    <div class="col-md-6">
+                                        <input id="titel" type="text" class="form-control" name="titel"
+                                               required>
 
-                                    @if ($errors->has('titel'))
-                                        <span class="help-block">
+                                        @if ($errors->has('titel'))
+                                            <span class="help-block">
                                                 <strong>{{ $errors->first('titel') }}</strong>
                                             </span>
-                                    @endif
+                                        @endif
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group{{ $errors->has('date') ? ' has-error' : '' }}">
-                                <label for="date" class="col-md-4 control-label">Datum</label>
+                                <div class="form-group{{ $errors->has('date') ? ' has-error' : '' }}">
+                                    <label for="date" class="col-md-4 control-label">Datum</label>
 
-                                <div class="col-md-6">
-                                    <input id="date" type="datetime" class="form-control" name="date"
-                                           value="{{\Carbon\Carbon::now()->toDateString()}}" required>
+                                    <div class="col-md-6">
+                                        <input id="date" type="datetime" class="form-control" name="date"
+                                               value="{{\Carbon\Carbon::now()->toDateString()}}" required>
 
-                                    @if ($errors->has('date'))
-                                        <span class="help-block">
+                                        @if ($errors->has('date'))
+                                            <span class="help-block">
                                                 <strong>{{ $errors->first('date') }}</strong>
                                             </span>
-                                    @endif
+                                        @endif
+                                    </div>
                                 </div>
-                            </div>
 
 
+                                <div class="form-group{{ $errors->has('category_id') ? ' has-error' : '' }}">
+                                    <label for="category_id" class="col-md-4 control-label">Categorie</label>
 
-                            <div class="form-group{{ $errors->has('category_id') ? ' has-error' : '' }}">
-                                <label for="category_id" class="col-md-4 control-label">Categorie</label>
+                                    <div class="col-md-6">
+                                        <select id="category_id" name="category_id" class="form-control">
+                                            @foreach(\App\Category::all() as $category)
+                                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                            @endforeach
 
-                                <div class="col-md-6">
-                                    <select id="category_id" name="category_id" class="form-control">
-                                        @foreach(\App\Category::all() as $category)
-                                            <option value="{{$category->id}}">{{$category->name}}</option>
-                                        @endforeach
+                                        </select>
 
-                                    </select>
-
-                                    @if ($errors->has('category_id'))
-                                        <span class="help-block">
+                                        @if ($errors->has('category_id'))
+                                            <span class="help-block">
                                                 <strong>{{ $errors->first('category_id') }}</strong>
                                             </span>
-                                    @endif
+                                        @endif
+                                    </div>
                                 </div>
+
+
+                                <ul class="list-inline pull-right">
+                                    <li>
+                                        <button type="button" class="btn btn-primary next-step">Volgende</button>
+                                    </li>
+                                </ul>
                             </div>
 
 
-                            <ul class="list-inline pull-right">
-                                <li>
-                                    <button type="button" class="btn btn-primary next-step">Volgende</button>
-                                </li>
-                            </ul>
-                        </div>
+                            <div class="tab-pane" role="tabpanel" id="step2">
+                                <h3>Stap 2</h3>
+
+                                <p>Schrijf uw vacature text.</p>
+                                <textarea name="text">summernote 1</textarea>
 
 
+                                <ul class="list-inline pull-right">
+                                    <li>
+                                        <button type="button" class="btn btn-default prev-step">Vorige</button>
+                                    </li>
+                                    <li>
+                                        <button type="button" class="btn btn-primary next-step">Volgende</button>
+                                    </li>
+                                </ul>
+                            </div>
 
 
-                        <div class="tab-pane" role="tabpanel" id="step2">
-                            <h3>Stap 2</h3>
-
-                            <p>Schrijf uw vacature text.</p>
-                            <textarea>summernote 1</textarea>
+                            <div class="tab-pane" role="tabpanel" id="step3">
+                                <h3>Stap 3</h3>
 
 
+                                <div class="form-group{{ $errors->has('competences') ? ' has-error' : '' }}">
+                                    <label for="category_id" class="col-md-4 control-label">Selecteer uw
+                                        competenties</label>
 
-                            <ul class="list-inline pull-right">
-                                <li>
-                                    <button type="button" class="btn btn-default prev-step">Vorige</button>
-                                </li>
-                                <li>
-                                    <button type="button" class="btn btn-primary next-step">Volgende</button>
-                                </li>
-                            </ul>
-                        </div>
+                                    <div class="col-md-6">
 
-
-
-
-                        <div class="tab-pane" role="tabpanel" id="step3">
-                            <h3>Stap 3</h3>
-
-
-
-                            <div class="form-group{{ $errors->has('competences') ? ' has-error' : '' }}">
-                                <label for="category_id" class="col-md-4 control-label">Selecteer uw competenties</label>
-
-                                <div class="col-md-6">
-                                    <select name="competences" class="form-control" multiple="multiple">
                                         @foreach(\App\Competence::all() as $competence)
-                                            <option value="{{$competence->id}}">{{$competence->name}}</option>
+
+                                            <input type="checkbox" name="competence[{{$competence->id}}]" id="{{$competence->id}}"
+                                                   value="{{$competence->id}}">{{$competence->name}}
+                                            <br>
+
                                         @endforeach
 
-                                    </select>
 
-                                    @if ($errors->has('competences'))
-                                        <span class="help-block">
+
+                                        @if ($errors->has('competences'))
+                                            <span class="help-block">
                                                 <strong>{{ $errors->first('competences') }}</strong>
                                             </span>
-                                    @endif
+                                        @endif
+                                    </div>
                                 </div>
+
+
+                                <ul class="list-inline pull-right">
+                                    <li>
+                                        <button type="button" class="btn btn-default prev-step">Vorige</button>
+                                    </li>
+                                    <li>
+                                        <button type="button" class="btn btn-primary btn-info-full next-step">Volgende
+                                        </button>
+                                    </li>
+                                </ul>
                             </div>
+                            <div class="tab-pane" role="tabpanel" id="complete">
+                                <h3>Klaar</h3>
+                                <p>U kunt nog op vorige drukken om wijzigingen aan te brengen. Als u zeker weet dat alle
+                                    informatie klopt kunt u op opslaan drukken om de vacature aan te maken.</p>
 
 
-
-
-                            <ul class="list-inline pull-right">
-                                <li>
-                                    <button type="button" class="btn btn-default prev-step">Vorige</button>
-                                </li>
-                                <li>
-                                    <button type="button" class="btn btn-primary btn-info-full next-step">Volgende
-                                    </button>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="tab-pane" role="tabpanel" id="complete">
-                            <h3>Klaar</h3>
-                            <p>U kunt nog op vorige drukken om wijzigingen aan te brengen. Als u zeker weet dat alle informatie klopt kunt u op opslaan drukken om de vacature aan te maken.</p>
-
-
-
-                            <ul class="list-inline pull-right">
-                                <li>
-                                    <button type="button" class="btn btn-default prev-step">Vorige</button>
-                                </li>
-                                <li>
-                                  <input type="submit" class="btn btn-default"  value="Opslaan">
-                                </li>
-                            </ul>
-                        </div>
+                                <ul class="list-inline pull-right">
+                                    <li>
+                                        <button type="button" class="btn btn-default prev-step">Vorige</button>
+                                    </li>
+                                    <li>
+                                        <input type="submit" class="btn btn-default" value="Opslaan">
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                         <div class="clearfix"></div>
-                    </div>
-                </form>
-                    </div>
+
+                    </form>
                 </div>
+
+            </div>
         </div>
+    </div>
     </div>
 
     <script>

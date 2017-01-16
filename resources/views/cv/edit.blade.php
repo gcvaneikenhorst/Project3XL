@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+    <link rel="stylesheet" type="text/css" href="{{ asset('/css/tabs.css') }}" rel="stylesheet">
+
     <div class="container">
 
         <div class="wizard">
@@ -9,7 +11,7 @@
                 <div class="connecting-line"></div>
                 <ul class="nav nav-tabs" role="tablist">
 
-                    <li role="presentation" class="active">
+                    <li role="presentation">
                         <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
                             <span class="round-tab">
                                <i class="fa fa-user-circle-o"></i>
@@ -19,7 +21,7 @@
                         </a>
                     </li>
 
-                    <li role="presentation" class="disabled">
+                    <li role="presentation">
                         <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
                             <span class="round-tab">
                                 <i class="fa fa-newspaper-o"></i>
@@ -27,7 +29,7 @@
                             </span>
                         </a>
                     </li>
-                    <li role="presentation" class="disabled">
+                    <li role="presentation">
                         <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
                             <span class="round-tab">
                                 <i class="fa fa-address-card"></i>
@@ -35,7 +37,7 @@
                         </a>
                     </li>
 
-                    <li role="presentation" class="disabled">
+                    <li role="presentation" class="active">
                         <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
                             <span class="round-tab">
                                 <i class="fa fa-thumbs-up"></i>
@@ -56,7 +58,7 @@
 
                         <div class="tab-content">
 
-                            <div class="tab-pane active" role="tabpanel" id="step1">
+                            <div class="tab-pane" role="tabpanel" id="step1">
 
                                 <div class="col-md-offset-2" style="padding-left: 5px">
                                     <h2>Step 1: Metadata</h2>
@@ -218,9 +220,9 @@
                                 </ul>
                             </div>
 
-                            <div class="tab-pane" role="tabpanel" id="complete">
+                            <div class="tab-pane active" role="tabpanel" id="complete">
                                 <div class="col-md-offset-2" style="padding-left: 5px">
-                                    <h2>Succesvol</h2>
+                                    <h2>Overzicht</h2>
                                     <p>Nog even alles na kijken...</p>
                                     <hr>
                                 </div>
@@ -275,5 +277,73 @@
             </div>
         </div>
     </div>
+
+    <script>
+
+
+        $(document).ready(function () {
+
+            //Initialize tooltips
+            $('.nav-tabs > li a[title]').tooltip();
+
+            //Wizard
+            $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+
+                updateForm();
+
+                var $target = $(e.target);
+
+                if ($target.parent().hasClass('disabled')) {
+                    return false;
+                }
+            });
+
+            $(".next-step").click(function (e) {
+
+                var $active = $('.wizard .nav-tabs li.active');
+                $active.next().removeClass('disabled');
+                nextTab($active);
+
+            });
+            $(".prev-step").click(function (e) {
+
+                var $active = $('.wizard .nav-tabs li.active');
+                prevTab($active);
+
+            });
+        });
+
+        var updateForm = function() {
+            var form = $('#cv-create');
+            var fields = form.find('[name]');
+            var holder = $('#complete');
+
+            jQuery.each(fields, function() {
+                var name = $(this).attr('name');
+
+                holder.find('[data-form-name="'+ name +'"]').html($(this).val());
+            });
+        }; updateForm();
+
+        function toTab(id) {
+            var $item = $('.wizard .nav-tabs li a[aria-controls='+id+']').parent();
+            $item.removeClass('disabled');
+            $item.children().click();
+        }
+
+        function focus(name) {
+            var holder = $('.wizard');
+            var $elem = holder.find('[name="'+ name +'"]');
+            $elem.focus();
+        }
+
+        function nextTab(elem) {
+            $(elem).next().find('a[data-toggle="tab"]').click();
+        }
+        function prevTab(elem) {
+            $(elem).prev().find('a[data-toggle="tab"]').click();
+        }
+
+    </script>
 @endsection
 
