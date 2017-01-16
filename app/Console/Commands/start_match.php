@@ -61,5 +61,6 @@ INNER JOIN vacancy_competence vc ON vc.competence_id = com.id
 INNER JOIN vacancies v ON v.id = vc.vacancy_id
 WHERE u.enabled = 1
 GROUP BY cv.id, v.id');
+        echo 'Matching complete';
     }
 }
