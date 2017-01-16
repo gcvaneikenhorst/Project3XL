@@ -24,4 +24,8 @@ class Company extends Model
     }
 
 
+    public function vacancies() {
+
+        return $this->hasMany('App\Vacancy');
+    }
 }

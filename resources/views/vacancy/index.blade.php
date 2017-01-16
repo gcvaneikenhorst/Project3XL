@@ -3,28 +3,32 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-11">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        CV's
-                        <a href="{{ url('/cv/create') }}" class="pull-right"><i class="fa fa-plus" style="color: grey"></i></a>
+                        Vacature 's
+                        <a href="{{ url('/vacancy/create') }}" class="pull-right"><i class="fa fa-plus" style="color: grey"></i></a>
                     </div>
 
                     <div class="panel-body">
                         <table id="cv-table" class="table table-hover table-responsive">
                             <thead>
                             <tr>
-                                <th>Date</th>
                                 <th>Title</th>
+                                <th>Date</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
                             </tr>
                             </thead>
                             <tbody>
 
-                            @foreach ($cvs as $cv)
+                            @foreach ($vacancies as $vacancy)
 
-                                <tr onclick="window.location.replace('{{ url('/cv/edit/'.$cv->id) }}');" style="cursor: pointer">
-                                    <td>{{ $cv->date }}</td>
-                                    <td>{{ $cv->title }}</td>
+                                <tr  style="cursor: pointer">
+                                    <td>{{ $vacancy->title }}</td>
+                                    <td>{{ $vacancy->date }}</td>
+                                    <td onclick="window.location.href = ('{{ url('/vacancy/edit/'.$vacancy->id) }}');"><i class="fa fa-edit"></i></td>
+                                    <td onclick="window.location.href = ('{{ url('/vacancy/delete/'.$vacancy->id) }}');"><i class="fa fa-trash-o"></i></td>
                                 </tr>
 
                             @endforeach
@@ -44,4 +48,3 @@
         });
     </script>
 @endsection
-

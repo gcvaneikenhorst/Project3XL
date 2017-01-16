@@ -240,7 +240,7 @@
                                     <label for="category_id" class="col-md-4 control-label">Categorie</label>
 
                                     <div class="col-md-6">
-                                        <select id="category_id" name="category_id" class="form-control">
+                                        <select id="category_id" name="category_id" class="form-control" style="width: 100%">
                                             @foreach(\App\Category::all() as $category)
                                                 <option value="{{$category->id}}">{{$category->name}}</option>
                                             @endforeach
@@ -268,7 +268,7 @@
                                 <h3>Stap 2</h3>
 
                                 <p>Schrijf uw vacature text.</p>
-                                <textarea name="text">summernote 1</textarea>
+                                <textarea name="text"></textarea>
 
 
                                 <ul class="list-inline pull-right">
@@ -292,14 +292,15 @@
 
                                     <div class="col-md-6">
 
-                                        @foreach(\App\Competence::all() as $competence)
+                                        <select name="competence[]" multiple="multiple">
+                                            @foreach(\App\Competence::all() as $competence)
 
-                                            <input type="checkbox" name="competence[{{$competence->id}}]" id="{{$competence->id}}"
-                                                   value="{{$competence->id}}">{{$competence->name}}
-                                            <br>
+                                                <option id="{{$competence->id}}" value="{{$competence->id}}">
+                                                    {{$competence->name}}
+                                                </option>
 
-                                        @endforeach
-
+                                            @endforeach
+                                        </select>
 
 
                                         @if ($errors->has('competences'))

@@ -15,8 +15,8 @@ class Applicant extends Model
         return $this->morphMany('App\User', 'userable');
     }
 
-    public function cvs() {
-        return $this->hasMany('App\CV', 'applicant_id');
+    public function cvs()
+    {
+        return $this->hasMany('App\CV');
     }
-
 }
