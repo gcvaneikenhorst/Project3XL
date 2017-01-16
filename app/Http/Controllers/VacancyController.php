@@ -20,6 +20,12 @@ class VacancyController extends Controller
     }
 
 
+    public function edit($id){
+        $vacancy = Vacancy::find($id);
+        
+        return view('vacancy/edit', ['vacancy' => $vacancy]);
+    }
+
     public function save(Request $request){
 
         $data = $request->all();

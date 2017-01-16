@@ -3,32 +3,28 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-11">
+            <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Vacature 's
+                        Vacancies
                         <a href="{{ url('/vacancy/create') }}" class="pull-right"><i class="fa fa-plus" style="color: grey"></i></a>
                     </div>
 
                     <div class="panel-body">
-                        <table id="cv-table" class="table table-hover table-responsive">
+                        <table id="vacancy-table" class="table table-hover table-responsive">
                             <thead>
                             <tr>
-                                <th>Title</th>
                                 <th>Date</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
+                                <th>Title</th>
                             </tr>
                             </thead>
                             <tbody>
 
                             @foreach ($vacancies as $vacancy)
 
-                                <tr  style="cursor: pointer">
-                                    <td>{{ $vacancy->title }}</td>
+                                <tr onclick="window.location.href = '{{ url('/vacancy/edit/'.$vacancy->id) }}';" style="cursor: pointer">
                                     <td>{{ $vacancy->date }}</td>
-                                    <td onclick="window.location.href = ('{{ url('/vacancy/edit/'.$vacancy->id) }}');"><i class="fa fa-edit"></i></td>
-                                    <td onclick="window.location.href = ('{{ url('/vacancy/delete/'.$vacancy->id) }}');"><i class="fa fa-trash-o"></i></td>
+                                    <td>{{ $vacancy->title }}</td>
                                 </tr>
 
                             @endforeach
@@ -44,7 +40,12 @@
 
     <script>
         $(document).ready(function() {
-            $('#cv-table').DataTable();
+            $('#vacancy-table').DataTable();
         });
     </script>
 @endsection
+
+@section('script')
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs/jq-2.2.4/dt-1.10.13/datatables.min.js"></script>
+@endsection
+
