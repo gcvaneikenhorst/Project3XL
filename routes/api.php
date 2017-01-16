@@ -13,6 +13,13 @@ use Illuminate\Http\Request;
 |
 */
 
+
+
+Route::group(['prefix' => 'auth', 'middleware' => 'auth:api'], function () {
+    Route::get('/matches', 'MatchesController@getMatches');
+    Route::get('/matches/payed', 'MatchesController@getPayedMatches');
+});
+
 Route::post("/administrator/updateuser/{userid}", 'AdministratorController@updateUserData');
 Route::post("/administrator/updatecv/{cvid}", 'AdministratorController@updateCVData');
 Route::post("/administrator/updatevacancy/{vacancyid}", 'AdministratorController@updateVacancyData');
@@ -21,6 +28,9 @@ Route::delete("/administrator/deletecv/{cvid}", 'AdministratorController@deleteC
 Route::delete("/administrator/deletevacancy/{vacancyid}", 'AdministratorController@deleteVacancy');
 //Route::group(["userable_type" => "App/Admin"], function() {
 //});
+
+
+
 
 Route::get('/user', function (Request $request) {
     return $request->user();
