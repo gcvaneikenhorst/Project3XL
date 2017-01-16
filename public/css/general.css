@@ -14,14 +14,14 @@ body
 
 
 /* Panels */
-.panel
+.panel:not(.note-editor)
 {
 	border: none;
 	border-radius: 0;
 	box-shadow: 8px 8px 20px 0 rgba(0, 0, 0, 0.2);
 }
 
-.panel-heading
+.panel:not(.note-editor) > .panel-heading
 {
 	color: white !important;
 	background-color: #4A148C !important;
@@ -385,4 +385,8 @@ body
 
 .list-inline > li {
     padding: 0px;
+}
+
+.panel:not(.note-editor) > .panel-heading i {
+    color: white !important;
 }
