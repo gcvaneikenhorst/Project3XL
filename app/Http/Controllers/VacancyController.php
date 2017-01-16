@@ -15,6 +15,7 @@ class VacancyController extends Controller
 
 
     public function save(Request $request){
+
         $data = $request->all();
 
         $company = User::find(Auth::user()->id)->userable()->first()->id;
@@ -27,17 +28,9 @@ class VacancyController extends Controller
             'date' => \Carbon\Carbon::parse($data['date']),
         ];
 
-//        $comps = [];
-//        foreach ($data['competence'] as $competence){
-//            array_push($comps,$competence);
-//        }
-//        dd($comps);
         $vacancy = Vacancy::create($vacancy);
         $vacancy->save();
         $vacancy->competences()->sync($data['competence'],false);
-        //dd($data['competence']);
-
-
 
         return Vacancy::find($vacancy->id);
     }
