@@ -240,7 +240,7 @@
                                     <label for="category_id" class="col-md-4 control-label">Categorie</label>
 
                                     <div class="col-md-6">
-                                        <select id="category_id" name="category_id" class="form-control">
+                                        <select id="category_id" name="category_id" class="form-control" style="width: 100%">
                                             @foreach(\App\Category::all() as $category)
                                                 <option value="{{$category->id}}">{{$category->name}}</option>
                                             @endforeach

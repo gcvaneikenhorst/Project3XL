@@ -1,13 +1,19 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Company;
 use App\User;
 use App\Vacancy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 class VacancyController extends Controller
 {
+    public function index(){
+        $vacancies = Company::find(Auth::user()->userable()->first()->id)->vacancies()->get();
+
+        return view('vacancy/index', ['vacancies' => $vacancies]);
+    }
+    
     public function create(){
 
         return view('vacancy/create');
