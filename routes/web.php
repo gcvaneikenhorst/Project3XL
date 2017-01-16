@@ -19,8 +19,13 @@ Auth::routes();
 
 Route::get('/vacancy/create', 'VacancyController@create');
 Route::get('/vacancy/edit/{id}', 'VacancyController@edit');
+Route::post('/vacancy/edit/{id}', 'VacancyController@update');
 Route::get('/vacancy', 'VacancyController@index');
 Route::post('/vacancy/create', 'VacancyController@save');
+
+Route::get('/vacancy/delete/{id}', 'VacancyController@delete');
+Route::post('/vacancy/delete/{id}', 'VacancyController@doDelete');
+
 
 
 Route::get('/home', 'HomeController@index');
