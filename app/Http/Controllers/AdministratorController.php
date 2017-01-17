@@ -91,5 +91,4 @@ class AdministratorController extends Controller
         $vacancy->delete();
     }
 
-
 }

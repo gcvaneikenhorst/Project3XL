@@ -54,6 +54,17 @@ Route::group(["userable_type" => "App/Admin"], function() {
     Route::get("/administrator/viewusers", 'AdministratorController@viewusers');
     Route::get("/administrator/viewcv/{userid}", 'AdministratorController@viewcvs');
     Route::get("/administrator/viewvacancy/{userid}", 'AdministratorController@viewvacancy');
+
+    Route::get("/administrator/category", 'CategoryController@index');
+
+    Route::get("/administrator/category/create", 'CategoryController@create');
+    Route::post("/administrator/category/create", 'CategoryController@doCreate');
+
+    Route::get("/administrator/category/edit/{id}", 'CategoryController@edit');
+    Route::post("/administrator/category/edit/{id}", 'CategoryController@doEdit');
+
+    Route::get("/administrator/category/delete/{id}", 'CategoryController@delete');
+    Route::post("/administrator/category/delete/{id}", 'CategoryController@doDelete');
 });
 
 Route::get('/cv', 'CVController@index');

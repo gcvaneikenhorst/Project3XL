@@ -84,9 +84,9 @@ class CVController extends Controller
             return Redirect::to('/cv');
         }
 
-        $cv = CV::find($id);
-
         $this->cvValidator($data)->validate();
+
+        $cv = CV::find($id);
 
         $cv->fill([
             'title' => $data['title'],
