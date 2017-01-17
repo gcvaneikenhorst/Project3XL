@@ -77,10 +77,8 @@
                         contentType: "application/json",
                         dataType: 'json',
                         data: JSON.stringify(output),
+                        success: () => location.reload()
                     });
-                    Object.assign(data, output);
-                    if (target != null)
-                        target.setAttribute("data", JSON.stringify(data));
                 }
             }
             if (target != null) {
@@ -90,7 +88,8 @@
 
                     $.ajax({
                         type: 'DELETE',
-                        url: `/api/administrator/deletecompetence/${data['id']}`
+                        url: `/api/administrator/deletecompetence/${data['id']}`,
+                        success: () => location.reload()
                     })
                 }
             }

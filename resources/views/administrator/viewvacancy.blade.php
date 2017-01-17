@@ -93,7 +93,8 @@
 
                     $.ajax({
                         type:'DELETE',
-                        url: `/api/administrator/deletevacancy/${data['id']}`
+                        url: `/api/administrator/deletevacancy/${data['id']}`,
+                        success: () => location.reload()
                     })
                 },
                 "Save": function() {
@@ -112,9 +113,8 @@
                         contentType: "application/json",
                         dataType: 'json',
                         data: JSON.stringify(output),
+                        success: () => location.reload()
                     });
-                    Object.assign(data, output);
-                    target.setAttribute("data", JSON.stringify(data));
                 },
             }
         })

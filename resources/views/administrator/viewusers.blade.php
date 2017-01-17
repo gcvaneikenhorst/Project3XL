@@ -168,18 +168,18 @@
 
                     $.ajax({
                         type:'DELETE',
-                        url: `/api/administrator/deleteuser/${data['userid']}`
+                        url: `/api/administrator/deleteuser/${data['userid']}`,
+                        success: () => location.reload()
                     })
                 },
                 "Save": function() {
                     let output = {}
                     $(this).find('[name]').each((i, node) => {
                         let val = node.value.replace('\n', '').replace('\r', '')
-                        console.log(val);
                         if (val != data[node.getAttribute('name')])
                             output[node.getAttribute("name")] = val;
                     })
-                    console.log(data, output);
+
                     if (Object.keys(output).length == 0)
                         return;
 
@@ -189,10 +189,8 @@
                         contentType: "application/json",
                         dataType: 'json',
                         data: JSON.stringify(output),
+                        success: () => location.reload()
                     });
-
-                    Object.assign(data, output);
-                    target.setAttribute("data", JSON.stringify(data));
                 }
             }
         })
