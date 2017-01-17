@@ -16,7 +16,7 @@ class MatchesController extends Controller
      */
     public function getMatches()
     {
-        $matches = Vacancy::find(Auth::user()->userable()->first()->id)->pivotData()->get();
+        $matches = Vacancy::find(Auth::user()->userable()->first()->id)->matches()->get(['title','vacancy_cvs.num_matches','vacancy_cvs.cv_id','vacancy_cvs.vacancy_id']);
 
 //        $data = [];
 //        foreach ($matches as $match)
@@ -32,7 +32,7 @@ class MatchesController extends Controller
         return $data;
     }
 
-    public function viewMatches(){
+    public function index(){
         return View('matches/index');
     }
 }
