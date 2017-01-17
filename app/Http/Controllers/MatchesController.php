@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\CV;
 use App\Vacancy;
 use App\VacancyCvs;
+use App\VacancyCvsPayed;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -68,5 +69,24 @@ class MatchesController extends Controller
 
     public function getCVinfo($id){
         return CV::where('id',$id)->first(['title','text']);
+    }
+
+    public function pay(Request $request){
+        $data = $request->json()->all();
+
+        foreach ($data['payed'] as $pay){
+            $link = VacancyCvs::find($pay);
+            $dat = [
+                'cv_id' => $link->cv_id,
+                'vacancy_id' => $link->vacancy_id,
+                'num_matches' => $link->num_matches,
+            ];
+            $link->delete();
+            $payed = VacancyCvsPayed::create($dat);
+            $payed->save();
+        }
+
+        return ['Transactie succesvol'];
+
     }
 }

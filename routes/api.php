@@ -20,6 +20,7 @@ Route::group(['prefix' => 'auth', 'middleware' => 'auth:api'], function () {
     Route::get('/matches/payed', 'MatchesController@getPayedMatches');
     Route::get('/cv/{id}', 'MatchesController@getCVinfo');
 
+
     Route::post("/administrator/updateuser/{userid}", 'AdministratorController@updateUserData');
     Route::post("/administrator/updatecv/{cvid}", 'AdministratorController@updateCVData');
     Route::post("/administrator/updatevacancy/{vacancyid}", 'AdministratorController@updateVacancyData');
@@ -29,6 +30,9 @@ Route::group(['prefix' => 'auth', 'middleware' => 'auth:api'], function () {
     Route::delete("/administrator/deletecv/{cvid}", 'AdministratorController@deleteCV');
     Route::delete("/administrator/deletevacancy/{vacancyid}", 'AdministratorController@deleteVacancy');
     Route::delete("/administrator/deletecompetence/{competenceid}", 'AdministratorController@deleteCompetence');
+
+
+    Route::post('/pay', 'MatchesController@pay');
 
 });
 
