@@ -16,9 +16,11 @@ class AdministratorController extends Controller
     private function getAPIToken() {
         return User::find(Auth::user()->id)->api_token;
     }
-    public function __constructor() {
+    public function __constructor()
+    {
         $this->middleware("auth", []);
     }
+
 
     public function viewUsers() {
         $users = User::paginate(15);
@@ -93,6 +95,7 @@ class AdministratorController extends Controller
     public function createCompetence(Request $request) {
         $data = $request->json()->all();
         Competence::insert($data);
+        return ['success' => 'true'];
     }
 
 
