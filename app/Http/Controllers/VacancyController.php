@@ -8,7 +8,7 @@ use App\Vacancy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
-
+use Validator;
 class VacancyController extends Controller
 {
     public function index()
@@ -44,11 +44,12 @@ class VacancyController extends Controller
     {
 
         $data = $request->all();
+        $this->cvValidator($data)->validate();
 
         $company = User::find(Auth::user()->id)->userable()->first()->id;
 
         $vacancy = [
-            'title' => $data['titel'],
+            'title' => $data['title'],
             'text' => $data['text'],
             'category_id' => $data['category_id'],
             'company_id' => $company,
@@ -108,4 +109,12 @@ class VacancyController extends Controller
         return Redirect::to('/vacancy');
     }
 
+
+    public function cvValidator($data) {
+        return Validator::make($data, [
+            'title' => 'required|min:6',
+            'text' => 'required|max:8000',
+            'category' => 'required',
+        ]);
+    }
 }
