@@ -3,7 +3,7 @@
 @section('content')
     <link href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
     <style>
-        #competence-table tr {
+        #competence-table tbody tr {
             cursor: pointer;
         }
     </style>

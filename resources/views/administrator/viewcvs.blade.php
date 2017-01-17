@@ -2,7 +2,7 @@
 
 @section('content')
     <style>
-        #cv-table tr {
+        #cv-table tbody tr {
             cursor: pointer;
         }
     </style>
