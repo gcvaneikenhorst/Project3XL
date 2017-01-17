@@ -71,7 +71,7 @@
 								<a>Users</a>
 							</div>
 
-							<div onclick="location.href='{{ url("/administrator/categories") }}';">
+							<div onclick="location.href='{{ url("/administrator/category") }}';">
 								<a>Categories</a>
 							</div>
 						@endif
