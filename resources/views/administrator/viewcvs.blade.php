@@ -81,6 +81,7 @@
             integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
             crossorigin="anonymous"></script>
     <script>
+        let api_token = "{{$api_token}}";
         function openCv(event) {
             let target = event.target.parentNode;
             let data = JSON.parse(target.getAttribute('data'));
@@ -101,7 +102,7 @@
 
                         $.ajax({
                             type:'DELETE',
-                            url: `/api/administrator/deletecv/${data['id']}`,
+                            url: `/api/auth/administrator/deletecv/${data['id']}?api_token=${api_token}`,
                             success: () => location.reload()
                         })
                     },
@@ -117,7 +118,7 @@
 
                         $.ajax({
                             type: 'POST',
-                            url: `/api/administrator/updatecv/${data['id']}`,
+                            url: `/api/auth/administrator/updatecv/${data['id']}?api_token=${api_token}`,
                             contentType: "application/json",
                             dataType: 'json',
                             data: JSON.stringify(output),
