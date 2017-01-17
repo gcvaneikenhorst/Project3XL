@@ -152,7 +152,7 @@
 
         if (userType == "App\\Company")
             model = "#companymodel";
-        else if (userType == "App\\Applicant")
+        else if (userType == "App\\Applicant" || userType == "App\\Admin")
             model = "#applicantmodel";
 
         $(model).dialog({
