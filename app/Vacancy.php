@@ -22,7 +22,7 @@ class Vacancy extends Model
 
     public function matchesPayed()
     {
-        return $this->belongsToMany('App\CV','vacancy_cvs','vacancy_id','cv_id');
+        return $this->belongsToMany('App\CV','vacancy_cvs_payed','vacancy_id','cv_id');
     }
     
     
