@@ -2,7 +2,7 @@
 
 @section('content')
     <style>
-        #cv-table tr {
+        #cv-table tbody tr {
             cursor: pointer;
         }
     </style>
@@ -101,7 +101,8 @@
 
                         $.ajax({
                             type:'DELETE',
-                            url: `/api/administrator/deletecv/${data['id']}`
+                            url: `/api/administrator/deletecv/${data['id']}`,
+                            success: () => location.reload()
                         })
                     },
                     "Save": function() {
@@ -120,9 +121,8 @@
                             contentType: "application/json",
                             dataType: 'json',
                             data: JSON.stringify(output),
+                            success: () => location.reload()
                         });
-                        Object.assign(data, output);
-                        target.setAttribute("data", JSON.stringify(data));
                     }
                 }
             })

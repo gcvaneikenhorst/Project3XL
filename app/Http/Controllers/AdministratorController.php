@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Competence;
 use App\User;
 use App\CV;
 use App\Http\Controllers\Controller;
@@ -50,6 +51,11 @@ class AdministratorController extends Controller
         return View("administrator/viewvacancy", ["vacancies" => $vacancies, 'email' => $email, 'categories' => $categories]);
     }
 
+    public function viewCompetences() {
+        $competences = Competence::all();
+        return View("administrator/viewcompetences", ['competences' => $competences]);
+    }
+
 
     public function updateUserData(Request $request, $userid) {
         $data = $request->json()->all();
@@ -73,6 +79,19 @@ class AdministratorController extends Controller
         return ['success' => 'true'];
     }
 
+    public function updateCompetenceData(Request $request, $competenceid) {
+        $data = $request->json()->all();
+        $competence = Competence::find($competenceid);
+        $competence->update($data);
+        return ['success' => 'true'];
+    }
+
+
+    public function createCompetence(Request $request) {
+        $data = $request->json()->all();
+        Competence::insert($data);
+    }
+
 
     public function deleteUser($userid) {
         $user = User::find($userid);
@@ -90,5 +109,9 @@ class AdministratorController extends Controller
         $vacancy = Vacancy::find($vacancyid);
         $vacancy->delete();
     }
-
+    
+    public function deleteCompetence($competenceid) {
+        $competence = Competence::find($competenceid);
+        $competence->delete();
+    }
 }

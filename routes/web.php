@@ -54,6 +54,7 @@ Route::group(["userable_type" => "App/Admin"], function() {
     Route::get("/administrator/viewusers", 'AdministratorController@viewusers');
     Route::get("/administrator/viewcv/{userid}", 'AdministratorController@viewcvs');
     Route::get("/administrator/viewvacancy/{userid}", 'AdministratorController@viewvacancy');
+    Route::get("/administrator/viewcompetences", "AdministratorController@viewcompetences");
 
     Route::get("/administrator/category", 'CategoryController@index');
 

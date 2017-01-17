@@ -2,6 +2,11 @@
 
 @section('content')
 <link href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
+<style>
+    #vacancy-table tbody tr {
+        cursor: pointer;
+    }
+</style>
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -10,7 +15,7 @@
                     Vacatures voor {{$email}}
                 </div>
                 <div class="pane-body">
-                    <table class="table">
+                    <table id="vacancy-table" class="table">
                         <thead>
                         <tr>
                             <th>Titel</th>
@@ -88,7 +93,8 @@
 
                     $.ajax({
                         type:'DELETE',
-                        url: `/api/administrator/deletevacancy/${data['id']}`
+                        url: `/api/administrator/deletevacancy/${data['id']}`,
+                        success: () => location.reload()
                     })
                 },
                 "Save": function() {
@@ -107,9 +113,8 @@
                         contentType: "application/json",
                         dataType: 'json',
                         data: JSON.stringify(output),
+                        success: () => location.reload()
                     });
-                    Object.assign(data, output);
-                    target.setAttribute("data", JSON.stringify(data));
                 },
             }
         })
