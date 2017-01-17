@@ -128,6 +128,7 @@
         </table>
         <button class="btn btn-link" name="userid" onclick="openPage('cv',this)">View CV's</button>
     </div>
+
 @endsection
 
 @section('script')
@@ -136,6 +137,8 @@
         integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
         crossorigin="anonymous"></script>
 <script>
+    let api_token = "{{$api_token}}";
+
     function openPage(page, btn) {
         let userId = btn.value
         window.open(`/administrator/view${page}/${userId}`)
@@ -168,7 +171,7 @@
 
                     $.ajax({
                         type:'DELETE',
-                        url: `/api/administrator/deleteuser/${data['userid']}`,
+                        url: `/api/auth/administrator/deleteuser/${data['userid']}?api_token=${api_token}`,
                         success: () => location.reload()
                     })
                 },
@@ -185,7 +188,7 @@
 
                     $.ajax({
                         type: 'POST',
-                        url: `/api/administrator/updateuser/${data['userid']}`,
+                        url: `/api/auth/administrator/updateuser/${data['userid']}?api_token=${api_token}`,
                         contentType: "application/json",
                         dataType: 'json',
                         data: JSON.stringify(output),

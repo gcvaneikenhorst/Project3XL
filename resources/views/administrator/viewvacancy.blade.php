@@ -73,6 +73,7 @@
     integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
     crossorigin="anonymous"></script>
 <script>
+    let api_token = "{{$api_token}}";
     function openVacancy(event) {
         let target = event.target.parentNode;
         let data = JSON.parse(target.getAttribute('data'));
@@ -93,7 +94,7 @@
 
                     $.ajax({
                         type:'DELETE',
-                        url: `/api/administrator/deletevacancy/${data['id']}`,
+                        url: `/api/auth/administrator/deletevacancy/${data['id']}`,
                         success: () => location.reload()
                     })
                 },
@@ -109,7 +110,7 @@
 
                     $.ajax({
                         type: 'POST',
-                        url: `/api/administrator/updatevacancy/${data['id']}`,
+                        url: `/api/auth/administrator/updatevacancy/${data['id']}?api_token=${api_token}`,
                         contentType: "application/json",
                         dataType: 'json',
                         data: JSON.stringify(output),

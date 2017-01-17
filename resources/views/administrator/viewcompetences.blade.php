@@ -57,6 +57,8 @@
             integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
             crossorigin="anonymous"></script>
     <script>
+        let api_token = "{{$api_token}}";
+
         function openCompetence(target) {
             let data = target != null ? JSON.parse(target.getAttribute('data')) : {"name": '', 'description': ''};
             let buttons = {
@@ -70,7 +72,7 @@
                     if (Object.keys(output).length == 0)
                         return;
 
-                    let url = data['id'] != null ? `/api/administrator/updatecompetence/${data['id']}` : '/api/administrator/createcompetence'
+                    let url = (data['id'] != null ? `/api/auth/administrator/updatecompetence/${data['id']}` : '/api/auth/administrator/createcompetence') + `?api_token=${api_token}`
                     $.ajax({
                         type: 'POST',
                         url: url,
@@ -88,7 +90,7 @@
 
                     $.ajax({
                         type: 'DELETE',
-                        url: `/api/administrator/deletecompetence/${data['id']}`,
+                        url: `/api/auth/administrator/deletecompetence/${data['id']}?api_token=${api_token}`,
                         success: () => location.reload()
                     })
                 }
