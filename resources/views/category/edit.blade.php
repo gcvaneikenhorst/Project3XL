@@ -7,11 +7,14 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         CV's
+                        <a href="{{ url('/administrator/category/delete', ['id' => $category->id]) }}" class="pull-right"><i class="fa fa-trash" style="color: grey"></i></a>
                     </div>
 
                     <div class="panel-body">
-                        <form id="cv-create" class="form-horizontal" role="form" method="POST" action="{{ url('/administrator/category/create') }}" novalidate>
+                        <form id="cv-create" class="form-horizontal" role="form" method="POST" action="{{ url('/administrator/category/edit', ['id' => $category->id]) }}" novalidate>
                             {{ csrf_field() }}
+
+                            <input type="hidden" value="{{ $category->id }}">
 
                             <div class="col-md-offset-2" style="padding-left: 5px">
                                 <h2>Categorie aanmaken</h2>
@@ -24,7 +27,8 @@
 
                                 <div class="col-md-10">
                                     <div class="input-group">
-                                        <input id="name" type="text" class="form-control" name="name" required>
+                                        <input id="name" type="text" class="form-control" name="name"
+                                               value="{{ $category->name }}" required>
 
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-text-size"></span>
@@ -43,7 +47,7 @@
                                 <label for="description" class="col-md-2 control-label">Description</label>
 
                                 <div class="col-md-10">
-                                    <textarea name="description"></textarea>
+                                    <textarea name="description">{{ $category->description }}</textarea>
 
                                     @if ($errors->has('description'))
                                         <span class="help-block">
