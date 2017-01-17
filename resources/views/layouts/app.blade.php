@@ -74,6 +74,10 @@
 							<div onclick="location.href='{{ url("/administrator/category") }}';">
 								<a>Categories</a>
 							</div>
+
+							<div onclick="location.href='{{ url("/administrator/viewcompetences") }}';">
+								<a>Competenties</a>
+							</div>
 						@endif
 
 	                    <div onclick="location.href='{{ url("/matches") }}';">
