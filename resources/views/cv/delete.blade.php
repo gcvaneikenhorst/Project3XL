@@ -13,10 +13,10 @@
                         <form id="cv-delete" class="form-horizontal" role="form" method="POST" action="{{ url('/cv/delete/'.$cv->id) }}">
                             {{ csrf_field() }}
 
-                            <input type="hidden" name="id" value="{{ $category->id }}">
+                            <input type="hidden" name="id" value="{{ $cv->id }}">
 
                             <div style="padding-left: 5px">
-                                <h2>'{{ $category->name }}' verwijderen</h2>
+                                <h2>'{{ $cv->title }}' verwijderen</h2>
                                 <p>Weet u zeker dat u "{{ $cv->title }}" wilt verwijderen?</p>
                                 <hr>
                             </div>
