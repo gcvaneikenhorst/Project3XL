@@ -18,6 +18,7 @@ use Illuminate\Http\Request;
 Route::group(['prefix' => 'auth', 'middleware' => 'auth:api'], function () {
     Route::get('/matches', 'MatchesController@getMatches');
     Route::get('/matches/payed', 'MatchesController@getPayedMatches');
+    Route::get('/cv/{id}', 'MatchesController@getCVinfo');
 });
 
 Route::post("/administrator/updateuser/{userid}", 'AdministratorController@updateUserData');

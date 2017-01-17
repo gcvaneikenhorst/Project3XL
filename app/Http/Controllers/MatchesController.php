@@ -66,8 +66,7 @@ class MatchesController extends Controller
     }
 
 
-    public function getCVinfo(){
-//        DB::table('vacancies')
-//            ->join('')
+    public function getCVinfo($id){
+        return CV::where('id',$id)->first(['title','text']);
     }
 }
