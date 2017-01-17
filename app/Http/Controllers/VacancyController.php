@@ -1,32 +1,47 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Company;
 use App\User;
 use App\Vacancy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+
 class VacancyController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $vacancies = Company::find(Auth::user()->userable()->first()->id)->vacancies()->get();
 
         return view('vacancy/index', ['vacancies' => $vacancies]);
     }
-    
-    public function create(){
+
+    public function create()
+    {
 
         return view('vacancy/create');
     }
 
 
-    public function edit($id){
+    public function edit($id)
+    {
         $vacancy = Vacancy::find($id);
-        
-        return view('vacancy/edit', ['vacancy' => $vacancy]);
+
+
+        $competences = $vacancy->competences()->get();
+
+        $selectedCompetence = [];
+        foreach ($competences as $competence) {
+            $selectedCompetence[] = $competence->id;
+        }
+
+        return view('vacancy/edit', ['vacancy' => $vacancy, 'competences' => $selectedCompetence]);
     }
 
-    public function save(Request $request){
+    public function save(Request $request)
+    {
 
         $data = $request->all();
 
@@ -36,14 +51,61 @@ class VacancyController extends Controller
             'title' => $data['titel'],
             'text' => $data['text'],
             'category_id' => $data['category_id'],
-            'company_id' => $company ,
+            'company_id' => $company,
             'date' => \Carbon\Carbon::parse($data['date']),
         ];
 
         $vacancy = Vacancy::create($vacancy);
         $vacancy->save();
-        $vacancy->competences()->sync($data['competence'],false);
+        $vacancy->competences()->sync($data['competence'], false);
 
-        return Vacancy::find($vacancy->id);
+        return Redirect::to('/vacancy');
     }
+
+
+    public function delete($id)
+    {
+        $vacancy = Vacancy::find($id);
+
+        return view('vacancy/delete', [
+            'vacancy' => $vacancy,
+        ]);
+    }
+
+    public function doDelete($id, Request $request)
+    {
+        $data = $request->all();
+
+        if ($data['id'] != $id) {
+            return Redirect::to('/vacancy');
+        }
+
+        $vacancy = Vacancy::find($id);
+        $vacancy->delete();
+
+        return Redirect::to('/vacancy');
+    }
+
+    public function update($id, Request $request)
+    {
+
+        $data = $request->all();
+
+        $company = User::find(Auth::user()->id)->userable()->first()->id;
+
+        $vacancyData = [
+            'title' => $data['title'],
+            'text' => $data['text'],
+            'category_id' => $data['category_id'],
+            'company_id' => $company,
+        ];
+
+        $vacancy = Vacancy::find($id);
+        $vacancy->fill($vacancyData);
+        $vacancy->save();
+        $vacancy->competences()->sync($data['competence'], false);
+
+        return Redirect::to('/vacancy');
+    }
+
 }
