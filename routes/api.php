@@ -23,9 +23,12 @@ Route::group(['prefix' => 'auth', 'middleware' => 'auth:api'], function () {
 Route::post("/administrator/updateuser/{userid}", 'AdministratorController@updateUserData');
 Route::post("/administrator/updatecv/{cvid}", 'AdministratorController@updateCVData');
 Route::post("/administrator/updatevacancy/{vacancyid}", 'AdministratorController@updateVacancyData');
+Route::post('/administrator/updatecompetence/{competenceid}', 'AdministratorController@updateCompetenceData');
+Route::post('/administrator/createcompetence', 'AdministratorController@createCompetence');
 Route::delete("/administrator/deleteuser/{userid}", 'AdministratorController@deleteUser');
 Route::delete("/administrator/deletecv/{cvid}", 'AdministratorController@deleteCV');
 Route::delete("/administrator/deletevacancy/{vacancyid}", 'AdministratorController@deleteVacancy');
+Route::delete("/administrator/deletecompetence/{competenceid}", 'AdministratorController@deleteCompetence');
 //Route::group(["userable_type" => "App/Admin"], function() {
 //});
 
