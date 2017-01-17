@@ -9,10 +9,13 @@ use App\CV;
 use App\Http\Controllers\Controller;
 use App\Vacancy;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdministratorController extends Controller
 {
-
+    private function getAPIToken() {
+        return User::find(Auth::user()->id)->api_token;
+    }
     public function __constructor() {
         $this->middleware("auth", []);
     }
@@ -20,7 +23,7 @@ class AdministratorController extends Controller
     public function viewUsers() {
         $users = User::paginate(15);
 
-        return View("administrator/viewusers", ["users" => $users]);
+        return View("administrator/viewusers", ["users" => $users, 'api_token' => $this->getAPIToken()]);
     }
 
     public function viewCvs($userid) {
@@ -35,7 +38,7 @@ class AdministratorController extends Controller
 
 
         $categories = Category::get();
-        return View("administrator/viewcvs", ["cvs" => $cvs, 'email' => $email, 'categories' => $categories]);
+        return View("administrator/viewcvs", ["cvs" => $cvs, 'email' => $email, 'categories' => $categories, 'api_token' => $this->getAPIToken()]);
     }
 
     public function viewVacancy($userid) {
@@ -48,12 +51,12 @@ class AdministratorController extends Controller
         $email = $user->email;
         $vacancies = $user->userable()->first()->vacancies()->get();
         $categories = Category::get();
-        return View("administrator/viewvacancy", ["vacancies" => $vacancies, 'email' => $email, 'categories' => $categories]);
+        return View("administrator/viewvacancy", ["vacancies" => $vacancies, 'email' => $email, 'categories' => $categories, 'api_token' => $this->getAPIToken()]);
     }
 
     public function viewCompetences() {
         $competences = Competence::all();
-        return View("administrator/viewcompetences", ['competences' => $competences]);
+        return View("administrator/viewcompetences", ['competences' => $competences, 'api_token' => $this->getAPIToken()]);
     }
 
 
@@ -109,12 +112,9 @@ class AdministratorController extends Controller
         $vacancy = Vacancy::find($vacancyid);
         $vacancy->delete();
     }
-
-
+    
     public function deleteCompetence($competenceid) {
         $competence = Competence::find($competenceid);
         $competence->delete();
     }
-
-
 }

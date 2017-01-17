@@ -205,16 +205,16 @@
                             <div class="tab-pane active" role="tabpanel" id="step1">
 
                                 <h3>Stap1</h3>
-                                <div class="form-group{{ $errors->has('titel') ? ' has-error' : '' }}">
+                                <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
                                     <label for="firstname" class="col-md-4 control-label">Titel:</label>
 
                                     <div class="col-md-6">
-                                        <input id="titel" type="text" class="form-control" name="titel"
+                                        <input id="title" type="text" class="form-control" name="title"
                                                required>
 
                                         @if ($errors->has('titel'))
                                             <span class="help-block">
-                                                <strong>{{ $errors->first('titel') }}</strong>
+                                                <strong>{{ $errors->first('title') }}</strong>
                                             </span>
                                         @endif
                                     </div>
@@ -269,7 +269,11 @@
 
                                 <p>Schrijf uw vacature text.</p>
                                 <textarea name="text"></textarea>
-
+                                @if ($errors->has('text'))
+                                    <span class="help-block">
+                                                <strong>{{ $errors->first('text') }}</strong>
+                                            </span>
+                                @endif
 
                                 <ul class="list-inline pull-right">
                                     <li>
