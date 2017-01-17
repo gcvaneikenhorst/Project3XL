@@ -112,12 +112,9 @@ class AdministratorController extends Controller
         $vacancy = Vacancy::find($vacancyid);
         $vacancy->delete();
     }
-
-
+    
     public function deleteCompetence($competenceid) {
         $competence = Competence::find($competenceid);
         $competence->delete();
     }
-
-
 }

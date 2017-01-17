@@ -65,7 +65,17 @@
 	                            <a>Mijn vacatures</a>
 	                        </div>
 	                    @endif
-	
+
+						@if (Auth::user()->userable_type == 'App\Admin')
+							<div onclick="location.href='{{ url("/administrator/viewusers") }}';">
+								<a>Users</a>
+							</div>
+
+							<div onclick="location.href='{{ url("/administrator/category") }}';">
+								<a>Categories</a>
+							</div>
+						@endif
+
 	                    <div onclick="location.href='{{ url("/matches") }}';">
 	                        <a>Matches</a>
 	                    </div>
