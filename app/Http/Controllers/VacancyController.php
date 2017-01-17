@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Validator;
+
 class VacancyController extends Controller
 {
     public function index()
@@ -40,10 +41,20 @@ class VacancyController extends Controller
         return view('vacancy/edit', ['vacancy' => $vacancy, 'competences' => $selectedCompetence]);
     }
 
+    public function cvValidator($data)
+    {
+        return Validator::make($data, [
+            'title' => 'required|min:6',
+            'text' => 'required|max:8000',
+            'category_id' => 'required'
+        ]);
+    }
+
     public function save(Request $request)
     {
 
         $data = $request->all();
+
         $this->cvValidator($data)->validate();
 
         $company = User::find(Auth::user()->id)->userable()->first()->id;
@@ -110,11 +121,4 @@ class VacancyController extends Controller
     }
 
 
-    public function cvValidator($data) {
-        return Validator::make($data, [
-            'title' => 'required|min:6',
-            'text' => 'required|max:8000',
-            'category' => 'required',
-        ]);
-    }
 }

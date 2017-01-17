@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\DB;
 
 class MatchesController extends Controller
 {
+	public function cvPage($id){
+		return View('matches/cv')->with(['cv'=>CV::where('id',$id)->first()]);;
+	}
     /**
      * Get matches
      * @return mixed
@@ -22,7 +25,7 @@ class MatchesController extends Controller
 
         $return = [];
         foreach ($vacancies as $vacancy) {
-            $a = $vacancy->matches()->get(['title', 'vacancy_cvs.num_matches', 'vacancy_cvs.cv_id', 'vacancy_cvs.vacancy_id']);
+            $a = $vacancy->matches()->get(['title', 'vacancy_cvs.num_matches', 'vacancy_cvs.cv_id', 'vacancy_cvs.vacancy_id','vacancy_cvs.id as link']);
 
             foreach ($a as $cv) {
 

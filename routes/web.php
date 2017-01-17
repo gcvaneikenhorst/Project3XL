@@ -37,7 +37,7 @@ Route::get('/matches/payed', 'MatchesController@getPayedMatches');
 Route::get('/home', 'HomeController@index');
 
 Route::get('/matches', 'MatchesController@index');
-
+Route::get('/cv/{id}', 'MatchesController@cvPage');
 Route::get('/account/dangerzone', 'AccountController@dangerzone');
 Route::post('/account/dangerzone', 'AccountController@dangerzone');
 

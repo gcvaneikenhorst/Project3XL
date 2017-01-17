@@ -1,0 +1,51 @@
+.form-title
+{
+	color: black;
+	font-size: 1.5em;
+	font-weight: 100;
+    display: inline-block;
+}
+
+.form-subtitle
+{
+	color: black;
+	font-size: 1.1em;
+	font-weight: 100;
+    display: inline-block;
+}
+
+.page-toggle 
+{
+    color: #BA68C8;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor: pointer;
+}
+
+.toggle-active 
+{
+    color: white;
+    cursor: default;
+}
+
+.paginator 
+{
+    display:flex;
+    justify-content: space-around;
+}
+
+.pages 
+{
+    width: 100%;
+}
+
+.page 
+{
+    display: none;
+}
+
+.page-active 
+{
+    display: initial;
+}
