@@ -14,7 +14,20 @@ use Illuminate\Support\Facades\DB;
 class MatchesController extends Controller
 {
 	public function cvPage($id){
-		return View('matches/cv')->with(['cv'=>CV::where('id',$id)->first()]);;
+		$return;
+		$payed = Vacancy::byOwnerPayed(Auth::user()->userable()->first()->id,$id)->get()->count();
+        if($payed == 1){
+
+            $return = CV::with('applicant')->where('id',$id)->first();
+        }
+        elseif(Vacancy::byOwner(Auth::user()->userable()->first()->id,$id)->get()->count() == 1){
+
+            
+
+            $return = CV::where('id',$id)->first(['title','text','motivation', 'date']);
+        }
+		
+		return View('matches/cv')->with(['cv'=>$return,'token'=> User::find(Auth::user()->id)->api_token]);;
 	}
     /**
      * Get matches
@@ -73,20 +86,7 @@ class MatchesController extends Controller
 
     public function getCVinfo($id){
 
-        $payed = Vacancy::byOwnerPayed(Auth::user()->userable()->first()->id,$id)->get()->count();
-        if($payed == 1){
-
-            return CV::with('applicant')->where('id',$id)->first();
-        }
-        elseif(Vacancy::byOwner(Auth::user()->userable()->first()->id,$id)->get()->count() == 1){
-
-            
-
-            return CV::where('id',$id)->first(['title','text']);
-        }
-
-
-        return 'Geen cv gevonden.';
+        
     }
 
     public function pay(Request $request){

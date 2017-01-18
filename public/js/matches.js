@@ -33,7 +33,7 @@ function payed(button)
 	             "render" : function(data, type, row, meta){
 	                if(type === 'display'){
 	                   return $('<a>')
-	                      .attr('href', "/cv/"+data)
+	                      .attr('href', "/matches/cv/"+data)
 	                      .attr('target', "_blank")
 	                      .text("Toon CV")
 	                      .wrap('<div></div>')
@@ -79,8 +79,10 @@ function notPayed(button)
 	             "data": "link",
 	             "render" : function(data, type, row, meta){
 	                if(type === 'display'){
-	                   return $('<input type="checkbox">')
+	                   return $('<input>')
 	                      .attr('name', data)
+	                      .attr('type', "checkbox")
+	                      .attr('onclick', "calculateAmount()")
 	                      .text("Toon CV")
 	                      .wrap('<div></div>')
 	                      .parent()
@@ -97,7 +99,7 @@ function notPayed(button)
 	             "render" : function(data, type, row, meta){
 	                if(type === 'display'){
 	                   return $('<a>')
-	                      .attr('href', "/cv/"+data)
+	                      .attr('href', "/matches/cv/"+data)
 	                      .attr('target', "_blank")
 	                      .text("Toon CV")
 	                      .wrap('<div></div>')
@@ -113,8 +115,7 @@ function notPayed(button)
 	    });
 		
 		// Add checkout-button
-		var checkout = $("<button id='btn-checkout' class='btn btn-primary' onclick='checkout();'>Afrekenen</button>")
-		$(".panel-body").append(checkout);
+		addCheckoutBtn(".panel-body");
     }});
 }  
 
@@ -128,8 +129,36 @@ function checkout()
     });
     
     var data = {payed:selectedstring};
-    console.log(data);
-   
+    
+	if(data.payed.length != 0)
+	{
+	    $.ajax({
+		    url: "/api/auth/pay?api_token="+token, 
+		    type: "POST", 
+		    data: JSON.stringify(data), 
+		    success: function(result)
+			{    
+				if(result)
+				{
+					$(".lbl-amount").remove();
+					alert("Betaling is gelukt!");			
+					$("#btn-payed-matches").click();
+				}
+		    }
+	    });
+	}
+	else
+	{
+		alert("Selecteer een CV om wat af te kunnen rekenen");
+	}
+}
+
+function checkoutDirect(link)
+{
+	var selectedstring = [];
+	selectedstring.push(link);
+	var data = {payed:selectedstring};
+	
     $.ajax({
 	    url: "/api/auth/pay?api_token="+token, 
 	    type: "POST", 
@@ -138,9 +167,41 @@ function checkout()
 		{    
 			if(result)
 			{
-				alert("Betaling is gelukt!");
+				$(".lbl-amount").remove();
+				alert("Betaling is gelukt!");			
 				$("#btn-payed-matches").click();
 			}
 	    }
     });
+}
+
+function calculateAmount() 
+{
+	var amount = 0;
+	amount = $("input:checked").length; 
+	
+	// Check if boxes are selected
+	if(amount == 0)
+	{
+		$(".lbl-amount").remove();
+		return;
+	}
+	
+    amount = "Totaal: &euro;"+amount+",00";
+    
+    if($(".lbl-amount")[0])
+    {
+	    $(".lbl-amount").remove();
+    }
+    
+    var amountdiv = $("<div class='lbl-amount'></div>");
+    amountdiv.append(amount);
+    $(".panel-body").append(amountdiv);
+}
+
+function addCheckoutBtn(appendname)
+{
+	// Add checkout-button
+	var checkout = $("<button id='btn-checkout' class='btn btn-primary' onclick='checkout();'>Afrekenen</button>")
+	$(appendname).append(checkout);
 }

@@ -49,3 +49,10 @@
 {
     display: initial;
 }
+
+.lbl-amount
+{
+	font-size: 1.5em;
+	display: inline;
+	margin-left: 3%;
+}
