@@ -72,7 +72,7 @@
                     if (Object.keys(output).length == 0)
                         return;
 
-                    let url = (data['id'] != null ? `/api/auth/administrator/updatecompetence/${data['id']}` : '/api/auth/administrator/createcompetence') + `?api_token=${api_token}`
+                    let url = (data['id'] != null ? `/api/auth/administrator/updatecompetence/${data['id']}` : '/api/auth/administrator/createcompetence') + `?api_token=${api_token}`;
                     $.ajax({
                         type: 'POST',
                         url: url,

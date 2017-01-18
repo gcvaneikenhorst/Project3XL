@@ -53,9 +53,10 @@ INNER JOIN cvs cv ON cv.applicant_id = a.id
 INNER JOIN cv_competence cc ON cc.cv_id = cv.id
 INNER JOIN competences com ON cc.competence_id = com.id
 AND com.id IN (
-    SELECT com.id FROM vacancies v
+    SELECT com2.id FROM vacancies v
 	INNER JOIN cv_competence cc2 ON cc2.cv_id = v.id
     INNER JOIN competences com2 ON cc2.competence_id = com2.id
+    WHERE v.category_id = cv.category_id
 )
 INNER JOIN vacancy_competence vc ON vc.competence_id = com.id
 INNER JOIN vacancies v ON v.id = vc.vacancy_id

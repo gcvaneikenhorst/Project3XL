@@ -5,9 +5,13 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Vacancies
-                        <a href="{{ url('/vacancy/create') }}" class="pull-right"><i class="fa fa-plus" style="color: grey"></i></a>
+                    <div class="panel-heading">&nbsp;
+                        <div class="pull-left box-header">
+			                Vacatures
+		                </div>
+		                <div class="pull-right">
+                        	<a href="{{ url('/vacancy/create') }}"><i class="fa fa-plus" style="color: grey"></i></a>
+		                </div>
                     </div>
 
                     <div class="panel-body">

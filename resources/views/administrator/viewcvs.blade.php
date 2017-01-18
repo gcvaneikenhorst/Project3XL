@@ -81,6 +81,20 @@
             integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
             crossorigin="anonymous"></script>
     <script>
+        HTMLElement.prototype.setValue = function(val) {
+            if (!this.nextSibling || !this.nextSibling.classList) {
+                this.value = val;
+                return;
+            }
+
+            if (!this.nextSibling.classList.contains('note-editor')) {
+                this.value = val;
+                return;
+            }
+
+            $(this).summernote('code', val);
+        }
+
         let api_token = "{{$api_token}}";
         function openCv(event) {
             let target = event.target.parentNode;
@@ -91,8 +105,9 @@
                 title: data.title,
                 open: function () {
                     for (let key in data) {
-                        let value = data[key]
-                        $(this).find(`[name=${key}]`).val(value)
+                        let element = $(this).find(`[name=${key}]`)[0];
+                        if (element)
+                            element.setValue(data[key]);
                     }
                 },
                 buttons: {
@@ -108,9 +123,9 @@
                     },
                     "Save": function() {
                         let output = {}
-                        $(this).find('input').each((i, node) => {
-                            if (node.value != data[node.getAttribute('name')])
-                                output[node.getAttribute("name")] = node.value
+                        $(this).find('[name]').each((i, node) => {
+                            if ($(node).val() != data[node.getAttribute('name')])
+                                output[node.getAttribute("name")] = $(node).val()
                         })
 
                         if (Object.keys(output).length == 0)
