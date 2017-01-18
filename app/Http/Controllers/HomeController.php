@@ -53,9 +53,13 @@ class HomeController extends Controller
     public function companyIndex() {
         $vacancies  = Vacancy::where('company_id', Auth::user()->userable_id);
 
+        $numMatches = 0;
+        foreach (Company::find(Auth::user()->userable()->first()->id)->vacancies()->get() as $vacancy) {
+            $numMatches += $vacancy->matches()->count();
+        }
         return view('home', [
             'vacancyCount'  => count($vacancies),
-            //'matchCount'    => count($cvs),
+            'matchCount'    => $numMatches,
         ]);
     }
 
