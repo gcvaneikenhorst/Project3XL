@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\CV;
 use App\Vacancy;
 use App\VacancyCvs;
@@ -66,7 +67,7 @@ class MatchesController extends Controller
      */
     public function index()
     {
-        return View('matches/index');
+        return View('matches/index')->with(['token'=> User::find(Auth::user()->id)->api_token]);
     }
 
 

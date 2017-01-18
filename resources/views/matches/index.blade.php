@@ -31,6 +31,14 @@
 @endsection
 
 @section('script')
+	<!-- Loading DataTables -->
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs/jq-2.2.4/dt-1.10.13/datatables.min.js"></script>
+    
+    <! -- Token -->
+    <script>
+	    var token = "{{ $token }}";
+    </script>
+    
+    <! -- Setup table -->
     <script src="{{ asset('js/matches.js') }}"></script>
 @endsection
