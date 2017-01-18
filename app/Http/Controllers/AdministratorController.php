@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Admin;
 use App\Category;
 use App\Competence;
 use App\User;
 use App\CV;
 use App\Http\Controllers\Controller;
 use App\Vacancy;
+use Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -96,6 +98,43 @@ class AdministratorController extends Controller
         $data = $request->json()->all();
         Competence::insert($data);
         return ['success' => 'true'];
+    }
+
+
+    private static function validateAdministratorData($data) {
+        $validators = [
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|min:6|confirmed',
+            'password_confirmation' => 'required|min:6',
+            'salutation' => 'required|max:255',
+            'firstname' => 'required|max:255',
+            'lastname'  => 'required|max:255',
+            'insertion' => 'max:255',
+            'address'   => 'required|max:255',
+            'zipcode'   => 'required|max:6',
+            'location'  => 'required|max:255',
+            'phone'     => 'required|max:10',
+        ];
+        return Validator::make($data, $validators);
+    }
+
+
+    public function createAdministrator(Request $request) {
+        if ($request->isMethod('post')) {
+            $data = $request->toArray();
+            self::validateAdministratorData($data)->validate();
+            $user = User::create([
+                'email' => $data['email'],
+                'password' => bcrypt($data['password']),
+                'enabled' => true,
+                'api_token' => str_random(60),
+            ]);
+            $admin = Admin::create($data);
+            $admin->save();
+            $admin->user()->save($user);
+            return View('administrator/createadmin', ['success' => true]);
+        }
+        return View('administrator/createadmin', ['success' => false]);
     }
 
 

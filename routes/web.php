@@ -70,6 +70,11 @@ Route::group(["middleware" => 'App\Http\Middleware\AdminMiddleware'], function()
     Route::post("/administrator/category/delete/{id}", 'CategoryController@doDelete');
 });
 
+Route::group(["middleware" => 'App\Http\Middleware\SuperAdminMiddleware'], function() {
+    Route::match(['get', 'post'], '/administrator/createsuperadmin/', 'AdministratorController@createAdministrator');
+});
+
+
 Route::group(["middleware" => 'App\Http\Middleware\ApplicantMiddleware'], function() {
     Route::get('/cv', 'CVController@index');
 
