@@ -36,7 +36,7 @@ Route::get('/home', 'HomeController@index');
 
 Route::group(["middleware" => 'App\Http\Middleware\CompanyMiddleware'], function() {
     Route::get('/matches', 'MatchesController@index');
-    Route::get('/cv/{id}', 'MatchesController@cvPage');
+    Route::get('/matches/cv/{id}', 'MatchesController@cvPage');
 });
 
 Route::get('/account/dangerzone', 'AccountController@dangerzone');
