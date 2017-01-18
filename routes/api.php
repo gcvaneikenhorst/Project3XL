@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
 
 
 Route::group(['prefix' => 'auth', 'middleware' => 'auth:api'], function () {
-    Route::group(["middleware" => 'App\Http\Middleware\AdminMiddleware'], function() {
+    Route::group(["middleware" => 'App\Http\Middleware\CompanyMiddleware'], function() {
         Route::get('/matches', 'MatchesController@getMatches');
         Route::get('/matches/payed', 'MatchesController@getPayedMatches');
         Route::get('/cv/{id}', 'MatchesController@getCVinfo');
