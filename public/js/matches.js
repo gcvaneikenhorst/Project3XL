@@ -10,7 +10,7 @@ function payed(button)
     $(".toggle-active").removeClass("toggle-active");
     $(button).addClass("toggle-active");
     
-    $.ajax({url: "/api/auth/matches/payed?api_token=7SXqeSH1KC69WBBsMb1T0VAzgegpOcugO6EOBvQOTIye1CIfBHcxYwFiGs4r", success: function(result){
+    $.ajax({url: "/api/auth/matches/payed?api_token="+token, success: function(result){
         //console.log(table);
 		table.fnDestroy();
 		table.html("");
