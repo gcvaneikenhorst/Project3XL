@@ -36,8 +36,11 @@ Route::get('/matches/payed', 'MatchesController@getPayedMatches');
 
 Route::get('/home', 'HomeController@index');
 
-Route::get('/matches', 'MatchesController@index');
-Route::get('/cv/{id}', 'MatchesController@cvPage');
+Route::group(["middleware" => 'App\Http\Middleware\CompanyMiddleware'], function() {
+    Route::get('/matches', 'MatchesController@index');
+    Route::get('/cv/{id}', 'MatchesController@cvPage');
+});
+
 Route::get('/account/dangerzone', 'AccountController@dangerzone');
 Route::post('/account/dangerzone', 'AccountController@dangerzone');
 
@@ -50,7 +53,8 @@ Route::post('/account/email/save', 'SettingsController@emailSave');
 Route::get('/account/password', 'SettingsController@password');
 Route::post('/account/password/save', 'SettingsController@passwordSave');
 
-Route::group(["userable_type" => "App/Admin"], function() {
+
+Route::group(["middleware" => 'App\Http\Middleware\AdminMiddleware'], function() {
     Route::get("/administrator/viewusers", 'AdministratorController@viewusers');
     Route::get("/administrator/viewcv/{userid}", 'AdministratorController@viewcvs');
     Route::get("/administrator/viewvacancy/{userid}", 'AdministratorController@viewvacancy');
@@ -68,13 +72,15 @@ Route::group(["userable_type" => "App/Admin"], function() {
     Route::post("/administrator/category/delete/{id}", 'CategoryController@doDelete');
 });
 
-Route::get('/cv', 'CVController@index');
+Route::group(["middleware" => 'App\Http\Middleware\ApplicantMiddleware'], function() {
+    Route::get('/cv', 'CVController@index');
 
-Route::get('/cv/create', 'CVController@create');
-Route::post('/cv/create', 'CVController@doCreate');
+    Route::get('/cv/create', 'CVController@create');
+    Route::post('/cv/create', 'CVController@doCreate');
 
-Route::get('/cv/edit/{id}', 'CVController@edit');
-Route::post('/cv/edit/{id}', 'CVController@doEdit');
+    Route::get('/cv/edit/{id}', 'CVController@edit');
+    Route::post('/cv/edit/{id}', 'CVController@doEdit');
 
-Route::get('/cv/delete/{id}', 'CVController@delete');
-Route::post('/cv/delete/{id}', 'CVController@doDelete');
+    Route::get('/cv/delete/{id}', 'CVController@delete');
+    Route::post('/cv/delete/{id}', 'CVController@doDelete');
+});

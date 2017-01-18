@@ -103,21 +103,25 @@ class AdministratorController extends Controller
         $user = User::find($userid);
         $user->userable()->delete();
         $user->delete();
+        return ['success' => 'true'];
     }
 
 
     public function deleteCv($cvid) {
         $cv = CV::find($cvid);
         $cv->delete();
+        return ['success' => 'true'];
     }
 
     public function deleteVacancy($vacancyid) {
         $vacancy = Vacancy::find($vacancyid);
         $vacancy->delete();
+        return ['success' => 'true'];
     }
     
     public function deleteCompetence($competenceid) {
         $competence = Competence::find($competenceid);
         $competence->delete();
+        return ['success' => 'true'];
     }
 }
