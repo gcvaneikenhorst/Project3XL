@@ -42,12 +42,6 @@
                             <td style="font-weight: bold; text-align: right">{{ $cvCount or '-' }}</td>
                         </tr>
                         </tbody>
-                        <tfoot style="border-top: 2px solid #ddd">
-                        <tr>
-                            <td>Matches</td>
-                            <td style="font-weight: bold; text-align: right">{{ $matchCount or '-' }}</td>
-                        </tr>
-                        </tfoot>
                     </table>
                 </div>
             </div>
