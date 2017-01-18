@@ -4,46 +4,62 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-	        <div class="card">
-		        <div class="title" style="font-size: 5em; margin-left: -.3em; background-color: inherit; color: inherit;">
-			        Welkom.
-		        </div>
-		        <div class="content" style="font-size: 1.5em;">
-			        Momenteel hebben wij <b>(aantal)</b> matches voor je klaarstaan.
-		        </div>
-	        </div>
+	        <div class="panel panel-default">
+				<div class="panel-heading">&nbsp;
+					<div class="pull-left box-header">
+						Welkom
+					</div>
+				</div>
+				<div class="panel-body">
+					<p>
+						Momenteel zijn er <b>{{ $companyCount }}</b> Bedrijven die opzoek zijn naar jou! Met momenteel <b>{{ $vacancyCount }}</b> vacatures en <b>{{ $applicantCount }}</b> mede-sollicitanten kunt u de jacht starten!
+					</p>
+				</div>
+			</div>
         </div>
-        
-        
+	</div>
+
+	<div class="row">
         @if (Auth::guest())
         
         <div class="col-md-5 col-md-offset-1">
-	        <div class="card">
-		        <div class="title">
-			        Aanmelden
-		        </div>
-		        <div class="content">
-			        Ben je nog geen sollicitant bij ons? Of zoek je het juiste platform om banen te vullen?
-			        <br><br>
-			        <a href="/register"><i class="fa fa-chevron-right"></i> Registreer je nu.</a>
-		        </div>
-	        </div>
+			<div class="panel panel-default">
+				<div class="panel-heading">&nbsp;
+					<div class="pull-left box-header">
+						Aanmelden
+					</div>
+				</div>
+
+				<div class="panel-body">
+					<p>
+						Ben je nog geen sollicitant bij ons? Of zoek je het juiste platform om banen te vullen?
+						<br><br>
+						<a href="/register" style="float: right"><i class="fa fa-chevron-right"></i> Registreer je nu.</a>
+					</p>
+				</div>
+			</div>
         </div>
         
         <div class="col-md-5">
-	        <div class="card">
-		        <div class="title">
-			        Inloggen
-		        </div>
-		        <div class="content">
-			        Ben je al sollicitant of bedrijf bij ons?
-			        <br><br><br>
-			        <a href="/login"><i class="fa fa-chevron-right"></i> Log hier in.</a>
-		        </div>
-	        </div>
+			<div class="panel panel-default">
+				<div class="panel-heading">&nbsp;
+					<div class="pull-left box-header">
+						Inloggen
+					</div>
+				</div>
+
+				<div class="panel-body">
+					<p>
+						Ben je al sollicitant of bedrijf bij ons?
+						<br><br>
+						<a href="/register" style="float: right"><i class="fa fa-chevron-right"></i> Registreer je nu.</a>
+					</p>
+				</div>
+			</div>
         </div>
-        
+
         @endif
-    </div>
+
+	</div>
 </div>
 @endsection
