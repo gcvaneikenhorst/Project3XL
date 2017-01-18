@@ -56,7 +56,12 @@ body
 .btn-primary:hover
 {
 	background-color: #6A1B9A;
-	box-shadow: inset 100px 0 0 0 #BA68C8;
+	box-shadow: inset 150px 0 0 0 #BA68C8;
+}
+.btn-primary:focus
+{
+	background-color: #6A1B9A;
+	box-shadow: inset 150px 0 0 0 #BA68C8;
 }
 
 .btn-danger

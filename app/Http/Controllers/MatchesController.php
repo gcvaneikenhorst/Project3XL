@@ -77,7 +77,6 @@ class MatchesController extends Controller
 
     public function pay(Request $request){
         $data = $request->json()->all();
-
         foreach ($data['payed'] as $pay){
             $link = VacancyCvs::find($pay);
             $dat = [
