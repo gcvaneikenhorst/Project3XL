@@ -19,7 +19,6 @@ Route::group(['prefix' => 'auth', 'middleware' => 'auth:api'], function () {
     Route::group(["middleware" => 'App\Http\Middleware\CompanyMiddleware'], function() {
         Route::get('/matches', 'MatchesController@getMatches');
         Route::get('/matches/payed', 'MatchesController@getPayedMatches');
-        Route::get('/cv/{id}', 'MatchesController@getCVinfo');
         Route::post('/pay', 'MatchesController@pay');
     });
 

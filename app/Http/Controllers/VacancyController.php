@@ -12,6 +12,10 @@ use Validator;
 
 class VacancyController extends Controller
 {
+    /**
+     * Shows a list of all vacancies created by the user
+     * @return mixed
+     */
     public function index()
     {
         $vacancies = Company::find(Auth::user()->userable()->first()->id)->vacancies()->get();
@@ -19,13 +23,21 @@ class VacancyController extends Controller
         return view('vacancy/index', ['vacancies' => $vacancies]);
     }
 
+    /**
+     * Shows the creation form for vacancies
+     * @return mixed
+     */
     public function create()
     {
 
         return view('vacancy/create');
     }
 
-
+    /**
+     * Shows the edit page for an vacancy
+     * @param $id
+     * @return mixed
+     */
     public function edit($id)
     {
         $vacancy = Vacancy::find($id);
@@ -41,15 +53,25 @@ class VacancyController extends Controller
         return view('vacancy/edit', ['vacancy' => $vacancy, 'competences' => $selectedCompetence]);
     }
 
+    /**
+     * Validation rules for a vacancy
+     * @param $data
+     * @return mixed
+     */
     public function cvValidator($data)
     {
         return Validator::make($data, [
-            'title' => 'required|min:6',
+            'title' => 'required|min:6|max:200',
             'text' => 'required|max:8000',
             'category_id' => 'required'
         ]);
     }
 
+    /**
+     * Creates an vacancy from post data
+     * @param Request $request
+     * @return mixed
+     */
     public function save(Request $request)
     {
 
@@ -64,7 +86,7 @@ class VacancyController extends Controller
             'text' => $data['text'],
             'category_id' => $data['category_id'],
             'company_id' => $company,
-            'date' => \Carbon\Carbon::parse($data['date']),
+            'date' => \Carbon\Carbon::now(),
         ];
 
         $vacancy = Vacancy::create($vacancy);
@@ -74,7 +96,11 @@ class VacancyController extends Controller
         return Redirect::to('/vacancy');
     }
 
-
+    /**
+     * Shows the delete page for a vacancy
+     * @param $id
+     * @return mixed
+     */
     public function delete($id)
     {
         $vacancy = Vacancy::find($id);
@@ -84,6 +110,12 @@ class VacancyController extends Controller
         ]);
     }
 
+    /**
+     * Delets a vacancy
+     * @param $id
+     * @param Request $request
+     * @return mixed
+     */
     public function doDelete($id, Request $request)
     {
         $data = $request->all();
@@ -98,6 +130,12 @@ class VacancyController extends Controller
         return Redirect::to('/vacancy');
     }
 
+    /**
+     * Update a vacancy
+     * @param $id
+     * @param Request $request
+     * @return mixed
+     */
     public function update($id, Request $request)
     {
 

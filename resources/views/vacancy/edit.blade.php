@@ -207,7 +207,7 @@
                     <div class="col-md-8 col-md-offset-2">
 
 
-                        <form method="post" action="{{url('/vacancy/edit/'.$vacancy->id)}}" role="form"
+                        <form id="vacancy-form" method="post" action="{{url('/vacancy/edit/'.$vacancy->id)}}" role="form"
                               class="form-horizontal"
                               novalidate>
                             {{csrf_field()}}
@@ -230,22 +230,6 @@
                                             @endif
                                         </div>
                                     </div>
-
-                                    {{--<div class="form-group{{ $errors->has('date') ? ' has-error' : '' }}">--}}
-                                    {{--<label for="date" class="col-md-4 control-label">Datum</label>--}}
-
-                                    {{--<div class="col-md-6">--}}
-                                    {{--<input  id="date" type="datetime" class="form-control" name="date"--}}
-                                    {{--value="{{ $vacancy->date}}" required>--}}
-
-                                    {{--@if ($errors->has('date'))--}}
-                                    {{--<span class="help-block">--}}
-                                    {{--<strong>{{ $errors->first('date') }}</strong>--}}
-                                    {{--</span>--}}
-                                    {{--@endif--}}
-                                    {{--</div>--}}
-                                    {{--</div>--}}
-
 
                                     <div class="form-group{{ $errors->has('category_id') ? ' has-error' : '' }}">
                                         <label for="category_id" class="col-md-4 control-label">Categorie</label>
@@ -340,11 +324,50 @@
                                 </div>
                                 <div class="tab-pane" role="tabpanel" id="complete">
                                     <h3>Klaar</h3>
-                                    <p>U kunt nog op vorige drukken om wijzigingen aan te brengen. Als u zeker weet
-                                        dat
-                                        alle
-                                        informatie klopt kunt u op opslaan drukken om de vacature aan te maken.</p>
+                                    <hr>
+                                    <div class="form-group">
+                                        <label for="title" class="col-md-2 control-label"
+                                               style="cursor: pointer">Title</label>
 
+                                        <div class="col-md-10 control-label">
+                                            <span data-form-name="title" class="pull-left"
+                                                  style="text-align: left"></span>
+                                            <a href="javascript:toTab('step1');focus('title');" class="pull-right">Verander</a>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-group">
+                                        <label for="category_id" class="col-md-2 control-label" style="cursor: pointer">Categorie</label>
+
+                                        <div class="col-md-10 control-label">
+                                            <span data-form-name="category_id" class="pull-left"
+                                                  style="text-align: left"></span>
+                                            <a href="javascript:toTab('step1');focus('category_id');"
+                                               class="pull-right">Verander</a>
+                                        </div>
+                                    </div>
+
+                                    <hr>
+                                    <div class="form-group">
+                                        <label for="text" class="col-md-2 control-label"
+                                               style="cursor: pointer">Inhoud</label>
+
+                                        <div class="col-md-10 control-label">
+                                            <span data-form-name="text" class="pull-left"
+                                                  style="text-align: left"></span>
+                                            <a href="javascript:toTab('step2');focus('text');" class="pull-right">Verander</a>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-group">
+                                        <label for="competence" class="col-md-2 control-label" style="cursor: pointer">Competenties</label>
+
+                                        <div class="col-md-10 control-label">
+                                            <span data-form-name="competence" class="pull-left"
+                                                  style="text-align: left"></span>
+                                            <a href="javascript:toTab('step3');focus('competence');" class="pull-right">Verander</a>
+                                        </div>
+                                    </div>
 
                                     <ul class="list-inline pull-right">
                                         <li>
@@ -375,7 +398,7 @@
 
             //Wizard
             $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
-
+                updateForm();
                 var $target = $(e.target);
 
                 if ($target.parent().hasClass('disabled')) {
@@ -404,6 +427,55 @@
         function prevTab(elem) {
             $(elem).prev().find('a[data-toggle="tab"]').click();
         }
+        var updateForm = function () {
+            var form = $('#vacancy-form');
+            var fields = form.find('[name]');
+            var holder = $('#complete');
+
+            jQuery.each(fields, function () {
+                var name = $(this).attr('name');
+
+                if (name == 'category_id') {
+                    holder.find('[data-form-name="' + name + '"]').html($(this).find('option:selected').text());
+                } else if (name == 'competence[]') {
+                    var competence = '';
+
+                    jQuery.each($(this).find('option:selected'), function () {
+                        if (competence == '') {
+                            competence = $(this).text();
+                        } else {
+                            competence += ', ' + $(this).text();
+                        }
+                    });
+
+                    holder.find('[data-form-name="competence"]').html(competence);
+                } else {
+                    holder.find('[data-form-name="' + name + '"]').html($(this).val());
+                }
+            });
+        };
+        updateForm();
+
+        function toTab(id) {
+            var $item = $('.wizard .nav-tabs li a[aria-controls=' + id + ']').parent();
+            $item.removeClass('disabled');
+            $item.children().click();
+        }
+
+        function focus(name) {
+            var holder = $('.wizard');
+            var $elem = holder.find('[name="' + name + '"]');
+            $elem.focus();
+        }
+
+        function nextTab(elem) {
+            $(elem).next().find('a[data-toggle="tab"]').click();
+        }
+        function prevTab(elem) {
+            $(elem).prev().find('a[data-toggle="tab"]').click();
+        }
+
+
 
     </script>
 
