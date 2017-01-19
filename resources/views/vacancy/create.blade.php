@@ -233,21 +233,6 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group{{ $errors->has('date') ? ' has-error' : '' }}">
-                                            <label for="date" class="col-md-4 control-label">Datum</label>
-
-                                            <div class="col-md-6">
-                                                <input id="date" type="datetime" class="form-control" name="date"
-                                                       value="{{\Carbon\Carbon::now()->toDateString()}}" required>
-
-                                                @if ($errors->has('date'))
-                                                    <span class="help-block">
-                                                <strong>{{ $errors->first('date') }}</strong>
-                                            </span>
-                                                @endif
-                                            </div>
-                                        </div>
-
 
                                         <div class="form-group{{ $errors->has('category_id') ? ' has-error' : '' }}">
                                             <label for="category_id"
