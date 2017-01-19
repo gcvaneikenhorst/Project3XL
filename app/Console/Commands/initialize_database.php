@@ -172,7 +172,7 @@ CREATE TABLE cv_competence (
 	PRIMARY KEY(`competence_id`, `cv_id`),
 	CONSTRAINT FOREIGN KEY(`competence_id`) REFERENCES competences(id) ON DELETE CASCADE,
 	CONSTRAINT FOREIGN KEY(`cv_id`) REFERENCES cvs(id) ON DELETE CASCADE
-) engine=innodb;';
+) engine=innodb';
 
         foreach (explode(';', $queries) as $query) {
             DB::statement($query);
