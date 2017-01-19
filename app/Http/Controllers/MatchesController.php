@@ -82,24 +82,11 @@ class MatchesController extends Controller
     }
 
 
-    public function getCVinfo($id){
-        
-        $payed = Vacancy::byOwnerPayed(Auth::user()->userable()->first()->id,$id)->get()->count();
-        if($payed == 1){
-
-            return CV::with('applicant')->where('id',$id)->first();
-        }
-        elseif(Vacancy::byOwner(Auth::user()->userable()->first()->id,$id)->get()->count() == 1){
-
-
-            return CV::where('id',$id)->first(['title','text']);
-        }
-
-
-        return 'Geen cv gevonden.';
-
-    }
-
+    /**
+     * Pay for a list of matches
+     * @param Request $request
+     * @return array
+     */
     public function pay(Request $request){
         $data = $request->json()->all();
         foreach ($data['payed'] as $pay){
