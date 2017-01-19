@@ -55,7 +55,7 @@
 
 			@elseif(Auth::user()->userable_type == 'App\Admin')
 
-				<h2>U bent een <strong>Administrator</strong>!<br> <small>Als administrator kunt u gebruikers, categoriën en compententies beheren.</small></h2>
+				<h2>U bent een <strong>Administrator</strong>!<br> <small>Als administrator kunt u gebruikers, categoriën en competenties beheren.</small></h2>
 
 			@endif
 			<button class="action btn pull-left" toggle="1">Terug</button>

@@ -41,10 +41,6 @@
 <div class="modal" id="vacancymodal">
 	<table class="table">
 		<tr>
-			<td>Datum</td>
-			<td><input type="datetime-local" class="form-control" name="date"></td>
-		</tr>
-		<tr>
 			<td>Titel</td>
 			<td><input type="text" class="form-control" name="title"></td>
 		</tr>

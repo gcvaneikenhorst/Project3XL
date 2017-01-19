@@ -205,7 +205,7 @@ body
 	position: absolute;
 	z-index: 1000;
 	right: 0px;
-	padding-top: 5px;
+	padding-top: 10px;
 	padding-right: 15px;
 }
 
@@ -453,4 +453,5 @@ body
 
 .btn {
 	border-radius: 0px !important;
+	outline: 0 !important;
 }

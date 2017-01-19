@@ -68,11 +68,11 @@
 
 						@if (Auth::user()->userable_type == 'App\Admin')
 							<div onclick="location.href='{{ url("/administrator/viewusers") }}';">
-								<a>Users</a>
+								<a>Gebruikers</a>
 							</div>
 
 							<div onclick="location.href='{{ url("/administrator/category") }}';">
-								<a>Categories</a>
+								<a>Categoriën</a>
 							</div>
 
 							<div onclick="location.href='{{ url("/administrator/viewcompetences") }}';">
@@ -120,7 +120,7 @@
 				
 				<section class="info-section">
 					<button id="help_btn">
-						<span class="glyphicon glyphicon-info-sign" style="color: white"></span>
+						<span class="glyphicon glyphicon-info-sign" style="color: white; font-size: 18px;"></span>
 					</button>
 				</section>
 			</section>

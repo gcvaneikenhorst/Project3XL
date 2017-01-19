@@ -21,6 +21,15 @@
 	</div>
 
 	<div class="row">
+
+		<div class="cont">
+			<div class="slider"></div>
+				<ul class="nav">
+		</div>
+				<div data-target='right' class="side-nav side-nav--right"></div>
+			<div data-target='left' class="side-nav side-nav--left"></div>
+		</div>
+
         @if (Auth::guest())
         
         <div class="col-md-5 col-md-offset-1">

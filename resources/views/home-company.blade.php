@@ -43,13 +43,15 @@
                             <td>Vacature's</td>
                             <td style="font-weight: bold; text-align: right">{{ $vacancyCount or '-' }}</td>
                         </tr>
-                        </tbody>
-                        <tfoot style="border-top: 2px solid #ddd">
                         <tr>
                             <td>Matches</td>
                             <td style="font-weight: bold; text-align: right">{{ $matchCount or '-' }}</td>
                         </tr>
-                        </tfoot>
+                        <tr>
+                            <td>Matches</td>
+                            <td style="font-weight: bold; text-align: right">{{ $payedCvCount or '-' }}</td>
+                        </tr>
+                        </tbody>
                     </table>
                 </div>
             </div>

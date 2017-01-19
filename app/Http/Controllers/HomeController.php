@@ -8,6 +8,7 @@ use App\CV;
 use App\User;
 use App\Vacancy;
 use App\VacancyCvs;
+use App\VacancyCvsPayed;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -55,9 +56,13 @@ class HomeController extends Controller
         foreach (Company::find(Auth::user()->userable()->first()->id)->vacancies()->get() as $vacancy) {
             $numMatches += $vacancy->matches()->count();
         }
+
+        $payedCvCount = VacancyCvsPayed::find('company_id', Auth::user()->userable_id)->get()->count();
+
         return view('home', [
             'vacancyCount'  => $vacancyCount,
             'matchCount'    => $numMatches,
+            'payedCvCount'    => $payedCvCount,
         ]);
     }
 

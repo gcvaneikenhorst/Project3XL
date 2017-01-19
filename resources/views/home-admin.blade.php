@@ -40,7 +40,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">&nbsp;
                     <div class="pull-left box-header">
-                        Numbers
+                        Gebruikers
                     </div>
                 </div>
 
@@ -78,7 +78,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">&nbsp;
                     <div class="pull-left box-header">
-                        Numbers
+                        Onderdelen
                     </div>
                 </div>
 
