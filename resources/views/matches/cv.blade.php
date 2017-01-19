@@ -57,9 +57,9 @@
 	                @endif
 	                
 	                <legend>CV - {{$cv->title}}</legend>
-	                <p>{{$cv->text}}</p>
+	                <p><?= $cv->text ?></p>
 	                <h4>Motivatie</h4>
-	                <p>{{$cv->motivation}}</p>
+	                <p><?= $cv->motivation ?></p>
 
                      @if($cv->video && $cv->applicant != null)
                      	<legend>Video</legend>
