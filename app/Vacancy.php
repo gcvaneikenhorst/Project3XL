@@ -36,7 +36,8 @@ class Vacancy extends Model
         $query->join('vacancy_cvs', 'vacancy_cvs.vacancy_id', '=', 'vacancies.id')
             ->join('cvs', 'cvs.id', '=', 'vacancy_cvs.cv_id')
             ->where('vacancies.company_id',$companyId)
-            ->where('cvs.id',$cv);
+            ->where('cvs.id',$cv)
+            ->select('cvs.*','vacancy_cvs.id as link');;
     }
 
     public static function scopeByOwnerPayed($query, $companyId,$cv)
@@ -45,5 +46,7 @@ class Vacancy extends Model
             ->join('cvs', 'cvs.id', '=', 'vacancy_cvs_payed.cv_id')
             ->where('vacancies.company_id',$companyId)
             ->where('cvs.id',$cv);
+
+
     }
 }
