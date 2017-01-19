@@ -13,9 +13,9 @@
 	                </div>
 	                <div class="pull-right">
 		                <div class="paginator">
-		                	<div class="page-toggle toggle-active" onclick="notPayed(this)">Alle matches</div>
+		                	<div id="btn-available-matches" class="page-toggle toggle-active" onclick="notPayed(this)">Beschikbare matches</div>
 		                	/
-		                	<div class="page-toggle" onclick="payed(this)">Betaalde matches</div>
+		                	<div id="btn-payed-matches" class="page-toggle" onclick="payed(this)">Betaalde matches</div>
 		                </div>
 		            </div>
 	            </div>

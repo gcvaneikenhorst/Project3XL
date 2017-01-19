@@ -21,7 +21,7 @@ class CV extends Model
     }
 
     public function applicant(){
-        return $this->belongsTo('App\Applicant','vacancy_cvs_payed');
+        return $this->belongsTo('App\Applicant');
     }
 
 }

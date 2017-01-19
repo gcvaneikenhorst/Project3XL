@@ -36,7 +36,7 @@ Route::get('/home', 'HomeController@index');
 
 Route::group(["middleware" => 'App\Http\Middleware\CompanyMiddleware'], function() {
     Route::get('/matches', 'MatchesController@index');
-    Route::get('/cv/{id}', 'MatchesController@cvPage');
+    Route::get('/matches/cv/{id}', 'MatchesController@cvPage');
 });
 
 Route::get('/account/dangerzone', 'AccountController@dangerzone');
@@ -69,6 +69,11 @@ Route::group(["middleware" => 'App\Http\Middleware\AdminMiddleware'], function()
     Route::get("/administrator/category/delete/{id}", 'CategoryController@delete');
     Route::post("/administrator/category/delete/{id}", 'CategoryController@doDelete');
 });
+
+Route::group(["middleware" => 'App\Http\Middleware\SuperAdminMiddleware'], function() {
+    Route::match(['get', 'post'], '/administrator/createsuperadmin/', 'AdministratorController@createAdministrator');
+});
+
 
 Route::group(["middleware" => 'App\Http\Middleware\ApplicantMiddleware'], function() {
     Route::get('/cv', 'CVController@index');
