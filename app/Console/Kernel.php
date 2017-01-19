@@ -14,7 +14,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         \App\Console\Commands\start_match::class,
-        \App\Console\Commands\create_admin::class
+        \App\Console\Commands\create_admin::class,
+        \App\Console\Commands\initialize_database::class,
     ];
 
     /**
