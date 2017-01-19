@@ -97,7 +97,7 @@ class VacancyController extends Controller
     }
 
     /**
-     * Deletes a vacancy
+     * Shows the delete page for a vacancy
      * @param $id
      * @return mixed
      */
@@ -110,6 +110,12 @@ class VacancyController extends Controller
         ]);
     }
 
+    /**
+     * Delets a vacancy
+     * @param $id
+     * @param Request $request
+     * @return mixed
+     */
     public function doDelete($id, Request $request)
     {
         $data = $request->all();
@@ -124,6 +130,12 @@ class VacancyController extends Controller
         return Redirect::to('/vacancy');
     }
 
+    /**
+     * Update a vacancy
+     * @param $id
+     * @param Request $request
+     * @return mixed
+     */
     public function update($id, Request $request)
     {
 

@@ -13,8 +13,12 @@ use Illuminate\Support\Facades\DB;
 
 class MatchesController extends Controller
 {
+    /**
+     * View te information of a cv and also the applicant if there has been paid for.
+     * @param $id
+     * @return mixed
+     */
 	public function cvPage($id){
-		//$return;
 		$paid = Vacancy::byOwnerPayed(Auth::user()->userable()->first()->id,$id)->get()->count();
         $unpayed = Vacancy::byOwner(Auth::user()->userable()->first()->id,$id)->get();
         if($paid == 1){
