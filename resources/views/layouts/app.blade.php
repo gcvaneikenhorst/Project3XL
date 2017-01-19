@@ -64,6 +64,9 @@
 	                        <div onclick="location.href='{{ url("/vacancy") }}';">
 	                            <a>Mijn vacatures</a>
 	                        </div>
+	                        <div onclick="location.href='{{ url("/matches") }}';">
+		                        <a>Matches</a>
+		                    </div>
 	                    @endif
 
 						@if (Auth::user()->userable_type == 'App\Admin')
@@ -80,10 +83,6 @@
 							</div>
 						@endif
 
-	                    <div onclick="location.href='{{ url("/matches") }}';">
-	                        <a>Matches</a>
-	                    </div>
-	
 	                @endif
 	                
 	                @if (Auth::guest())
