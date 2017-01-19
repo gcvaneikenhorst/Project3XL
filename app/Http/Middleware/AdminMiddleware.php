@@ -15,7 +15,7 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if ($request->user()->userable_type != 'App\Admin')
+        if (Auth::guest() || $request->user()->userable_type != 'App\Admin')
             return redirect('home');
         return $next($request);
     }

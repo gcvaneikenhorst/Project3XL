@@ -15,7 +15,7 @@ class ApplicantMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if ($request->user()->userable_type != 'App\Applicant')
+        if (Auth::guest() || $request->user()->userable_type != 'App\Applicant')
             return redirect('home');
         return $next($request);
     }

@@ -15,7 +15,7 @@ class CompanyMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if ($request->user()->userable_type != 'App\Company')
+        if (Auth::guest() || $request->user()->userable_type != 'App\Company')
             return redirect('home');
         return $next($request);
     }
