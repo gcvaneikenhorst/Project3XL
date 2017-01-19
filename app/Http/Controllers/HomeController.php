@@ -57,7 +57,10 @@ class HomeController extends Controller
             $numMatches += $vacancy->matches()->count();
         }
 
-        $payedCvCount = VacancyCvsPayed::find('company_id', Auth::user()->userable_id)->get()->count();
+        $payedCvCount = 0;
+        foreach (Vacancy::where('company_id', Auth::user()->userable()->first()->id)->get() as $vacancy) {
+            $payedCvCount += VacancyCvsPayed::find('vacancy_id', $vacancy->id)->get()->count();
+        }
 
         return view('home', [
             'vacancyCount'  => $vacancyCount,
