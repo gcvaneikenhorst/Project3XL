@@ -69,7 +69,7 @@
                     <p class="text-muted"><i>Ingestuurd op: {{$cv->date}}</i></p>
                     
                     @if($cv->applicant == null)
-                    	<button id='btn-checkout' class='btn btn-primary' onclick='checkoutDirect({{$cv->cv_id}});'>CV kopen</button>
+                    	<button id='btn-checkout' class='btn btn-primary' onclick='checkoutDirect({{$cv->link}});'>CV kopen</button>
 					@endif
                 </div>
             </div>

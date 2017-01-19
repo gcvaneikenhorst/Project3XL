@@ -149,7 +149,7 @@ function checkout()
 	}
 	else
 	{
-		alert("Selecteer een CV om wat af te kunnen rekenen");
+		alert("Selecteer een CV om het af te kunnen rekenen");
 	}
 }
 
@@ -167,9 +167,8 @@ function checkoutDirect(link)
 		{    
 			if(result)
 			{
-				$(".lbl-amount").remove();
 				alert("Betaling is gelukt!");			
-				$("#btn-payed-matches").click();
+				window.location.reload();
 			}
 	    }
     });
