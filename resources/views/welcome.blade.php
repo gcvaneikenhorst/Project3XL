@@ -53,11 +53,7 @@
 					<p>
 						Ben je al sollicitant of bedrijf bij ons?
 						<br><br>
-<<<<<<< HEAD
-						<a href="/login" style="float: right"><i class="fa fa-chevron-right"></i> Inloggen</a>
-=======
 						<a href="/login" style="float: right"><i class="fa fa-chevron-right"></i> Log in</a>
->>>>>>> 87e472c99fbb8ede2dfecf8a74de8f7c5d3ce6cf
 					</p>
 				</div>
 			</div>

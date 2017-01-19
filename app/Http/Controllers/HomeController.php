@@ -41,10 +41,10 @@ class HomeController extends Controller
     }
 
     public function applicantIndex() {
-        $cvs        = CV::where('applicant_id', Auth::user()->userable_id);
+        $cvs = CV::where('applicant_id', Auth::user()->userable_id)->get()->count();
 
         return view('home', [
-            'cvCount'       => count($cvs),
+            'cvCount'       => $cvs,
         ]);
     }
 
