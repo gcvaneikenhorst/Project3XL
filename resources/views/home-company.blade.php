@@ -48,7 +48,7 @@
                             <td style="font-weight: bold; text-align: right">{{ $matchCount or '-' }}</td>
                         </tr>
                         <tr>
-                            <td>Matches</td>
+                            <td>Betaalde Matches</td>
                             <td style="font-weight: bold; text-align: right">{{ $payedCvCount or '-' }}</td>
                         </tr>
                         </tbody>
