@@ -41,22 +41,22 @@ class HomeController extends Controller
     }
 
     public function applicantIndex() {
-        $cvs = CV::where('applicant_id', Auth::user()->userable_id)->get()->count();
+        $cvCount = CV::where('applicant_id', Auth::user()->userable_id)->get()->count();
 
         return view('home', [
-            'cvCount'       => $cvs,
+            'cvCount'       => $cvCount,
         ]);
     }
 
     public function companyIndex() {
-        $vacancies  = Vacancy::where('company_id', Auth::user()->userable_id);
+        $vacancyCount  = Vacancy::where('company_id', Auth::user()->userable_id)->get()->count();
 
         $numMatches = 0;
         foreach (Company::find(Auth::user()->userable()->first()->id)->vacancies()->get() as $vacancy) {
             $numMatches += $vacancy->matches()->count();
         }
         return view('home', [
-            'vacancyCount'  => count($vacancies),
+            'vacancyCount'  => $vacancyCount,
             'matchCount'    => $numMatches,
         ]);
     }
