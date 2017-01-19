@@ -191,6 +191,19 @@ body
 	border-radius: 0;
 }
 
+.info-section button {
+	height: 10.4%;
+	display: block;
+	border: none;
+	background: none;
+	outline: 0;
+	position: absolute;
+	z-index: 1000;
+	right: 0px;
+	padding-top: 5px;
+	padding-right: 15px;
+}
+
 .material-design-hamburger--off button 
 {
 	height: 10.4%;
@@ -431,4 +444,8 @@ body
 
 .panel:not(.note-editor) > .panel-heading i {
     color: white !important;
+}
+
+.btn {
+	border-radius: 0px !important;
 }

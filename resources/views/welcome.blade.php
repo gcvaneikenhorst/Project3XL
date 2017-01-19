@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
@@ -52,7 +53,7 @@
 					<p>
 						Ben je al sollicitant of bedrijf bij ons?
 						<br><br>
-						<a href="/register" style="float: right"><i class="fa fa-chevron-right"></i> Registreer je nu.</a>
+						<a href="/login" style="float: right"><i class="fa fa-chevron-right"></i> Inloggen</a>
 					</p>
 				</div>
 			</div>
@@ -62,4 +63,5 @@
 
 	</div>
 </div>
+
 @endsection

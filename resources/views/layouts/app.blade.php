@@ -117,6 +117,12 @@
                         </div>
 	                @endif
 				</section>
+				
+				<section class="info-section">
+					<button id="help_btn">
+						<span class="glyphicon glyphicon-info-sign" style="color: white"></span>
+					</button>
+				</section>
 			</section>
 
 		    @yield('content')

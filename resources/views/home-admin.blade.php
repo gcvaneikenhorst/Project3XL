@@ -10,7 +10,7 @@
                 </div>
 
                 <div class="panel-body">
-                    <h3>Goedendag administrator {{Auth::user()->userable()->first()->firstname}} {{Auth::user()->userable()->first()->lastname}}, welkom op het dashboard.</h3>
+                    <h3>Goedendag administrator {{ Auth::user()->userable()->first()->firstname }} {{ Auth::user()->userable()->first()->lastname }}, welkom op het dashboard.</h3>
                     <p>
                         Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
                     </p>
@@ -111,40 +111,40 @@
             </div>
         </div>
     </div>
-
 </div>
 
 @section('script')
+    @parent
 
-<script src="{{ asset('/js/chart.min.js') }}"></script>
+    <script src="{{ asset('/js/chart.min.js') }}"></script>
 
-<script>
-    var barData = {
-        labels: <?= json_encode(array_keys($cvStats)) ?>,
-        datasets: [
-            {
-                label: "Cv's",
-                backgroundColor: 'rgba(220, 220, 220, 0.5)',
-                pointBorderColor: "#fff",
-                data: <?= json_encode(array_values($cvStats)) ?>,
-            },
-            {
-                label: "Vacatures",
-                backgroundColor: 'rgba(26,179,148,0.5)',
-                borderColor: "rgba(26,179,148,0.7)",
-                pointBackgroundColor: "rgba(26,179,148,1)",
-                pointBorderColor: "#fff",
-                data: <?= json_encode(array_values($vacancyStats)) ?>,
-            }
-        ]
-    };
+    <script>
+        var barData = {
+            labels: <?= json_encode(array_keys($cvStats)) ?>,
+            datasets: [
+                {
+                    label: "Cv's",
+                    backgroundColor: 'rgba(220, 220, 220, 0.5)',
+                    pointBorderColor: "#fff",
+                    data: <?= json_encode(array_values($cvStats)) ?>,
+                },
+                {
+                    label: "Vacatures",
+                    backgroundColor: 'rgba(26,179,148,0.5)',
+                    borderColor: "rgba(26,179,148,0.7)",
+                    pointBackgroundColor: "rgba(26,179,148,1)",
+                    pointBorderColor: "#fff",
+                    data: <?= json_encode(array_values($vacancyStats)) ?>,
+                }
+            ]
+        };
 
-    var barOptions = {
-        responsive: true
-    };
+        var barOptions = {
+            responsive: true
+        };
 
-    var ctx2 = document.getElementById("barChart").getContext("2d");
-    new Chart(ctx2, {type: 'bar', data: barData, options:barOptions});
-</script>
+        var ctx2 = document.getElementById("barChart").getContext("2d");
+        new Chart(ctx2, {type: 'bar', data: barData, options:barOptions});
+    </script>
 
 @endsection
