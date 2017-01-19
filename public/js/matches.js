@@ -57,7 +57,7 @@ function notPayed(button)
 {
     $(".toggle-active").removeClass("toggle-active");
     $(button).addClass("toggle-active");
-    console.log("/api/auth/matches?api_token="+token);
+    //console.log("/api/auth/matches?api_token="+token);
     $.ajax({url: "/api/auth/matches?api_token="+token, success: function(result){
         //console.log(result);
         if (table)
@@ -201,6 +201,14 @@ function calculateAmount()
 function addCheckoutBtn(appendname)
 {
 	// Add checkout-button
-	var checkout = $("<button id='btn-checkout' class='btn btn-primary' onclick='checkout();'>Afrekenen</button>")
-	$(appendname).append(checkout);
+	
+	if($("#btn-checkout")[0])
+	{
+		
+	}
+	else
+	{
+		var checkout = $("<button id='btn-checkout' class='btn btn-primary' onclick='checkout();'>Afrekenen</button>")
+		$(appendname).append(checkout);
+	}
 }
