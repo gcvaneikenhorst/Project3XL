@@ -15,20 +15,6 @@ Route::get('/', 'WelcomeController@index');
 
 Auth::routes();
 
-Route::get('/vacancy/create', 'VacancyController@create');
-Route::get('/vacancy/edit/{id}', 'VacancyController@edit');
-Route::post('/vacancy/edit/{id}', 'VacancyController@update');
-Route::get('/vacancy', 'VacancyController@index');
-Route::post('/vacancy/create', 'VacancyController@save');
-
-Route::get('/vacancy/delete/{id}', 'VacancyController@delete');
-Route::post('/vacancy/delete/{id}', 'VacancyController@doDelete');
-
-
-
-Route::get('/matches', 'MatchesController@getMatches');
-Route::get('/matches/payed', 'MatchesController@getPayedMatches');
-
 
 
 
@@ -37,20 +23,39 @@ Route::get('/home', 'HomeController@index');
 Route::group(["middleware" => 'App\Http\Middleware\CompanyMiddleware'], function() {
     Route::get('/matches', 'MatchesController@index');
     Route::get('/matches/cv/{id}', 'MatchesController@cvPage');
+
+    Route::get('/vacancy/create', 'VacancyController@create');
+    Route::get('/vacancy/edit/{id}', 'VacancyController@edit');
+    Route::post('/vacancy/edit/{id}', 'VacancyController@update');
+    Route::get('/vacancy', 'VacancyController@index');
+    Route::post('/vacancy/create', 'VacancyController@save');
+
+    Route::get('/vacancy/delete/{id}', 'VacancyController@delete');
+    Route::post('/vacancy/delete/{id}', 'VacancyController@doDelete');
+
+
+
+    Route::get('/matches', 'MatchesController@getMatches');
+    Route::get('/matches/payed', 'MatchesController@getPayedMatches');
+
+
+
+
 });
+Route::group(["middleware" => 'auth'], function() {
 
-Route::get('/account/dangerzone', 'AccountController@dangerzone');
-Route::post('/account/dangerzone', 'AccountController@dangerzone');
+    Route::get('/account/dangerzone', 'AccountController@dangerzone');
+    Route::post('/account/dangerzone', 'AccountController@dangerzone');
 
-Route::get('/account', 'SettingsController@settings');
-Route::post('/account/save', 'SettingsController@settingsSave');
+    Route::get('/account', 'SettingsController@settings');
+    Route::post('/account/save', 'SettingsController@settingsSave');
 
-Route::get('/account/email', 'SettingsController@email');
-Route::post('/account/email/save', 'SettingsController@emailSave');
+    Route::get('/account/email', 'SettingsController@email');
+    Route::post('/account/email/save', 'SettingsController@emailSave');
 
-Route::get('/account/password', 'SettingsController@password');
-Route::post('/account/password/save', 'SettingsController@passwordSave');
-
+    Route::get('/account/password', 'SettingsController@password');
+    Route::post('/account/password/save', 'SettingsController@passwordSave');
+});
 
 Route::group(["middleware" => 'App\Http\Middleware\AdminMiddleware'], function() {
     Route::get("/administrator/viewusers", 'AdministratorController@viewusers');
