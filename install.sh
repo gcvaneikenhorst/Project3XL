@@ -1,5 +1,8 @@
 #Usage 'sh install.sh'
+<<<<<<< HEAD
 #Or wget -qO- https://raw.githubusercontent.com/rubenlievense/Project3XL/master/install.sh | sh
+=======
+>>>>>>> fb40c47a22e4896c01c5dbaadd7e25ecd4f29130
 
 #Warning! sudo might not be needed. If they give you trouble remove them and try again.
 
@@ -33,7 +36,11 @@ configfile="$configfile\nDB_PASSWORD=$databasepassword"
 
 echo $configfile > '.env'
 sudo composer install
+<<<<<<< HEAD
 echo 'Please set the permissions properly (chown -R <group> ./) and type exit when you\'re done'
+=======
+echo "Please set the permissions properly (chown -R <group> ./) and type exit when you're done"
+>>>>>>> fb40c47a22e4896c01c5dbaadd7e25ecd4f29130
 sh
 #sudo chown -R www-data ./
 #sudo chmod -R 755 ./
